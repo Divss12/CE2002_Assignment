@@ -7,7 +7,10 @@ public class mainApp {
 		int choice;
 		Scanner scan = new Scanner(System.in);
 
-		Menu menu = new Menu(); //???
+		Menu menu = new Menu();
+		AllOrders orders = new AllOrders();
+		AllTables tables = new AllTables();
+		AllReservations reservations = new AllReservations();
 
 		while(true){
 			System.out.println("Enter your choice: " +
@@ -35,13 +38,13 @@ public class mainApp {
 										"\n 4. Cancel"); 
 					int c1 = scan.nextInt();
 					switch(c1){
-						case 1: //To be implemented
+						case 1: 
 							menu.createNewItem();
 							break;
-						case 2: //To be implemented
+						case 2: 
 							menu.updateItem();
 							break;
-						case 3: //To be implemented
+						case 3: 
 							menu.removeItem();
 							break;
 						case 4:
@@ -59,13 +62,13 @@ public class mainApp {
 										"\n 4. Cancel"); 
 					int c2 = scan.nextInt();
 					switch(c2){
-						case 1: //To be implemented
+						case 1:
 							menu.createNewPromotion();
 							break;
-						case 2: //To be implemented
+						case 2: 
 							menu.updatePromotion();
 							break;
-						case 3: //To be implemented
+						case 3: 
 							menu.removePromotion();
 							break;
 						case 4:
@@ -76,32 +79,44 @@ public class mainApp {
 					break;
 
 				case 3: //Create order
-					//exact implementation to be discussed 
-					//should we have an array of current orders
-					//or should we make a class containing current orders
+					orders.createNewOrder();
 					break;
 				case 4: //View order
-					//see case 3
+					orders.viewOrder();
 					break;
 				case 5: //Add/remove item from order
-					//see case 3
+					System.out.println("Enter your choice:" +
+										"\n 1. Add to Order" +
+										"\n 2. Remove from Order" +
+										"\n 3. Cancel");
+					int c3 = scan.nextInt();
+					switch(c3){
+						case 1:
+							orders.addToOrder();
+							break;
+						case 2:
+							orders.removeFromOrder();
+							break;
+						case 3:
+							break;
+						default:
+							break;
+					}
 					break;
 				case 6: //Create reservation
-					// same qn as for orders
-					// should we have an array of current reservations
-					// or should we make a class containing current reservations
+					reservations.createNewReservation();
 					break;
 				case 7: //Check/Remove reservation
-					// see case 6
+					reservations.checkReservation();
 					break;
 				case 8: //Change table availability
-					// same qn
+					tables.modifyAvailablity();
 					break;
 				case 9: // Check table availibility
-					//
+					tables.checkAvailability();
 					break;
 				case 10: //print order invoice
-					//see case 3
+					orders.printInvoice();
 					break;
 				case 11: //print sales revenue report
 					//need to discuss the implementation of this as well
@@ -112,6 +127,7 @@ public class mainApp {
 					break;
 			}
 		}
+		scan.close();
 	}
 }
 

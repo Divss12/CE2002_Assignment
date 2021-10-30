@@ -1,11 +1,11 @@
 package Main;
 
-public class table {
+public class Table {
 
     private int tableNumber;
     private boolean occupied;
 
-    public table(int tableNumber){
+    public Table(int tableNumber){
 
     }
 }

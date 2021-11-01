@@ -82,20 +82,15 @@ public class MenuItem{
     	}while((choice >= 1) && (choice <= 3));
     	
     }
-
-
-    //should promotions just be a part of this??
-
-    public void createNewPromotion(){
-
-    }
-
-    public void updatePromotion(){
-
-    }
-
-    public void removePromotion(){
-        
+    public String convertToString() {	// TODO: Might need to modify based on what format we want
+    	StringBuilder s = new StringBuilder();
+    	s.append(this.name);
+    	String p=String.valueOf(price);
+    	for(int i=name.length();i<=75;i++)
+    		s.append(" ");
+    	s.append("$");
+    	s.append(p);
+    	return s+"\n"+description;
     }
 
 }

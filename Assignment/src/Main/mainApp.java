@@ -51,14 +51,29 @@ public class mainApp {
 					int c1 = scan.nextInt();
 					switch(c1){
 						case 1: 
-							menu.createNewItem();
+							// Create MenuItem object
+							// Then add to menu arraylist
+							//menu.createNewItem();
 							break;
 						case 2: 
-							menu.updateItem();
+							System.out.println("Enter name of item you want to update:");
+							String newName = scan.nextLine();
+							for (MenuItem menuItem: menu) {
+								if (menuItem.getName().equals(newName)) {
+									menuItem.updateItem();
+								}
+							}
 							break;
 						case 3: 
-							menu.removeItem();
-							break;
+							int i = 0;	// index of menuItem
+							System.out.println("Enter name of item you want to remove:");
+							String newName2 = scan.nextLine();
+							for (MenuItem menuItem: menu) {
+								if (menuItem.getName().equals(newName2)) {
+									menu.remove(i);	// Remove target menuItem from menu arraylist
+								}
+								i++;
+							}
 						case 4:
 							break;
 						default:
@@ -75,13 +90,13 @@ public class mainApp {
 					int c2 = scan.nextInt();
 					switch(c2){
 						case 1:
-							menu.createNewPromotion();
+							//menu.createNewPromotion();
 							break;
 						case 2: 
-							menu.updatePromotion();
+							//menu.updatePromotion();
 							break;
 						case 3: 
-							menu.removePromotion();
+							//menu.removePromotion();
 							break;
 						case 4:
 							break;

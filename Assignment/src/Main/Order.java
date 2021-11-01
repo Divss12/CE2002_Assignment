@@ -8,15 +8,15 @@ public class Order {
     private Staff server;
 
     private ArrayList<MenuItem> list;
-    private ArrayList<int> quant;
+    private ArrayList<Integer> quant;
 
     public Order(int tableNumber, int time, Staff server){
         this.tableNumber = tableNumber;
         this.time = time;
         this.server = server;
 
-        this.list = new ArrayList<MenuItem>;
-        this.quant = new ArrayList<int>;
+        this.list = new ArrayList<MenuItem>();
+        this.quant = new ArrayList<Integer>();
 
     }
 
@@ -26,7 +26,7 @@ public class Order {
     }
     public void removeFromOrder(int index){
         if(index == -1){
-            list.remove(list.size() - 1)
+            list.remove(list.size() - 1);
         }
         else{
             list.remove(index);
@@ -43,9 +43,9 @@ public class Order {
         MenuItem item;
         String name;
         String qua;
-        int price;
+        double price;
         int q;
-        int total;
+        int total = 0;
         for(int i = 0; i < list.size(); i++){
             item = list.get(i);
             name = item.getName();
@@ -63,7 +63,7 @@ public class Order {
             total += q*price;
         }
 
-        System.out.println("Total: \t\t\t\t\t" + total)
+        System.out.println("Total: \t\t\t\t\t" + total);
 
     }
 

@@ -17,7 +17,7 @@ public class AllTables {
 
 	public void checkAvailability(){
 		//Ask for which table by no. and maybe time (should table class store its availablity at diff times?)
-		//print availability
+		//print availability by calling a method maybe?
 
 	}
 

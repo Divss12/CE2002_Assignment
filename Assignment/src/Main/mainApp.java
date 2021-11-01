@@ -1,5 +1,6 @@
 package Main;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class mainApp {
 	
@@ -7,10 +8,17 @@ public class mainApp {
 		int choice;
 		Scanner scan = new Scanner(System.in);
 
-		Menu menu = new Menu();
-		AllOrders orders = new AllOrders();
-		AllTables tables = new AllTables();
-		AllReservations reservations = new AllReservations();
+		ArrayList<menuItem> menu = new ArrayList<menuItem>;
+		//code to read saved menuItems from a file
+
+		ArrayList<Order> orderList = new ArrayList<Order>;
+		//code to read saved orders from a file
+
+		ArrayList<Table> tableList = new ArrayList<Table>;
+		//code to read saved orders from a file
+
+		ArrayList<Reservation> reservationList = new ArrayList<Table>;
+		//code to read saved orders from a file
 
 		while(true){
 			System.out.println("Enter your choice: " +

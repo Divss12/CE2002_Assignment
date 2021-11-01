@@ -8,17 +8,20 @@ public class mainApp {
 		int choice;
 		Scanner scan = new Scanner(System.in);
 
-		ArrayList<menuItem> menu = new ArrayList<menuItem>;
+		ArrayList<MenuItem> menu = new ArrayList<MenuItem>;
 		//code to read saved menuItems from a file
 
 		ArrayList<Order> orderList = new ArrayList<Order>;
 		//code to read saved orders from a file
 
 		ArrayList<Table> tableList = new ArrayList<Table>;
-		//code to read saved orders from a file
+		//code to read saved tables from a file
 
 		ArrayList<Reservation> reservationList = new ArrayList<Table>;
-		//code to read saved orders from a file
+		//code to read saved reservations from a file
+
+		ArrayList<Staff> staffList = new ArrayList<Staff>;
+		//code to read saved staff from a file
 
 		while(true){
 			System.out.println("Enter your choice: " +
@@ -87,12 +90,43 @@ public class mainApp {
 					break;
 
 				case 3: //Create order
-					orders.createNewOrder();
+					System.out.println("Enter Table no.");
+					int tableNumber = scan.nextInt();
+					int time = 0; //add code to get time from Calendar class
+					System.out.println("Enter Staff ID: ");
+					int staffID = scan.nextInt();
+					Staff staff;
+					for(Staff s : staffList){
+						if(s.getID() == staffID){
+							staff = s;
+							break;
+						}
+					}
+					Order order = new Order(tableNumber, time, staff);
+					orderList.add(order);
 					break;
 				case 4: //View order
-					orders.viewOrder();
+					System.out.println("Enter the Table no.:");
+					int tableNumber = scan.nextInt();
+					Order order;
+					for(Order o : orderList){
+						if(o.getTableNumber() == tableNumber){
+							order = o;
+							break;
+						}
+					}
+					order.viewOrder();
 					break;
 				case 5: //Add/remove item from order
+					System.out.println("Enter the Table no.:");
+					int tableNumber = scan.nextInt();
+					Order order;
+					for(Order o : orderList){
+						if(o.getTableNumber() == tableNumber){
+							order = o;
+							break;
+						}
+					}
 					System.out.println("Enter your choice:" +
 										"\n 1. Add to Order" +
 										"\n 2. Remove from Order" +
@@ -100,10 +134,16 @@ public class mainApp {
 					int c3 = scan.nextInt();
 					switch(c3){
 						case 1:
-							orders.addToOrder();
+							System.out.println("Enter dish name: ")
+							String name = scan.nextLine();
+							for(MenuItem m : menu){
+								if(m.getName().equals(name))
+							}
+
+							order.addToOrder();
 							break;
 						case 2:
-							orders.removeFromOrder();
+							order.removeFromOrder();
 							break;
 						case 3:
 							break;

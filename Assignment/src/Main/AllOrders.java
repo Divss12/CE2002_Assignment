@@ -1,9 +1,12 @@
 package Main;
+import java.util.Scanner;
+
 
 public class AllOrders {
 
 	private Order[] array = new Order[128]; //128 shud be changed later
 	private int numOrders;
+	private Scanner scan = new Scanner(System.in);
 
 	public AllOrders(){
 		this.numOrders = 0;
@@ -11,6 +14,17 @@ public class AllOrders {
 
 	public void createNewOrder(){
 		//ask for details of order through print dialog
+		int tableNumber;
+		System.out.println("Enter the Table no.:");
+		tableNumber = scan.nextInt();
+		int time = 0; //get time from calendar class
+
+		System.out.println("Enter Staff name:");
+		String staffName = 
+
+
+
+
 		//create object of order class
 		//insert this object into the array
 	}

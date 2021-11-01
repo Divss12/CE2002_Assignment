@@ -9,6 +9,7 @@ public class mainApp {
 		Scanner scan = new Scanner(System.in);
 
 		ArrayList<MenuItem> menu = new ArrayList<MenuItem>;
+
 		//code to read saved menuItems from a file
 
 		ArrayList<Order> orderList = new ArrayList<Order>;

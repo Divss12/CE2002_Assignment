@@ -6,6 +6,15 @@ public class Table {
     private boolean occupied;
 
     public Table(int tableNumber){
+        this.tableNumber = tableNumber;
+        this.occupied = false;
+    }
 
+    public void changeAvailability(boolean newBool){
+        this.occupied = newBool;
+    }
+
+    public Boolean checkAvailability(){
+        return !occupied;
     }
 }

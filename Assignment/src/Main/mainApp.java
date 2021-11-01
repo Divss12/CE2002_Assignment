@@ -127,7 +127,7 @@ public class mainApp {
 					break;
 			}
 		}
-		scan.close();
+		//scan.close();
 	}
 }
 

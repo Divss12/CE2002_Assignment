@@ -2,9 +2,15 @@ package Main;
 
 public interface MenuItem {
 
-	public static int type = 0;
-	public static int price = 0;
-	public static String description = "";
-	public static String name = "";
+	public String getName();
+	
+	public String getDescription();
+	
+	public double getPrice();
+	
+	public void setName(String name);
+	
+	public void setDescription(String description);
 
+	public void setPrice(double price);
 }

@@ -9,4 +9,8 @@ public class Staff {
     public Staff(String name, boolean gender, int ID, String jobTitle){
 
     }
+
+    public int getID(){
+        return this.ID;
+    }
 }

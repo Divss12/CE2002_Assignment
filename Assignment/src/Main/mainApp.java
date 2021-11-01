@@ -164,10 +164,25 @@ public class mainApp {
 					reservations.checkReservation();
 					break;
 				case 8: //Change table availability
-					tables.modifyAvailablity();
+					System.out.println("Enter table no.: ");
+					int tableNumber = scan.nextInt();
+					System.out.println("Change availability to?" +
+										"\n 1. Available" +
+										"\n 2. Not Available")
+					Boolean newBool = (Boolean) scan.nextInt() - 1;
+					
+					tableList.get(tableNumber).changeAvailability(newBool);
+					
 					break;
 				case 9: // Check table availibility
-					tables.checkAvailability();
+					System.out.println("Enter table no.: ");
+					int tableNumber = scan.nextInt();
+					if(tableList.get(tableNumber).checkAvailability()){
+						System.out.println("Currently Available");
+					}
+					else{
+						System.out.println("Currently Unavailable");
+					}
 					break;
 				case 10: //print order invoice
 					System.out.println("Enter the Table no.:");
@@ -179,7 +194,7 @@ public class mainApp {
 							o.printInvoice();
 							break;
 						}
-					}
+ 					}
 					orderList.remove(-1);
 					break;
 				case 11: //print sales revenue report

@@ -8,8 +8,8 @@ public class mainApp {
 		int choice;
 		Scanner scan = new Scanner(System.in);
 
-		ArrayList<menuItem> menu = new ArrayList<menuItem>;
-		//code to read saved menuItems from a file
+		ArrayList<MenuItem> menu = new ArrayList<MenuItem>;
+		//code to read saved MenuItems from a file
 
 		ArrayList<Order> orderList = new ArrayList<Order>;
 		//code to read saved orders from a file

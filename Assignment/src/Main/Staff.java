@@ -13,4 +13,8 @@ public class Staff {
     public int getID(){
         return this.ID;
     }
+
+    public String getName(){
+        return this.name;
+    }
 }

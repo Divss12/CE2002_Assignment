@@ -108,47 +108,52 @@ public class mainApp {
 				case 4: //View order
 					System.out.println("Enter the Table no.:");
 					int tableNumber = scan.nextInt();
-					Order order;
 					for(Order o : orderList){
 						if(o.getTableNumber() == tableNumber){
-							order = o;
+							o.viewOrder();
 							break;
 						}
 					}
-					order.viewOrder();
 					break;
 				case 5: //Add/remove item from order
 					System.out.println("Enter the Table no.:");
 					int tableNumber = scan.nextInt();
-					Order order;
-					for(Order o : orderList){
-						if(o.getTableNumber() == tableNumber){
-							order = o;
+
+					for(Order order : orderList){
+						if(order.getTableNumber() == tableNumber){
+							System.out.println("Enter your choice:" +
+												"\n 1. Add to Order" +
+												"\n 2. Remove from Order" +
+												"\n 3. Cancel");
+							int c3 = scan.nextInt();
+							switch(c3){
+								case 1:
+									System.out.println("Enter dish name: ")
+									String name = scan.nextLine();
+									MenuItem item;
+									for(MenuItem m : menu){
+										if(m.getName().equals(name)){
+											item = m;
+											break;
+										}
+									}
+									System.out.println("Enter Quantity: ");
+									int quantity = scan.nextInt();
+
+									order.addToOrder(item, quantity);
+									break;
+								case 2:
+									System.out.println("Enter the index of the item to remove (to remove latest enter -1): ")
+									int index = scan.nextInt();
+									order.removeFromOrder(index);
+									break;
+								case 3:
+									break;
+								default:
+									break;
+							}
 							break;
 						}
-					}
-					System.out.println("Enter your choice:" +
-										"\n 1. Add to Order" +
-										"\n 2. Remove from Order" +
-										"\n 3. Cancel");
-					int c3 = scan.nextInt();
-					switch(c3){
-						case 1:
-							System.out.println("Enter dish name: ")
-							String name = scan.nextLine();
-							for(MenuItem m : menu){
-								if(m.getName().equals(name))
-							}
-
-							order.addToOrder();
-							break;
-						case 2:
-							order.removeFromOrder();
-							break;
-						case 3:
-							break;
-						default:
-							break;
 					}
 					break;
 				case 6: //Create reservation
@@ -164,7 +169,17 @@ public class mainApp {
 					tables.checkAvailability();
 					break;
 				case 10: //print order invoice
-					orders.printInvoice();
+					System.out.println("Enter the Table no.:");
+					int tableNumber = scan.nextInt();
+					int i = -1;
+					for(Order o : orderList){
+						i++;
+						if(o.getTableNumber() == tableNumber){
+							o.printInvoice();
+							break;
+						}
+					}
+					orderList.remove(-1);
 					break;
 				case 11: //print sales revenue report
 					//need to discuss the implementation of this as well

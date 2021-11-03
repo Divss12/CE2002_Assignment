@@ -40,7 +40,7 @@ public class EditFile {
 
 			for(Object m: menu){
 				m.StoreToFile(myWriter);
-				myWriter.write("\n")
+				myWriter.write("\n");
 			}
 			
 			myWriter.close();

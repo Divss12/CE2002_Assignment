@@ -19,4 +19,5 @@ public class Table {
     public Boolean checkAvailability(){
         return !occupied;
     }
+    
 }

@@ -1,12 +1,15 @@
 package Main;
 import java.util.Scanner;
+import java.io.FileWriter;	// Import FileWriter class to write menuItem attributes to RestMenu
+import java.io.FileNotFoundException;
+import java.io.IOException;	// Handle errors when editing files
 
 public class MenuItem{
 	private String name;
 	private String description;
 	private double price;
 	private int choice;
-	private int changes;	// Counter for the number of time item is updated in updateItem
+
 	Scanner sc = new Scanner(System.in);
 	
 	public MenuItem(String name, String description, double price) {
@@ -49,7 +52,7 @@ public class MenuItem{
     public void updateItem(){
     	// Ask for the change
     	// Update the file
-    	changes = 0;
+    	int changes = 0;	// Counter for the number of time item is updated in updateItem
     	do {
 	    	System.out.println("Choose which field you want to change\n----------------------------");
 	    	System.out.println("[1] Item name");
@@ -85,11 +88,22 @@ public class MenuItem{
     public String convertToString() {	//name \n $p \n description
     	StringBuilder s = new StringBuilder();
     	s.append(this.name);
+    	s.append("\t");
     	String p=String.valueOf(price);
-    	s.append("\n");
     	s.append("$");
     	s.append(p);
-    	return s+"\n"+description;
+    	s.append("\t");
+    	return s+"\t"+description;
     }
 
+    public void storeToFile(FileWriter file){	// Format: Name, description, price
+    	String data = convertToString();
+    	try {
+    		file.write(data);
+    		System.out.println("Successfully stored to file.");
+    	}catch (IOException e) {
+			System.out.println("An error occured while storing to file.");
+			e.printStackTrace();
+    	}
+    }
 }

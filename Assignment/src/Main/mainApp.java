@@ -9,7 +9,6 @@ public class mainApp{
 		Scanner scan = new Scanner(System.in);
 		EditFile menuFile = new EditFile("./Files/menu.txt");	// Create a Menu File
 		EditFile tableFile = new EditFile("./Files/tables.txt"); // Create a Table File
-		EditFile OrderFile = new EditFile("./Files/orders.txt"); // Create an Order File
 		EditFile ReservationFile = new EditFile("./Files/reservations.txt"); // Create a Reservation File
 
 		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
@@ -17,7 +16,6 @@ public class mainApp{
 		//code to read saved menuItems from a file
 
 		ArrayList<Order> orderList = new ArrayList<Order>();
-		//code to read saved orders from a file
 
 		ArrayList<Table> tableList = new ArrayList<Table>();
 		//code to read saved tables from a file
@@ -183,14 +181,12 @@ public class mainApp{
 									MenuItem item = null;	// Initializing item
 									for(MenuItem m : menu){
 										if(m.getName().equals(name)){
-											item = m;
+											System.out.println("Enter Quantity: ");
+											int quantity = scan.nextInt();
+											o.addToOrder(m, quantity);
 											break;
 										}
 									}
-									System.out.println("Enter Quantity: ");
-									int quantity = scan.nextInt();
-									
-									o.addToOrder(item, quantity);
 									break;
 								case 2:
 									System.out.println("Enter the index of the item to remove (to remove latest enter -1): ");

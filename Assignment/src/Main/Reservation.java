@@ -23,8 +23,14 @@ public class Reservation {
     	
     }
 
-    public void printDetails(){
-
+    public void StoreToFile(FileWriter file){
+        try{
+            file.write(this.pax + "\t" + this.date + "\t" + this.time + "\t" + this.name);
+        }catch(FileNotFoundException e){
+            System.out.println("An error occured while reading from file.");
+			e.printStackTrace();
+        }
+         
     }
 
     

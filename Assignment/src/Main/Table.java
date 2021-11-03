@@ -19,4 +19,13 @@ public class Table {
     public Boolean checkAvailability(){
         return !occupied;
     }
+
+    public void storeToFile(FileWriter file){
+        try{
+            file.write(this.tableNumber + "\t" + this.size);
+        }catch(FileNotFoundException e){
+        System.out.println("An error occured while reading from file.");
+        e.printStackTrace();
+        }
+    }
 }

@@ -46,15 +46,13 @@ public class EditFile {
 		}
 	}
 	
-	public static void ReadMenuFromFile(ArrayList<MenuItem> menu) { //make this for others
+	public static void readOrdersFromFile(ArrayList<Order> array) { //make this for others
 		try {
 			File restMenu = new File(filepath + ".txt");
 			Scanner myReader = new Scanner(restMenu);
 			while(myReader.hasNextLine()) {
-				String name = myReader.nextLine();
-				String price = myReader.nextLine();
-				String description = myReader.nextLine();
-				System.out.println("[1] " + name + "\n" + price + "\n" + description + "\n");
+				String str = myReader.nextLine();
+				array.add(new Order(str));
 			}myReader.close();
 		}catch (FileNotFoundException e) {
 			System.out.println("An error occured while reading from file.");

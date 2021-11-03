@@ -8,11 +8,16 @@ import java.util.Scanner;	// Import to read file
 
 public class EditFile {
 	private static String filepath;
-	public EditFile() {
-			this.filepath = "C:\\Users\\User\\OneDrive - Nanyang Technological University\\gitproj\\CE2002_Assignment\\Assignment\\src\\Main\\RestMenu";	// Change filepath accordingly
-			File RestMenu = new File(filepath);	
+	private static File myFile;
+	private static Scanner myReader;
+
+	public EditFile(String filePath) {
+			this.filepath = filePath;	// Change filepath accordingly
+			File myFile = new File(filePath);	
+			this.myFile = myFile;
+			this.myReader = new Scanner(myFile);
 			// Set location of txt file which contains menu items
-			CreateFile(RestMenu);
+			CreateFile(myFile);
 		}
 
 	public static void CreateFile(File filename) {
@@ -20,7 +25,7 @@ public class EditFile {
 			if (filename.createNewFile()) {
 				System.out.println("File created: " + filename.getName());
 			}else {
-				System.out.println("File already exists.");
+				System.out.println("File already exists."); //expected
 			}
 		}catch (IOException e) {
 			System.out.println("Error creating file.");
@@ -46,14 +51,13 @@ public class EditFile {
 		}
 	}
 	
-	public static void readOrdersFromFile(ArrayList<Order> array) { //make this for others
+	public static void readMenuFromFile(ArrayList<MenuItem> array) { //make this for others
 		try {
-			File restMenu = new File(filepath + ".txt");
-			Scanner myReader = new Scanner(restMenu);
-			while(myReader.hasNextLine()) {
-				String str = myReader.nextLine();
-				array.add(new Order(str));
-			}myReader.close();
+			while(this.myReader.hasNextLine()) {
+				String str = this.myReader.nextLine();
+				array.add(new MenuItem(str));
+			}
+			this.myReader.close();
 		}catch (FileNotFoundException e) {
 			System.out.println("An error occured while reading from file.");
 			e.printStackTrace();

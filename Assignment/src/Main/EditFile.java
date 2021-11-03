@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Scanner;	// Import to read file
 
 public class EditFile {
-		private static String filepath;
-		public EditFile() {
+	private static String filepath;
+	public EditFile() {
 			this.filepath = "C:\\Users\\User\\OneDrive - Nanyang Technological University\\gitproj\\CE2002_Assignment\\Assignment\\src\\Main\\RestMenu";	// Change filepath accordingly
 			File RestMenu = new File(filepath);	
 			// Set location of txt file which contains menu items
@@ -28,13 +28,16 @@ public class EditFile {
 		}
 	}
 	
-	public static void WriteToFile(MenuItem item){
+	public static void WriteToFile(ArrayList<?> menu){ 
 		//String data = item.convertToString();
 		try {
 			FileWriter myWriter = new FileWriter(filepath + ".txt");
-			myWriter.write(item.getName() + "\r\n");
-			myWriter.write(item.getDescription() + "\r\n");
-			myWriter.write(item.getPrice() + "\r\n");
+
+			for(Object m: menu){
+				m.StoreToFile(myWriter);
+				myWriter.write("\n")
+			}
+			
 			myWriter.close();
 			System.out.println("Successfully wrote to the file.");
 		}catch (IOException e) {
@@ -43,7 +46,7 @@ public class EditFile {
 		}
 	}
 	
-	public static void ReadFromFile(ArrayList<MenuItem> menu) {
+	public static void ReadMenuFromFile(ArrayList<MenuItem> menu) { //make this for others
 		try {
 			File restMenu = new File(filepath + ".txt");
 			Scanner myReader = new Scanner(restMenu);

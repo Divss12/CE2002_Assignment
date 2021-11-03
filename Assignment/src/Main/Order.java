@@ -83,4 +83,8 @@ public class Order {
     public int getTableNumber(){
         return this.tableNumber;
     }
+
+    public void storeToFile(FileWriter file){
+        file.write(this. + "\t" + this.);
+    }
 }

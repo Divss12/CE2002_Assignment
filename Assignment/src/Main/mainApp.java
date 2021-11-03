@@ -7,7 +7,10 @@ public class mainApp{
 	public static void main(String[] args){
 		int choice;
 		Scanner scan = new Scanner(System.in);
-		EditFile edit = new EditFile();	// Creating a Menu file
+		EditFile menuFile = new EditFile("./Files/menu.txt");	// Create a Menu File
+		EditFile tableFile = new EditFile("./Files/tables.txt"); // Create a Table File
+		EditFile OrderFile = new EditFile("./Files/orders.txt"); // Create an Order File
+		EditFile ReservationFile = new EditFile("./Files/reservations.txt"); // Create a Reservation File
 
 		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
 		ArrayList<MenuItem> promotionMenu = new ArrayList<MenuItem>();
@@ -258,6 +261,8 @@ public class mainApp{
 				default:
 					break;
 			}
+
+			//code to save entire array
 		}
 		//scan.close();
 	}

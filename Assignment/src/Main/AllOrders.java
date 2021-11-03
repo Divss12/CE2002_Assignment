@@ -20,7 +20,7 @@ public class AllOrders {
 		int time = 0; //get time from calendar class
 
 		System.out.println("Enter Staff name:");
-		String staffName = 
+		//String staffName = 		//TODO
 
 
 

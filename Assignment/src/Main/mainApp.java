@@ -2,11 +2,12 @@ package Main;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class mainApp {
+public class mainApp{
 	
 	public static void main(String[] args){
 		int choice;
 		Scanner scan = new Scanner(System.in);
+		EditFile edit = new EditFile();	// Creating a Menu file
 
 		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
 		ArrayList<MenuItem> promotionMenu = new ArrayList<MenuItem>();
@@ -18,10 +19,10 @@ public class mainApp {
 		ArrayList<Table> tableList = new ArrayList<Table>();
 		//code to read saved tables from a file
 
-		ArrayList<Reservation> reservationList = new ArrayList<Table>();
+		ArrayList<Reservation> reservationList = new ArrayList<Reservation>();
 		//code to read saved reservations from a file
 
-		ArrayList<Staff> staffList = new ArrayList<Staff>;
+		ArrayList<Staff> staffList = new ArrayList<Staff>();
 		//code to read saved staff from a file
 
 		while(true){
@@ -51,9 +52,8 @@ public class mainApp {
 					int c1 = scan.nextInt();
 					switch(c1){
 						case 1: 
-							// Create MenuItem object
-							// Then add to menu arraylist
 							System.out.println("Enter item name:");
+							scan.nextLine(); // Clear input buffer
 							String n = scan.nextLine();
 							System.out.println("Enter item description:");
 							String d = scan.nextLine();
@@ -70,21 +70,27 @@ public class mainApp {
 									menuItem.updateItem();
 								}
 							}
+							// TODO: Remove MenuItems from RestMenu file
 							break;
 						case 3: 
-							int i = 0;	// index of menuItem
 							System.out.println("Enter name of item you want to remove:");
-							String newName2 = scan.nextLine();
-							for (MenuItem menuItem: menu) {
-								if (menuItem.getName().equals(newName2)) {
+							scan.nextLine(); // Clear input buffer
+							String newName3 = scan.nextLine();
+							for (int i=0;i<menu.size();i++) {
+								if (menu.get(i).getName().equals(newName3)) {
 									menu.remove(i);	// Remove target menuItem from menu arraylist
+									break;
+								}else if (i==(menu.size()-1)) {
+									System.out.println("Target item does not exist.");
 								}
-								i++;
 							}
 						case 4:
 							break;
 						default:
 							break;
+					}
+					for (int i=0;i<menu.size();i++) {
+						edit.WriteToFile(menu.get(i));	// Writing each menu item in the arraylist to RestMenu file
 					}
 					break;
 					
@@ -114,7 +120,7 @@ public class mainApp {
 							System.out.println("Enter name of item to be removed from Promotion Menu:");
 							String nn = scan.nextLine();
 							for (int i=0;i<menu.size();i++) {
-								if (menu.get(i).getName().equals(n)) {
+								if (menu.get(i).getName().equals(nn)) {
 									menu.remove(i);
 									System.out.println(nn + "removed from Promotion Menu.");
 									break;
@@ -132,25 +138,25 @@ public class mainApp {
 
 				case 3: //Create order
 					System.out.println("Enter Table no.");
-					int tableNumber = scan.nextInt();
+					int tableNumber3 = scan.nextInt();
 					int time = 0; //add code to get time from Calendar class
 					System.out.println("Enter Staff ID: ");
 					int staffID = scan.nextInt();
-					Staff staff;
+					Staff staff = null;	// Initializing staff
 					for(Staff s : staffList){
 						if(s.getID() == staffID){
 							staff = s;
 							break;
 						}
 					}
-					Order order = new Order(tableNumber, time, staff);
+					Order order = new Order(tableNumber3, time, staff);
 					orderList.add(order);
 					break;
 				case 4: //View order
 					System.out.println("Enter the Table no.:");
-					int tableNumber = scan.nextInt();
+					int tableNumber4 = scan.nextInt();	// Changed from tableNumber to tableNumber2 to avoid duplicate (Reason 1)
 					for(Order o : orderList){
-						if(o.getTableNumber() == tableNumber){
+						if(o.getTableNumber() == tableNumber4){
 							o.viewOrder();
 							break;
 						}
@@ -158,10 +164,10 @@ public class mainApp {
 					break;
 				case 5: //Add/remove item from order
 					System.out.println("Enter the Table no.:");
-					int tableNumber = scan.nextInt();
+					int tableNumber5 = scan.nextInt();	// (Reason 1)
 
-					for(Order order : orderList){
-						if(order.getTableNumber() == tableNumber){
+					for(Order o : orderList){
+						if(o.getTableNumber() == tableNumber5){	
 							System.out.println("Enter your choice:" +
 												"\n 1. Add to Order" +
 												"\n 2. Remove from Order" +
@@ -169,9 +175,9 @@ public class mainApp {
 							int c3 = scan.nextInt();
 							switch(c3){
 								case 1:
-									System.out.println("Enter dish name: ")
+									System.out.println("Enter dish name: ");
 									String name = scan.nextLine();
-									MenuItem item;
+									MenuItem item = null;	// Initializing item
 									for(MenuItem m : menu){
 										if(m.getName().equals(name)){
 											item = m;
@@ -180,13 +186,13 @@ public class mainApp {
 									}
 									System.out.println("Enter Quantity: ");
 									int quantity = scan.nextInt();
-
-									order.addToOrder(item, quantity);
+									
+									o.addToOrder(item, quantity);
 									break;
 								case 2:
-									System.out.println("Enter the index of the item to remove (to remove latest enter -1): ")
+									System.out.println("Enter the index of the item to remove (to remove latest enter -1): ");
 									int index = scan.nextInt();
-									order.removeFromOrder(index);
+									//order.removeFromOrder(index);	//TODO
 									break;
 								case 3:
 									break;
@@ -198,26 +204,33 @@ public class mainApp {
 					}
 					break;
 				case 6: //Create reservation
-					reservations.createNewReservation();
+					//reservations.createNewReservation();	// TODO
 					break;
 				case 7: //Check/Remove reservation
-					reservations.checkReservation();
+					//reservations.checkReservation();	// TODO
 					break;
 				case 8: //Change table availability
+					int boolCheck;				
+					boolean newBool;
 					System.out.println("Enter table no.: ");
-					int tableNumber = scan.nextInt();
+					int tableNumber8 = scan.nextInt();	// (Reason 1)
 					System.out.println("Change availability to?" +
 										"\n 1. Available" +
-										"\n 2. Not Available")
-					Boolean newBool = (Boolean) scan.nextInt() - 1;
+										"\n 2. Not Available");
+					//Boolean newBool = (Boolean) scan.nextInt() - 1;
+					if ((boolCheck= scan.nextInt() - 1) > 0) {
+						newBool = true;
+					}else {
+						newBool = false;
+					}
 					
-					tableList.get(tableNumber).changeAvailability(newBool);
+					tableList.get(tableNumber8).changeAvailability(newBool);
 					
 					break;
 				case 9: // Check table availibility
 					System.out.println("Enter table no.: ");
-					int tableNumber = scan.nextInt();
-					if(tableList.get(tableNumber).checkAvailability()){
+					int tableNumber9 = scan.nextInt();	// (Reason 1)
+					if(tableList.get(tableNumber9).checkAvailability()){
 						System.out.println("Currently Available");
 					}
 					else{
@@ -226,11 +239,11 @@ public class mainApp {
 					break;
 				case 10: //print order invoice
 					System.out.println("Enter the Table no.:");
-					int tableNumber = scan.nextInt();
+					int tableNumber10 = scan.nextInt();	// (Reason 1)
 					int i = -1;
 					for(Order o : orderList){
 						i++;
-						if(o.getTableNumber() == tableNumber){
+						if(o.getTableNumber() == tableNumber10){
 							o.printInvoice();
 							break;
 						}

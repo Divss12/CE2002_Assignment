@@ -1,15 +1,20 @@
 package Main;
-import java.io.File;		
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;	// Handle errors when editing files
 import java.io.FileWriter;	// Import FileWriter class to write menuItem attributes to RestMenu
+import java.util.ArrayList;
+import java.util.Scanner;	// Import to read file
 
 public class EditFile {
-	public static void main(String[] args) {
-		String filepath = "C:\\Users\\User\\OneDrive - Nanyang Technological University\\gitproj\\CE2002_Assignment\\Assignment\\src\\Main\\RestMenu";
-		File RestMenu = new File(filepath);	
-		// Set location of txt file which contains menu items
-		CreateFile(RestMenu);
-	}
+		private static String filepath;
+		public EditFile() {
+			this.filepath = "C:\\Users\\User\\OneDrive - Nanyang Technological University\\gitproj\\CE2002_Assignment\\Assignment\\src\\Main\\RestMenu";	// Change filepath accordingly
+			File RestMenu = new File(filepath);	
+			// Set location of txt file which contains menu items
+			CreateFile(RestMenu);
+		}
+
 	public static void CreateFile(File filename) {
 		try {	
 			if (filename.createNewFile()) {
@@ -23,9 +28,34 @@ public class EditFile {
 		}
 	}
 	
-//	public static void WriteToFile(String filepath, MenuItem item){
-//		try {
-//		FileWriter myWriter = new FileWriter(filepath + ".txt");
-//		myWriter.write(null);
-//	}
+	public static void WriteToFile(MenuItem item){
+		//String data = item.convertToString();
+		try {
+			FileWriter myWriter = new FileWriter(filepath + ".txt");
+			myWriter.write(item.getName() + "\r\n");
+			myWriter.write(item.getDescription() + "\r\n");
+			myWriter.write(item.getPrice() + "\r\n");
+			myWriter.close();
+			System.out.println("Successfully wrote to the file.");
+		}catch (IOException e) {
+			System.out.println("An error occurred while writing to file.");
+			e.printStackTrace();
+		}
+	}
+	
+	public static void ReadFromFile(ArrayList<MenuItem> menu) {
+		try {
+			File restMenu = new File(filepath + ".txt");
+			Scanner myReader = new Scanner(restMenu);
+			while(myReader.hasNextLine()) {
+				String name = myReader.nextLine();
+				String price = myReader.nextLine();
+				String description = myReader.nextLine();
+				System.out.println("[1] " + name + "\n" + price + "\n" + description + "\n");
+			}myReader.close();
+		}catch (FileNotFoundException e) {
+			System.out.println("An error occured while reading from file.");
+			e.printStackTrace();
+		}
+	}
 }

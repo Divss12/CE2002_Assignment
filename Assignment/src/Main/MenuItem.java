@@ -82,12 +82,11 @@ public class MenuItem{
     	}while((choice >= 1) && (choice <= 3));
     	
     }
-    public String convertToString() {	// TODO: Might need to modify based on what format we want
+    public String convertToString() {	//name \n $p \n description
     	StringBuilder s = new StringBuilder();
     	s.append(this.name);
     	String p=String.valueOf(price);
-    	for(int i=name.length();i<=75;i++)
-    		s.append(" ");
+    	s.append("\n");
     	s.append("$");
     	s.append(p);
     	return s+"\n"+description;

@@ -8,8 +8,8 @@ import java.util.Scanner;	// Import to read file
 
 public class EditFile {
 	private static String filepath;
-	private static File myFile;
-	private static Scanner myReader;
+	private File myFile;
+	private Scanner myReader;
 
 	public EditFile(String filePath) {
 			this.filepath = filePath;	// Change filepath accordingly
@@ -33,13 +33,13 @@ public class EditFile {
 		}
 	}
 	
-	public static void WriteToFile(ArrayList<?> menu){ 
+	public static void WriteToFile(ArrayList<menuItem> menu){ 
 		//String data = item.convertToString();
 		try {
 			FileWriter myWriter = new FileWriter(filepath + ".txt");
 
-			for(Object m: menu){
-				m.StoreToFile(myWriter);
+			for(menuItem m: menu){
+				myWriter.write(m.convertToString());
 				myWriter.write("\n");
 			}
 			
@@ -58,6 +58,41 @@ public class EditFile {
 				array.add(new MenuItem(str));
 			}
 			this.myReader.close();
+		}catch (FileNotFoundException e) {
+			System.out.println("An error occured while reading from file.");
+			e.printStackTrace();
+		}
+	}
+
+		
+	public static void readTablesFromFile(ArrayList<Table> array) { //make this for others
+		try {
+			while(myReader.hasNextLine()) {
+				String str = myReader.nextLine();
+				String[] parts = str.split("\t");
+				int tableNumber = parts[0]
+				int size = parts[1] 
+
+				array.add(new Table(tableNumber, size));
+			}
+			myReader.close();
+		}catch (FileNotFoundException e) {
+			System.out.println("An error occured while reading from file.");
+			e.printStackTrace();
+		}
+	}
+
+	public static void readReservationsFromFile(ArrayList<Reservation> array) { //make this for others
+		try {
+			while(myReader.hasNextLine()) {
+				String str = myReader.nextLine();
+				String[] parts = str.split("\t");
+				int pax = parts[0]
+				int size = parts[1] 
+
+				array.add(new Reservation(pax, date, time, name));
+			}
+			myReader.close();
 		}catch (FileNotFoundException e) {
 			System.out.println("An error occured while reading from file.");
 			e.printStackTrace();

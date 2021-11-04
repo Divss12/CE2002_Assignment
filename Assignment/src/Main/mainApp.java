@@ -110,15 +110,16 @@ public class mainApp{
 					
 				case 2: //Create/Update/Remove promotion
 					System.out.println("Enter your choice:" +
-										"\n 1. Create a new menu item" +
-										"\n 2. Update an existing menu item" +
-										"\n 3. Remove a menu item" +
+										"\n 1. Create a new promotion item" +
+										"\n 2. Update an existing promotion item" +
+										"\n 3. Remove a promotion item" +
 										"\n 4. Cancel"); 
 					int c2 = scan.nextInt();
 					switch(c2){
 						case 1: 
 							//menu.updatePromotion();
 							System.out.println("Enter name of item to be added to Promotion Menu:");
+				    		scan.nextLine(); // Clear input buffer
 							String n = scan.nextLine();
 							for (int i=0;i<menu.size();i++) {
 								if (menu.get(i).getName().equals(n)) {

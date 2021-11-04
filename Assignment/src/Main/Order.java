@@ -50,7 +50,7 @@ public class Order {
             item = list.get(i);
             name = item.getName();
             price = item.getPrice();
-            q = quant.get(i);
+            q = quant.get(i); 
             
             if(q == 1){
                 qua = " ";
@@ -84,7 +84,5 @@ public class Order {
         return this.tableNumber;
     }
 
-    public void storeToFile(FileWriter file){
-        file.write(this. + "\t" + this.);
-    }
+
 }

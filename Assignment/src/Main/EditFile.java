@@ -44,7 +44,7 @@ public class EditFile {
 			FileWriter myWriter = new FileWriter(filepath + ".txt");
 			//write this using normal for or while loop
 			for(int i = 0; i < array.size(); i++){
-				myWriter.write(array[i].convertToString());
+				myWriter.write(((MenuItem)array.get(i)).convertToString());	// Downcast object to MenuItem to use MenuItem.convertToString
 				myWriter.write("\n");
 			}
 			
@@ -56,7 +56,7 @@ public class EditFile {
 		}
 	}
 	
-	public static void readMenuFromFile(ArrayList<MenuItem> array) { //make this for others
+	public void readMenuFromFile(ArrayList<MenuItem> array) { //make this for others
 		while(myReader.hasNextLine()) {
 			String str = myReader.nextLine();
 			String[] parts = str.split("\t");
@@ -70,32 +70,27 @@ public class EditFile {
 	}
 
 		
-	public static void readTablesFromFile(ArrayList<Table> array) { //make this for others
-		try {
-			while(myReader.hasNextLine()) {
-				String str = myReader.nextLine();
-				String[] parts = str.split("\t");
-				int tableNumber = parts[0]
-				int size = parts[1] 
+	public void readTablesFromFile(ArrayList<Table> array) { //make this for others
+		while(myReader.hasNextLine()) {
+			String str = myReader.nextLine();
+			String[] parts = str.split("\t");
+			int tableNumber = Integer.parseInt(parts[0]);
+			int size = Integer.parseInt(parts[1]);
 
-				array.add(new Table(tableNumber, size));
-			}
-			myReader.close();
-		}catch (FileNotFoundException e) {
-			System.out.println("An error occured while reading from file.");
-			e.printStackTrace();
+			array.add(new Table(tableNumber, size));
 		}
+		myReader.close();
 	}
 
-	public static void readReservationsFromFile(ArrayList<Reservation> array) { //make this for others
+	public void readReservationsFromFile(ArrayList<Reservation> array) { //make this for others
 		try {
 			while(myReader.hasNextLine()) {
 				String str = myReader.nextLine();
 				String[] parts = str.split("\t");
-				int pax = parts[0]
-				int size = parts[1] 
+				int pax = Integer.parseInt(parts[0]);
+				int size = Integer.parseInt(parts[1]); 
 
-				array.add(new Reservation(pax, date, time, name));
+				array.add(new Reservation(pax, date, time, name));	// TODO
 			}
 			myReader.close();
 		}catch (FileNotFoundException e) {

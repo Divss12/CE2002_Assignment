@@ -22,8 +22,8 @@ public class Table {
         return !occupied;
     }
 
-    public void convertToString(){
-        return Integer.toString(this.tableNumber) + //complete this
+    public String convertToString(){
+        return Integer.toString(this.tableNumber); //complete this
     }
 }
 

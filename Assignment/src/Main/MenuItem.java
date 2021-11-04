@@ -69,6 +69,7 @@ public class MenuItem{
 	    		break;
 	    	case 2:
 	    		System.out.println("Enter new item description:");
+	    		sc.nextLine(); // Clear input buffer
 	    		String d = sc.nextLine();
 	    		this.description = d;	// Update MenuItem description
 		    	changes++;
@@ -86,24 +87,7 @@ public class MenuItem{
     	
     }
     public String convertToString() {	//name \n $p \n description
-    	StringBuilder s = new StringBuilder();
-    	s.append(this.name);
-    	s.append("\t");
-    	String p=String.valueOf(price);
-    	s.append("$");
-    	s.append(p);
-    	s.append("\t");
-    	return s+"\t"+description;
+    	return name + "\t" + description + "\t" + Double.toString(price);
     }
 
-    public void storeToFile(FileWriter file){	// Format: Name, description, price
-    	String data = convertToString();
-    	try {
-    		file.write(data);
-    		System.out.println("Successfully stored to file.");
-    	}catch (IOException e) {
-			System.out.println("An error occured while storing to file.");
-			e.printStackTrace();
-    	}
-    }
 }

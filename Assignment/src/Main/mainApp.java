@@ -12,9 +12,14 @@ public class mainApp{
 		File file = new File(".");
 		for(String fileNames : file.list()) System.out.println(fileNames);
 		
-		EditFile menuFile = new EditFile(".\\Main\\menu.txt");	// Create a Menu File
-		EditFile tableFile = new EditFile(".\\Main\\tables.txt"); // Create a Table File
-		EditFile reservationFile = new EditFile(".\\Main\\reservations.txt"); // Create a Reservation File
+		//path names
+		String menuPath = ".\\Main\\menu.txt";
+		String tablePath = ".\\Main\\tables.txt";
+		String reservationPath = ".\\Main\\reservations.txt";
+		
+		EditFile menuFile = new EditFile(menuPath);	// Create a Menu File
+		EditFile tableFile = new EditFile(tablePath); // Create a Table File
+		EditFile reservationFile = new EditFile(reservationPath); // Create a Reservation File
 
 		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
 		ArrayList<MenuItem> promotionMenu = new ArrayList<MenuItem>();
@@ -267,6 +272,9 @@ public class mainApp{
 			}
 
 			//code to save entire array
+			menuFile.WriteMenuToFile(menu, ".\\Main\\menu.txt");
+			tableFile.WriteTablesToFile(tableList, tablePath);
+			reservationFile.WriteReservationsToFile(reservationList, reservationPath);
 		}
 		//scan.close();
 	}

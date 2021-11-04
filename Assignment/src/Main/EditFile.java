@@ -39,20 +39,56 @@ public class EditFile {
 		}
 	}
 	
-	public static void WriteToFile(ArrayList<?> array){ 
+	public static void WriteMenuToFile(ArrayList<MenuItem> array, String filepath){ 
 		//String data = item.convertToString();
 		try {
 			FileWriter myWriter = new FileWriter(filepath);
 			//write this using normal for or while loop
 			for(int i = 0; i < array.size(); i++){
-				myWriter.write(((MenuItem)array.get(i)).convertToString());	// Downcast object to MenuItem to use MenuItem.convertToString
+				myWriter.write(array.get(i).convertToString());	// Downcast object to MenuItem to use MenuItem.convertToString
 				myWriter.write("\n");
 			}
 			
 			myWriter.close();
-			System.out.println("Successfully wrote to the file.");
+			System.out.println("Successfully wrote to the menu file.");
 		}catch (IOException e) {
-			System.out.println("An error occurred while writing to file.");
+			System.out.println("An error occurred while writing to menu file.");
+			e.printStackTrace();
+		}
+	}
+	
+	public static void WriteTablesToFile(ArrayList<Table> array, String filepath){ 
+		//String data = item.convertToString();
+		try {
+			FileWriter myWriter = new FileWriter(filepath);
+			//write this using normal for or while loop
+			for(int i = 0; i < array.size(); i++){
+				myWriter.write(array.get(i).convertToString());	// Downcast object to MenuItem to use MenuItem.convertToString
+				myWriter.write("\n");
+			}
+			
+			myWriter.close();
+			System.out.println("Successfully wrote to tables file.");
+		}catch (IOException e) {
+			System.out.println("An error occurred while writing to tables file.");
+			e.printStackTrace();
+		}
+	}
+	
+	public static void WriteReservationsToFile(ArrayList<Reservation> array, String filepath){ 
+		//String data = item.convertToString();
+		try {
+			FileWriter myWriter = new FileWriter(filepath);
+			//write this using normal for or while loop
+			for(int i = 0; i < array.size(); i++){
+				myWriter.write(array.get(i).convertToString());	// Downcast object to MenuItem to use MenuItem.convertToString
+				myWriter.write("\n");
+			}
+			
+			myWriter.close();
+			System.out.println("Successfully wrote to reservations file.");
+		}catch (IOException e) {
+			System.out.println("An error occurred while writing to reservations file.");
 			e.printStackTrace();
 		}
 	}

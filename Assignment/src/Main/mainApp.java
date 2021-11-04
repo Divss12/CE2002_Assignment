@@ -1,15 +1,20 @@
 package Main;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.File;
 
 public class mainApp{
 	
 	public static void main(String[] args){
 		int choice;
 		Scanner scan = new Scanner(System.in);
-		EditFile menuFile = new EditFile("./Files/menu.txt");	// Create a Menu File
-		EditFile tableFile = new EditFile("./Files/tables.txt"); // Create a Table File
-		EditFile reservationFile = new EditFile("./Files/reservations.txt"); // Create a Reservation File
+		
+		File file = new File(".");
+		for(String fileNames : file.list()) System.out.println(fileNames);
+		
+		EditFile menuFile = new EditFile(".\\Main\\menu.txt");	// Create a Menu File
+		EditFile tableFile = new EditFile(".\\Main\\tables.txt"); // Create a Table File
+		EditFile reservationFile = new EditFile(".\\Main\\reservations.txt"); // Create a Reservation File
 
 		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
 		ArrayList<MenuItem> promotionMenu = new ArrayList<MenuItem>();

@@ -19,6 +19,7 @@ public class EditFile {
 				this.myReader = new Scanner(myFile);
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
+				System.out.println("Error creating file");
 				e.printStackTrace();
 			}
 			// Set location of txt file which contains menu items
@@ -41,7 +42,7 @@ public class EditFile {
 	public static void WriteToFile(ArrayList<?> array){ 
 		//String data = item.convertToString();
 		try {
-			FileWriter myWriter = new FileWriter(filepath + ".txt");
+			FileWriter myWriter = new FileWriter(filepath);
 			//write this using normal for or while loop
 			for(int i = 0; i < array.size(); i++){
 				myWriter.write(((MenuItem)array.get(i)).convertToString());	// Downcast object to MenuItem to use MenuItem.convertToString
@@ -83,19 +84,14 @@ public class EditFile {
 	}
 
 	public void readReservationsFromFile(ArrayList<Reservation> array) { //make this for others
-		try {
-			while(myReader.hasNextLine()) {
-				String str = myReader.nextLine();
-				String[] parts = str.split("\t");
-				int pax = Integer.parseInt(parts[0]);
-				int size = Integer.parseInt(parts[1]); 
+		while(myReader.hasNextLine()) {
+			String str = myReader.nextLine();
+			String[] parts = str.split("\t");
+			int pax = Integer.parseInt(parts[0]);
+			int size = Integer.parseInt(parts[1]); 
 
-				array.add(new Reservation(pax, date, time, name));	// TODO
-			}
-			myReader.close();
-		}catch (FileNotFoundException e) {
-			System.out.println("An error occured while reading from file.");
-			e.printStackTrace();
+			//array.add(new Reservation(pax, date, time, name));	// TODO
 		}
+		myReader.close();
 	}
 }

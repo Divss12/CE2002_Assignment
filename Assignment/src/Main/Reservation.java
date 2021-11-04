@@ -2,6 +2,7 @@ package Main;
 
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;
+import java.io.FileWriter;	// Import FileWriter class to write menuItem attributes to RestMenu
 
 public class Reservation {
     private int pax;
@@ -23,14 +24,9 @@ public class Reservation {
     	
     }
 
-    public void StoreToFile(FileWriter file){
-        try{
-            file.write(this.pax + "\t" + this.date + "\t" + this.time + "\t" + this.name);
-        }catch(FileNotFoundException e){
-            System.out.println("An error occured while reading from file.");
-			e.printStackTrace();
-        }
-         
+    public String convertToString() {	//name \n $p \n description
+    	return name + "\t" + Integer.toString(pax) + "\t" + Integer.toString(date) + "\t" + Integer.toString(time) + "\n";
+    	// Format: name	pax	date time
     }
 
     

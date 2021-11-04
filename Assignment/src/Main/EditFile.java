@@ -1,7 +1,7 @@
 package Main;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;	// Handle errors when editing files
+import java.io.FileNotFoundException;	// Handle error when reading from files
+import java.io.IOException;	// Handle error when writing to files
 import java.io.FileWriter;	// Import FileWriter class to write menuItem attributes to RestMenu
 import java.util.ArrayList;
 import java.util.Scanner;	// Import to read file
@@ -15,7 +15,12 @@ public class EditFile {
 			this.filepath = filePath;	// Change filepath accordingly
 			File myFile = new File(filePath);	
 			this.myFile = myFile;
-			this.myReader = new Scanner(myFile);
+			try {
+				this.myReader = new Scanner(myFile);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			// Set location of txt file which contains menu items
 			CreateFile(myFile);
 		}
@@ -33,12 +38,20 @@ public class EditFile {
 		}
 	}
 	
+<<<<<<< HEAD
 	public static void WriteToFile(ArrayList<menuItem> menu){ 
+=======
+	public static void WriteToFile(ArrayList<MenuItem> menu){ 
+>>>>>>> ce7de62f0bddfb8c969833d791826fde9bd13038
 		//String data = item.convertToString();
 		try {
 			FileWriter myWriter = new FileWriter(filepath + ".txt");
 
+<<<<<<< HEAD
 			for(menuItem m: menu){
+=======
+			for(MenuItem m: menu){
+>>>>>>> ce7de62f0bddfb8c969833d791826fde9bd13038
 				myWriter.write(m.convertToString());
 				myWriter.write("\n");
 			}
@@ -52,16 +65,16 @@ public class EditFile {
 	}
 	
 	public static void readMenuFromFile(ArrayList<MenuItem> array) { //make this for others
-		try {
-			while(this.myReader.hasNextLine()) {
-				String str = this.myReader.nextLine();
-				array.add(new MenuItem(str));
-			}
-			this.myReader.close();
-		}catch (FileNotFoundException e) {
-			System.out.println("An error occured while reading from file.");
-			e.printStackTrace();
+		while(myReader.hasNextLine()) {
+			String str = myReader.nextLine();
+			String[] parts = str.split("\t");
+			String n = parts[0];
+			String d = parts[1];
+			double p = Double.parseDouble(parts[2]);
+			
+			array.add(new MenuItem(n,d,p));
 		}
+		myReader.close();
 	}
 
 		

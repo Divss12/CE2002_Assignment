@@ -91,7 +91,7 @@ public class mainApp{
 							break;
 					}
 					for (int i=0;i<menu.size();i++) {
-						edit.WriteToFile(menu.get(i));	// Writing each menu item in the arraylist to RestMenu file
+						//edit.WriteToFile(menu.get(i));	// Writing each menu item in the arraylist to RestMenu file
 					}
 					break;
 					

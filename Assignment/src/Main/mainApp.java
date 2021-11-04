@@ -22,7 +22,7 @@ public class mainApp{
 		EditFile reservationFile = new EditFile(reservationPath); // Create a Reservation File
 
 		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
-		ArrayList<MenuItem> promotionMenu = new ArrayList<MenuItem>();
+		ArrayList<Promotion> promotionMenu = new ArrayList<Promotion>();
 		
 		menuFile.readMenuFromFile(menu);
 
@@ -116,33 +116,52 @@ public class mainApp{
 										"\n 4. Cancel"); 
 					int c2 = scan.nextInt();
 					switch(c2){
-						case 1: 
-							//menu.updatePromotion();
-							System.out.println("Enter name of item to be added to Promotion Menu:");
-				    		scan.nextLine(); // Clear input buffer
-							String n = scan.nextLine();
-							for (int i=0;i<menu.size();i++) {
-								if (menu.get(i).getName().equals(n)) {
-									System.out.println(n + "is already in the Promotion Menu.");
-									break;
-								}else {
-									promotionMenu.add(menu.get(i));	// Add MenuItem to promotionMenu arraylist if not already inside it
-									break;
+						case 1: // Create New Item
+							System.out.println("Enter name of the Promotional Set Package:");
+							String name = scan.nextLine();
+							System.out.println("Enter the description of the Promotional Set Package");
+							String desc = scan.nextLine();
+							System.out.println("Enter the price of the Promotional Set Package");
+							int price = scan.nextInt();
+
+							Promotion package1 = new Promotion(name, desc, price);
+
+							System.out.println("How many items do you want to add to this Package?");
+							int count = scan.nextInt();
+
+							int i = 0;
+							int flag = 0;
+							while(i < count){
+								System.out.println("Enter the name of the item you want to add to the Package");
+								String itemname = scan.nextLine();
+								flag = 0;
+								for(MenuItem m : menu){
+									if(m.getName().equals(itemname)){
+										package1.addItemToPromotion(m);
+										i++;
+										flag = 1;
+										break;
+									}
+								}
+								if(flag == 0){
+									System.out.println("item does not exist, try again");
 								}
 							}
+
+							promotionMenu.add(package1);
+
 							break;
-						case 2: 
-							System.out.println("Enter name of item to be removed from Promotion Menu:");
-							String nn = scan.nextLine();
-							for (int i=0;i<menu.size();i++) {
-								if (menu.get(i).getName().equals(nn)) {
-									menu.remove(i);
-									System.out.println(nn + "removed from Promotion Menu.");
-									break;
-								}else if (i==(menu.size()-1)) {	// Print error message if cannot find nn after iterating through the whole arraylist
-									System.out.println(nn + "not in Menu. Please add it to the Menu first.");
-								}
-							}
+						case 2: //update existing promotion ijdsnfjkndjk
+							System.out.println("Enter your choice:" +
+												"\n 1. Remove an item from the package" +
+												"\n 2. Add an item to the package" +
+												"\n 3. Update the name/price/description of the package" +
+												"\n 4. Cancel");
+							int choice1234 = scan.nextInt();
+							switch(choice1234){
+								case 1: //remove an item from the package
+									System.out.println("Enter the name of the item to be removed from the package");
+							} 
 							break;
 						case 4:
 							break;
@@ -280,6 +299,3 @@ public class mainApp{
 		//scan.close();
 	}
 }
-
-
-

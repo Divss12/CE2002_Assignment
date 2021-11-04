@@ -38,21 +38,13 @@ public class EditFile {
 		}
 	}
 	
-<<<<<<< HEAD
-	public static void WriteToFile(ArrayList<menuItem> menu){ 
-=======
-	public static void WriteToFile(ArrayList<MenuItem> menu){ 
->>>>>>> ce7de62f0bddfb8c969833d791826fde9bd13038
+	public static void WriteToFile(ArrayList<?> array){ 
 		//String data = item.convertToString();
 		try {
 			FileWriter myWriter = new FileWriter(filepath + ".txt");
-
-<<<<<<< HEAD
-			for(menuItem m: menu){
-=======
-			for(MenuItem m: menu){
->>>>>>> ce7de62f0bddfb8c969833d791826fde9bd13038
-				myWriter.write(m.convertToString());
+			//write this using normal for or while loop
+			for(int i = 0; i < array.size(); i++){
+				myWriter.write(array[i].convertToString());
 				myWriter.write("\n");
 			}
 			

@@ -22,13 +22,8 @@ public class Table {
         return !occupied;
     }
 
-    public void storeToFile(FileWriter file){
-        try{
-            file.write(this.tableNumber + "\t" + this.size);
-        }catch(IOException e){
-        System.out.println("An error occured while reading from file.");
-        e.printStackTrace();
-        }
+    public void convertToString(){
+        return Integer.toString(this.tableNumber) + //complete this
     }
-
 }
+

@@ -9,19 +9,22 @@ public class mainApp{
 		Scanner scan = new Scanner(System.in);
 		EditFile menuFile = new EditFile("./Files/menu.txt");	// Create a Menu File
 		EditFile tableFile = new EditFile("./Files/tables.txt"); // Create a Table File
-		EditFile ReservationFile = new EditFile("./Files/reservations.txt"); // Create a Reservation File
+		EditFile reservationFile = new EditFile("./Files/reservations.txt"); // Create a Reservation File
 
 		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
 		ArrayList<MenuItem> promotionMenu = new ArrayList<MenuItem>();
-		//code to read saved menuItems from a file
+		
+		menuFile.readMenuFromFile(menu);
 
 		ArrayList<Order> orderList = new ArrayList<Order>();
 
 		ArrayList<Table> tableList = new ArrayList<Table>();
-		//code to read saved tables from a file
+		
+		tableFile.readTablesFromFile(tableList);
 
 		ArrayList<Reservation> reservationList = new ArrayList<Reservation>();
-		//code to read saved reservations from a file
+		
+		reservationFile.readReservationsFromFile(reservationList);
 
 		ArrayList<Staff> staffList = new ArrayList<Staff>();
 		//code to read saved staff from a file

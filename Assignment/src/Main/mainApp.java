@@ -186,7 +186,7 @@ public class mainApp{
 						if(o.getTableNumber() == tableNumber5){	
 							System.out.println("Enter your choice:" +
 												"\n 1. Add to Order" +
-												"\n 2. Add Promotional Package to Order"
+												"\n 2. Add Promotional Package to Order" +
 												"\n 3. Remove from Order" +
 												"\n 4. Cancel");
 							int c3 = scan.nextInt();

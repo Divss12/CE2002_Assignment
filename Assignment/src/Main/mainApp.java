@@ -236,10 +236,49 @@ public class mainApp{
 					}
 					break;
 				case 6: //Create reservation
-					//reservations.createNewReservation();	// TODO
+					System.out.println("Enter name for the reservation");
+					String name = scan.nextLine();
+					System.out.println("Enter pax");
+					int pax = scan.nextInt();
+					System.out.println("Enter year");
+					int year = scan.nextInt();
+					System.out.println("Enter month (number)");
+					int month = scan.nextInt() - 1;
+					System.out.println("Enter day of month");
+					int date = scan.nextInt();
+					System.out.println("Enter hour");
+					int hour = scan.nextInt();
+					System.out.println("Enter minute");
+					int minute = scan.nextInt();
+
+					Reservation res = new Reservation(name, pax, year, month, date, hour, minute);
+
+					//TODO: code to check if reservation is available**
+					//if it is then execute the following code
+					reservationList.add(res);
+
 					break;
 				case 7: //Check/Remove reservation
-					//reservations.checkReservation();	// TODO
+					System.out.println("Enter name");
+					String name1 = scan.nextLine();
+					int flag = 0;
+					int counterr;
+					for(Reservation r: reservationList){
+						if(r.getName().equals(name1)){
+							flag = 1;
+							r.printDetails();
+							System.out.println("Remove Reservation (Y/N)?");
+							String C = scan.nextLine();
+							if(C.equals("Y")){
+								reservationList.remove(counterr);
+							}
+						}
+						counterr++;
+					}
+					if(flag == 0){
+						System.out.println("Name not found");
+					}
+
 					break;
 				case 8: //Change table availability
 					int boolCheck;				

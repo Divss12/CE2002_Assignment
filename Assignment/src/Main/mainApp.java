@@ -186,14 +186,14 @@ public class mainApp{
 						if(o.getTableNumber() == tableNumber5){	
 							System.out.println("Enter your choice:" +
 												"\n 1. Add to Order" +
-												"\n 2. Remove from Order" +
-												"\n 3. Cancel");
+												"\n 2. Add Promotional Package to Order"
+												"\n 3. Remove from Order" +
+												"\n 4. Cancel");
 							int c3 = scan.nextInt();
 							switch(c3){
 								case 1:
 									System.out.println("Enter dish name: ");
 									name = scan.nextLine();
-									MenuItem item = null;	// Initializing item
 									for(MenuItem m : menu){
 										if(m.getName().equals(name)){
 											System.out.println("Enter Quantity: ");
@@ -204,11 +204,24 @@ public class mainApp{
 									}
 									break;
 								case 2:
+									System.out.println("Enter package name: ");
+									name = scan.nextLine();
+									for(Promotion p : promotionMenu) {
+										if(p.getName().equals(name)) {
+											System.out.println("Enter Quantity");
+											o.orderPromoItem(p, scan.nextInt());
+											break;
+										}
+									}
+								
+									
+									break;
+								case 3:
 									System.out.println("Enter the index of the item to remove (to remove latest enter -1): ");
 									int index = scan.nextInt();
 									//order.removeFromOrder(index);	//TODO
 									break;
-								case 3:
+								case 4:
 									break;
 								default:
 									break;

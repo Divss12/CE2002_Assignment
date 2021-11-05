@@ -110,22 +110,24 @@ public class mainApp{
 					
 				case 2: //Create/Update/Remove promotion
 					System.out.println("Enter your choice:" +
-										"\n 1. Create a new promotion item" +
-										"\n 2. Update an existing promotion item" +
-										"\n 3. Remove a promotion item" +
+										"\n 1. Create a new promotion package" +
+										"\n 2. Update an existing promotion package" +
+										"\n 3. Remove a promotion package" +
 										"\n 4. Cancel"); 
 					int c2 = scan.nextInt();
 					switch(c2){
 						case 1: // Create New Item
 							System.out.println("Enter name of the Promotional Set Package:");
+							scan.nextLine(); // Clear input buffer
 							String name = scan.nextLine();
+
 							System.out.println("Enter the description of the Promotional Set Package");
 							String desc = scan.nextLine();
 							System.out.println("Enter the price of the Promotional Set Package");
-							int price = scan.nextInt();
+							double price = scan.nextDouble();
 
 							Promotion package1 = new Promotion(name, desc, price);
-
+							
 							System.out.println("How many items do you want to add to this Package?");
 							int count = scan.nextInt();
 
@@ -133,7 +135,9 @@ public class mainApp{
 							int flag = 0;
 							while(i < count){
 								System.out.println("Enter the name of the item you want to add to the Package");
+								scan.nextLine(); // Clear input buffer
 								String itemname = scan.nextLine();
+
 								flag = 0;
 								for(MenuItem m : menu){
 									if(m.getName().equals(itemname)){
@@ -151,17 +155,72 @@ public class mainApp{
 							promotionMenu.add(package1);
 
 							break;
-						case 2: //update existing promotion ijdsnfjkndjk
+						case 2: 
+							int pidx = 0;	// Index for promotion menu entries
+							for (Promotion item:promotionMenu) {
+								System.out.println(pidx + ") " + item.getName());
+								pidx++;
+							}
+							System.out.println("-----------------------------------------------------");
+							System.out.println("Enter the name of the package you want to modify:");
+							scan.nextLine(); // Clear input buffer
+							String packageName = scan.nextLine();
+							pidx = 0;	// Reset pidx to obtain idx of package that user chose
+							
+							for (Promotion item:promotionMenu) {
+								if (packageName.equals(item.getName())) {
+									break;
+								}else {
+									pidx++;	// Idx of package in promotionMenu
+								}
+							}
+							if (pidx==promotionMenu.size()) {	// Exit if idx out of bounds
+								System.out.println("Name not found in Promotion package.");
+								break;
+							}
+							
 							System.out.println("Enter your choice:" +
 												"\n 1. Remove an item from the package" +
 												"\n 2. Add an item to the package" +
 												"\n 3. Update the name/price/description of the package" +
 												"\n 4. Cancel");
 							int choice1234 = scan.nextInt();
-							switch(choice1234){
-								case 1: //remove an item from the package
-									System.out.println("Enter the name of the item to be removed from the package");
-							} 
+							if (promotionMenu.size()>0) {
+								switch(choice1234){
+									case 1: //remove an item from the package
+										int ii = 0;	
+										System.out.println("Enter the name of the item to be removed from the package:");
+										scan.nextLine(); // Clear input buffer
+										String itemName = scan.nextLine();
+										for (MenuItem item:promotionMenu.get(pidx).array) {
+											if ((item.getName()).equals(itemName)) {
+												break;
+											}
+											ii++;
+										}
+										if (promotionMenu.get(pidx).array.size()<1) {	// Break if array of menuitems is empty
+											break;
+										}
+										promotionMenu.get(pidx).array.remove(ii);
+										break;
+									case 2:
+										System.out.println("Enter the name of the item you want to add to the package:");
+										String itemName2 = scan.nextLine();
+										for (MenuItem m:menu) {
+											if (m.getName().equals(itemName2)) {
+												promotionMenu.get(pidx).addItemToPromotion(m);
+											}
+										}
+										break;
+									case 3:
+										promotionMenu.get(pidx).updateInfo();
+										break;
+									default:
+										break;
+								} 
+							}else {
+								System.out.println("There are no packages to update.");
+							}
 							break;
 						case 4:
 							break;

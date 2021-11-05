@@ -1,32 +1,33 @@
 package Main;
 
-import java.time.format.DateTimeFormatter;  
-import java.time.LocalDateTime;
-import java.io.FileWriter;	// Import FileWriter class to write menuItem attributes to RestMenu
+import java.util.GregorianCalendar;
+import java.util.Calendar;
 
 public class Reservation {
     private int pax;
-    private int date;
-    private int time; //i think there is some library we have to use for date and time
+    private GregorianCalendar time;
     private String name;
-    //customer, table
-    
+    private String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};    //customer, table
 
-    //what is this?? 
-    public void getTime() {
-    	   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-    	   LocalDateTime now = LocalDateTime.now();  
-    	   System.out.println(dtf.format(now));  
-    }
-
-
-    public Reservation(int pax, int date, int time, String name){
-    	
+    public Reservation(int pax, String name, int year, int month, int day, int hours, int minutes){
+        this.pax = pax;
+        this.name = name;
+    	this.time = new GregorianCalendar(year, month, day, hours, minutes);
     }
 
     public String convertToString() {	//name \n $p \n description
-    	return name + "\t" + Integer.toString(pax) + "\t" + Integer.toString(date) + "\t" + Integer.toString(time) + "\n";
-    	// Format: name	pax	date time
+    	return name + "\t" + Integer.toString(pax) + "\t" + Integer.toString(this.time.get(Calendar.YEAR)) + "\t" + Integer.toString(this.time.get(Calendar.MONTH)) + "\t" + Integer.toString(this.time.get(Calendar.DATE)) + "\t" + Integer.toString(this.time.get(Calendar.HOUR)) + "\t" + Integer.toString(this.time.get(Calendar.MINUTE));
+    	// Format: name	pax	YEAR MONTH DATE HOUR MINUTE
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public void printDetails(){
+        System.out.println("Name: " + this.name + ", pax: " + this.pax);
+        System.out.println("Date: " + this.time.get(Calendar.DATE) + this.months[this.time.get(Calendar.MONTH)] + ", " + this.time.get(Calendar.YEAR));
+        System.out.println("Time: " + this.time.get(Calendar.HOUR) + ":" + this.time.get(Calendar.MINUTE));
     }
 
     

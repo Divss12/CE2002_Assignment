@@ -7,7 +7,7 @@ public class Promotion{
 	private String name;
 	private String description;
 	private double price;
-
+	Scanner sc = new Scanner(System.in);
     
     public Promotion(String n, String d, double p) {
         this.name = n;
@@ -25,7 +25,6 @@ public class Promotion{
     }
 
     public void updateInfo() {
-    	Scanner sc = new Scanner(System.in);
     	System.out.println("[1] Update item name");
     	System.out.println("[2] Update item description");
     	System.out.println("[3] Update item price\nPress any button to exit without updating");
@@ -54,4 +53,5 @@ public class Promotion{
     		break;
     	}
     }
+    
 }

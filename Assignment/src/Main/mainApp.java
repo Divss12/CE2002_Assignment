@@ -193,6 +193,7 @@ public class mainApp{
 							switch(c3){
 								case 1:
 									System.out.println("Enter dish name: ");
+									scan.nextLine(); //Clear input buffer
 									name = scan.nextLine();
 									for(MenuItem m : menu){
 										if(m.getName().equals(name)){

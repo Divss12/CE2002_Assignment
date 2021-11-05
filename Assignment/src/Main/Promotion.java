@@ -21,7 +21,7 @@ public class Promotion{
     }
     
     public double getPrice() {
-    	return this.price();
+    	return this.price;
     }
 
     public void addItemToPromotion(MenuItem item){

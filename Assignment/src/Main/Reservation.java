@@ -7,13 +7,12 @@ public class Reservation {
     private int pax;
     private GregorianCalendar time;
     private String name;
-    private String[] months;    //customer, table
+    private String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};    //customer, table
 
     public Reservation(int pax, String name, int year, int month, int day, int hours, int minutes){
         this.pax = pax;
         this.name = name;
     	this.time = new GregorianCalendar(year, month, day, hours, minutes);
-    	this.months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     }
 
     public String convertToString() {	//name \n $p \n description

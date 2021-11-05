@@ -78,7 +78,7 @@ public class Order {
         
         Promotion itemP;
         
-        for(int j = 0; i < promoList.size(); j++) {
+        for(int j = 0; j < promoList.size(); j++) {
         	itemP = promoList.get(j);
         	name = itemP.getName();
         	price = itemP.getPrice();

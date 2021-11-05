@@ -49,7 +49,7 @@ public boolean updatePromotionPackage(ArrayList<MenuItem> menu) {
 			}
 		}
 		if (pidx==promoMenu.size()) {	// Exit if idx out of bounds
-			System.out.println("Name not found in Promotion package.");
+			System.out.println("Promotion package not found.");
 			return false;
 		}
 		System.out.println("Enter your choice:" +
@@ -80,7 +80,9 @@ public boolean updatePromotionPackage(ArrayList<MenuItem> menu) {
 				}
 				if (ii==promoMenu.get(pidx).array.size()) {
 					System.out.println("Item not in Promotion package " + promoMenu.get(pidx).getName());
+					break;
 				}
+				System.out.println(promoMenu.get(pidx).array.get(ii).getName() + " removed from Promotion package " + promoMenu.get(ii).getName());
 				promoMenu.get(pidx).array.remove(ii);
 				break;
 			case 2:
@@ -120,10 +122,10 @@ public void removePromotionPackage(ArrayList<MenuItem> menu) {
 	System.out.println(packageName + " does not exist.");
 }
 
-private void displayPromotionPackage(ArrayList<MenuItem> menu) {
+public void displayPromotionPackage(ArrayList<MenuItem> menu) {
 	int idx = 0;
 	for (Promotion item:this.promoMenu) {
-		System.out.println(idx + ") " + item.getName());
+		System.out.println("[" + (idx+1) + "] " + item.getName());
 		idx++;
 	}
 	System.out.println("-----------------------------------------------------");

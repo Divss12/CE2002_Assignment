@@ -39,7 +39,7 @@ public class mainApp{
 		ArrayList<Staff> staffList = new ArrayList<Staff>();
 		//code to read saved staff from a file
 
-		while(true){
+		do{
 			System.out.println("Enter your choice: " +
 									"\n 1. Create/Update/Remove menu item" +
 									"\n 2. Create/Update/Remove promotion" +
@@ -87,17 +87,9 @@ public class mainApp{
 							// TODO: Remove MenuItems from RestMenu file
 							break;
 						case 3: 
-							System.out.println("Enter name of item you want to remove:");
-							scan.nextLine(); // Clear input buffer
-							String newName3 = scan.nextLine();
-							for (int i=0;i<menu.size();i++) {
-								if (menu.get(i).getName().equals(newName3)) {
-									menu.remove(i);	// Remove target menuItem from menu arraylist
-									break;
-								}else if (i==(menu.size()-1)) {
-									System.out.println("Target item does not exist.");
-								}
-							}
+							Menu myMenu = new Menu(menu);
+							myMenu.removeItem();
+							break;
 						case 4:
 							break;
 						default:
@@ -116,7 +108,8 @@ public class mainApp{
 										"\n 1. Create a new promotion package" +
 										"\n 2. Update an existing promotion package" +
 										"\n 3. Remove a promotion package" +
-										"\n 4. Cancel"); 
+										"\n 4. Display all promotion packages" +
+										"\n 5. Cancel"); 
 					int c2 = scan.nextInt();
 					switch(c2){
 						case 1: // Create New Item
@@ -146,6 +139,8 @@ public class mainApp{
 							PromotionMenu pMenu2 = new PromotionMenu(promotionMenu);
 							pMenu2.removePromotionPackage(menu);
 						case 4:
+							PromotionMenu pMenu3 = new PromotionMenu(promotionMenu);
+							pMenu3.displayPromotionPackage(menu);
 							break;
 						default:
 							break;
@@ -325,9 +320,8 @@ public class mainApp{
 				case 11: //print sales revenue report
 					//need to discuss the implementation of this as well
 					break;
-				case 12: //Exit
-					break;
-				default:
+				default:	//Exit
+					System.out.println("Restaurant reservation app terminated.");
 					break;
 			}
 
@@ -335,7 +329,7 @@ public class mainApp{
 			menuFile.WriteMenuToFile(menu, ".\\Main\\menu.txt");
 			tableFile.WriteTablesToFile(tableList, tablePath);
 			reservationFile.WriteReservationsToFile(reservationList, reservationPath);
-		}
+		}while(choice>0 && choice <12);
 		//scan.close();
 	}
 }

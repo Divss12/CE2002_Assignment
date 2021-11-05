@@ -50,7 +50,7 @@ public class EditFile {
 			}
 			
 			myWriter.close();
-			System.out.println("Successfully wrote to the menu file.");
+			//System.out.println("Successfully wrote to the menu file.");
 		}catch (IOException e) {
 			System.out.println("An error occurred while writing to menu file.");
 			e.printStackTrace();
@@ -68,7 +68,7 @@ public class EditFile {
 			}
 			
 			myWriter.close();
-			System.out.println("Successfully wrote to tables file.");
+			//System.out.println("Successfully wrote to tables file.");
 		}catch (IOException e) {
 			System.out.println("An error occurred while writing to tables file.");
 			e.printStackTrace();
@@ -86,7 +86,7 @@ public class EditFile {
 			}
 			
 			myWriter.close();
-			System.out.println("Successfully wrote to reservations file.");
+			//System.out.println("Successfully wrote to reservations file.");
 		}catch (IOException e) {
 			System.out.println("An error occurred while writing to reservations file.");
 			e.printStackTrace();

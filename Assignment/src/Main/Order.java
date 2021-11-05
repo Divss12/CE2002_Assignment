@@ -9,6 +9,10 @@ public class Order {
 
     private ArrayList<MenuItem> list;
     private ArrayList<Integer> quant;
+    
+    private ArrayList<Promotion> promoList;
+    private ArrayList<Integer> quantp;
+    
 
     public Order(int tableNumber, int time, Staff server){
         this.tableNumber = tableNumber;
@@ -17,6 +21,9 @@ public class Order {
 
         this.list = new ArrayList<MenuItem>();
         this.quant = new ArrayList<Integer>();
+        
+        this.promoList = new ArrayList<Promotion>();
+        this.quantp = new ArrayList<Integer>();
 
     }
 
@@ -24,6 +31,7 @@ public class Order {
         list.add(dish);
         quant.add(quantity);
     }
+    
     public void removeFromOrder(int index){
         if(index == -1){
             list.remove(list.size() - 1);
@@ -31,6 +39,11 @@ public class Order {
         else{
             list.remove(index);
         }
+    }
+    
+    public void orderPromoItem(Promotion promo, int quantity) {
+    	promoList.add(promo);
+    	quantp.add(quantity);
     }
 
     public void printInvoice(Boolean isMember){
@@ -61,6 +74,25 @@ public class Order {
             System.out.println(name + qua + "\t\t\t\t" + q*price);
 
             total += q*price;
+        }
+        
+        Promotion itemP;
+        
+        for(int j = 0; i < promoList.size(); j++) {
+        	itemP = promoList.get(j);
+        	name = itemP.getName();
+        	price = itemP.getPrice();
+        	q = quantp.get(j);
+        	
+            if(q == 1){
+                qua = " ";
+            }
+            else{
+                qua = " x" + q;
+            }
+            System.out.println(name + qua + "\t\t\t\t" + q*price);
+            
+            total += q*price;	
         }
         
         System.out.println("Total: \t\t\t\t\t" + total);

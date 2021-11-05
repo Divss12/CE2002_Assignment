@@ -19,6 +19,10 @@ public class Promotion{
     public String getName() {
     	return this.name;
     }
+    
+    public double getPrice() {
+    	return this.price();
+    }
 
     public void addItemToPromotion(MenuItem item){
         this.array.add(item);

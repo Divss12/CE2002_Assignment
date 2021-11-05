@@ -124,14 +124,14 @@ public class EditFile {
 			String str = myReader.nextLine();
 			String[] parts = str.split("\t");
 			int pax = Integer.parseInt(parts[0]);
-			int size = Integer.parseInt(parts[1]); 
+			String name = parts[1];
 			int year = Integer.parseInt(parts[2]);
 			int month = Integer.parseInt(parts[3]);
 			int date = Integer.parseInt(parts[4]);
 			int hours = Integer.parseInt(parts[5]);
 			int minutes = Integer.parseInt(parts[6]);
 
-			array.add(new Reservation(pax, size, year, month, date, hours, minutes));
+			array.add(new Reservation(pax, name, year, month, date, hours, minutes));
 		}
 		myReader.close();
 	}

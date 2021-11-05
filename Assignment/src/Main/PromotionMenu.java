@@ -13,42 +13,33 @@ public class PromotionMenu {
 
 	
  public void createPromotionPackage(ArrayList<MenuItem> menu, Promotion item) {
-		System.out.println("How many items do you want to add to this Package?");
-		int count = sc.nextInt();
-
-		int i = 0;
 		int flag = 0;
-		while(i < count){
-			System.out.println("Enter the name of the item you want to add to the Package");
-			sc.nextLine(); // Clear input buffer
-			String itemname = sc.nextLine();
 
-			flag = 0;
-			for(MenuItem m : menu){
-				if(m.getName().equals(itemname)){	// Check if menuitem to be added to promotion package is in menu
-					item.addItemToPromotion(m);
-					i++;
-					flag = 1;
-					break;
-				}
-			}
-			if(flag == 0){
-				System.out.println("item does not exist, try again");
+		System.out.println("Enter the name of the item you want to add to the Package");
+		//sc.nextLine(); // Clear input buffer
+		String itemname = sc.nextLine();
+
+		flag = 0;
+		for(MenuItem m : menu){
+			if(m.getName().equals(itemname)){	// Check if menuitem to be added to promotion package is in menu
+				item.addItemToPromotion(m);
+				flag = 1;
+				break;
 			}
 		}
+		if(flag == 0){
+			System.out.println("item does not exist, try again");
+		}
+		
     }
  
- public boolean updatePromotionPackage(ArrayList<MenuItem> menu) {
-	 int pidx = 0;
+public boolean updatePromotionPackage(ArrayList<MenuItem> menu) {
+	 	int pidx = 0;
 
-		for (Promotion item:this.promoMenu) {
-			System.out.println(pidx + ") " + item.getName());
-			pidx++;
-		}
-		System.out.println("-----------------------------------------------------");
+	 	displayPromotionPackage(menu);
 		System.out.println("Enter the name of the package you want to modify:");
 		String packageName = sc.nextLine();
-		pidx = 0;	//Reset pidx
+
 		//sc.nextLine(); // Clear input buffer
 		for (Promotion item:this.promoMenu) {
 			if (packageName.equals(item.getName())) {
@@ -86,11 +77,14 @@ public class PromotionMenu {
 					}
 					ii++;
 				}
-		
+				if (ii==promoMenu.get(pidx).array.size()) {
+					System.out.println("Item not in Promotion package " + promoMenu.get(pidx).getName());
+				}
 				promoMenu.get(pidx).array.remove(ii);
 				break;
 			case 2:
 				System.out.println("Enter the name of the item you want to add to the package:");
+				sc.nextLine(); // Clear input buffer
 				String itemName2 = sc.nextLine();
 				for (MenuItem m:menu) {
 					if (m.getName().equals(itemName2)) {
@@ -109,6 +103,30 @@ public class PromotionMenu {
 		}
 	return true;
  }
+public void removePromotionPackage(ArrayList<MenuItem> menu) {
+	int i = 0; // Idx counter for promotionMenu
+ 	displayPromotionPackage(menu);
+	System.out.println("Enter name of package you want to remove:");
+	String packageName = sc.nextLine();
+	for (Promotion item:this.promoMenu) {
+		if (packageName.equals(item.getName())) {
+			this.promoMenu.remove(i);
+			return;
+		}else {
+			i++;	// Idx of package in promotionMenu
+		}
+	}
+	System.out.println(packageName + " does not exist.");
+}
+
+private void displayPromotionPackage(ArrayList<MenuItem> menu) {
+	int idx = 0;
+	for (Promotion item:this.promoMenu) {
+		System.out.println(idx + ") " + item.getName());
+		idx++;
+	}
+	System.out.println("-----------------------------------------------------");
+}
 }
  
 

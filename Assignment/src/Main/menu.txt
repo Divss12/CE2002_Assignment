@@ -1,2 +1,4 @@
 bye	hi	1.5
 Chicken rice	Steamed chicken and rice	3.0
+hi	bye	6.0
+Prata	prata	0.8

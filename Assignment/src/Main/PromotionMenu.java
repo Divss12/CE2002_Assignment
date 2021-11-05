@@ -67,6 +67,7 @@ public boolean updatePromotionPackage(ArrayList<MenuItem> menu) {
 					promoMenu.remove(pidx); // Removing targetted empty promotion packages from promotionMenu
 					break;
 				}
+				displayPackageContents(packageName);	// Displays package contents of packageName
 				
 				System.out.println("Enter the name of the item to be removed from the package:");
 				sc.nextLine(); // Clear input buffer
@@ -124,6 +125,20 @@ private void displayPromotionPackage(ArrayList<MenuItem> menu) {
 	for (Promotion item:this.promoMenu) {
 		System.out.println(idx + ") " + item.getName());
 		idx++;
+	}
+	System.out.println("-----------------------------------------------------");
+}
+
+public void displayPackageContents(String packageName) {
+	for (Promotion p:promoMenu) {
+		if (packageName.equals(p.getName())) {
+			for (int i=0;i<p.array.size();i++) {
+				System.out.printf("[" + (i+1) + "] ");
+				System.out.println(p.array.get(i).getName() + "\t"
+						   + "$" + p.array.get(i).getPrice() + "\n"
+			   + "Description: " + p.array.get(i).getDescription());
+			}
+		}
 	}
 	System.out.println("-----------------------------------------------------");
 }

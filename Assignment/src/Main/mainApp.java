@@ -142,6 +142,9 @@ public class mainApp{
 							check = pMenu1.updatePromotionPackage(menu);
 							if (!check) break;
 							break;
+						case 3:
+							PromotionMenu pMenu2 = new PromotionMenu(promotionMenu);
+							pMenu2.removePromotionPackage(menu);
 						case 4:
 							break;
 						default:
@@ -229,7 +232,7 @@ public class mainApp{
 					break;
 				case 6: //Create reservation
 					System.out.println("Enter name for the reservation");
-					String name = scan.nextLine();
+					name = scan.nextLine();
 					System.out.println("Enter pax");
 					int pax = scan.nextInt();
 					System.out.println("Enter year");
@@ -243,7 +246,7 @@ public class mainApp{
 					System.out.println("Enter minute");
 					int minute = scan.nextInt();
 
-					Reservation res = new Reservation(name, pax, year, month, date, hour, minute);
+					Reservation res = new Reservation(pax, name, year, month, date, hour, minute);
 
 					//TODO: code to check if reservation is available**
 					//if it is then execute the following code
@@ -254,7 +257,7 @@ public class mainApp{
 					System.out.println("Enter name");
 					String name1 = scan.nextLine();
 					int flag = 0;
-					int counterr;
+					int counterr = 0;
 					for(Reservation r: reservationList){
 						if(r.getName().equals(name1)){
 							flag = 1;

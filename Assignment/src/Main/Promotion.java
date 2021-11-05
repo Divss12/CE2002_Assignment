@@ -29,28 +29,29 @@ public class Promotion{
     }
 
     public void updateInfo() {
-    	System.out.println("[1] Update item name");
-    	System.out.println("[2] Update item description");
-    	System.out.println("[3] Update item price\nPress any button to exit without updating");
+    	System.out.println("[1] Update package name");
+    	System.out.println("[2] Update package description");
+    	System.out.println("[3] Update package price\nPress any button to exit without updating");
     	int c = sc.nextInt();
     	switch(c) {
     	case 1:
-    		System.out.println("Enter new item name:");
+    		System.out.println("Enter new package name:");
+    		sc.nextLine(); // Clear input buffer
     		String n = sc.nextLine();
+    		System.out.println("Package name updated from " + this.name + " to " + n);
     		this.name = n;
-
     		break;
     	case 2:
-    		System.out.println("Enter new item description:");
+    		System.out.println("Enter new package description:");
     		String d = sc.nextLine();
+    		System.out.println("Package description updated from " + this.description + " to " + d);
     		this.description = d;
-    		System.out.println("Item description updated.");
     		break;
     	case 3:
-    		System.out.println("Enter new item description:");
+    		System.out.println("Enter new package price:");
     		double p = sc.nextDouble();
+    		System.out.println("Package price updated from " + this.price + " to " + p);
     		this.price = p;
-    		System.out.println("Item price updated.");
     		break;
     	default:
     		System.out.println("Cancelling update...");

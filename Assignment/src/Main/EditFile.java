@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;	// Import to read file
 
 public class EditFile {
-	private static String filepath;
+	private String filepath;
 	private File myFile;
 	private Scanner myReader;
 

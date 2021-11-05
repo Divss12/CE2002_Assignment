@@ -201,6 +201,7 @@ public class mainApp{
 									break;
 								case 2:
 									System.out.println("Enter package name: ");
+									scan.nextLine(); // Clear input buffer
 									name = scan.nextLine();
 									for(Promotion p : promotionMenu) {
 										if(p.getName().equals(name)) {

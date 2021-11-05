@@ -113,7 +113,7 @@ public class Order {
             name = item.getName();
             q = quant.get(i);
 
-            System.out.println(i + ". " + name + " (" + q + ")");
+            System.out.println((i+1) + ". " + name + " (" + q + ")");
         }
     }
 

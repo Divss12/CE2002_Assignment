@@ -297,11 +297,16 @@ public class mainApp{
 					for(Order o : orderList){
 						i++;
 						if(o.getTableNumber() == tableNumber10){
-							o.printInvoice();
+							System.out.println("Does customer have membership? (Y/N)");
+							Boolean isMember = false;
+							if(scan.nextLine().equals("Y")) {
+								isMember = true;
+							}
+							o.printInvoice(isMember);
 							break;
 						}
  					}
-					orderList.remove(-1);
+					orderList.remove(i);
 					break;
 				case 11: //print sales revenue report
 					//need to discuss the implementation of this as well

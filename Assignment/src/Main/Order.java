@@ -33,7 +33,7 @@ public class Order {
         }
     }
 
-    public void printInvoice(){
+    public void printInvoice(Boolean isMember){
 
         System.out.println("Waiter: " + this.server.getName());
 
@@ -45,7 +45,7 @@ public class Order {
         String qua;
         double price;
         int q;
-        int total = 0;
+        double total = 0;
         for(int i = 0; i < list.size(); i++){
             item = list.get(i);
             name = item.getName();
@@ -62,8 +62,13 @@ public class Order {
 
             total += q*price;
         }
-
+        
         System.out.println("Total: \t\t\t\t\t" + total);
+        if(isMember) {
+        	System.out.println("Membership discount = 10%");
+        	total = 0.9*total;
+        	System.out.println("Total: \t\t\t\t\t" + total);
+        }
 
     }
 

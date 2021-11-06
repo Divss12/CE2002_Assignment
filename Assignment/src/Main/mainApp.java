@@ -21,25 +21,19 @@ public class mainApp{
 		EditFile tableFile = new EditFile(tablePath); // Create a Table File
 		EditFile reservationFile = new EditFile(reservationPath); // Create a Reservation File
 
-		//ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
 		ArrayList<Promotion> promotionMenu = new ArrayList<Promotion>();
-		
-		Menu menu = new Menu();
-		menuFile.readMenuFromFile(menu.getArray());
+		Menu menu = new Menu();	// Creating new menu
+		menuFile.readMenuFromFile(menu.getArray());	// Reading menu.txt and storing contents into menu arraylist
 
-		OrdersList ordersList = new OrdersList();
+		OrdersList ordersList = new OrdersList();	
 
-		ArrayList<Table> tableList = new ArrayList<Table>();
-		
+		ArrayList<Table> tableList = new ArrayList<Table>();	
 		tableFile.readTablesFromFile(tableList);
 
-		ArrayList<Reservation> reservationList = new ArrayList<Reservation>();
-		
+		ArrayList<Reservation> reservationList = new ArrayList<Reservation>();		
 		reservationFile.readReservationsFromFile(reservationList);
 
-		ArrayList<Staff> staffList = new ArrayList<Staff>();
-		//code to read saved staff from a file
-
+		ArrayList<Staff> staffList = new ArrayList<Staff>(); //code to read saved staff from a file
 		do{
 			System.out.println("Enter your choice: " +
 									"\n 1. Create/Update/Remove menu item" +
@@ -76,8 +70,6 @@ public class mainApp{
 						case 3: 
 							menu.removeItem();
 							break;
-						case 4:
-							break;
 						default:
 							break;
 					}
@@ -102,7 +94,6 @@ public class mainApp{
 							System.out.println("Enter name of the Promotional Set Package:");
 							scan.nextLine(); // Clear input buffer
 							name = scan.nextLine();
-
 							System.out.println("Enter the description of the Promotional Set Package");
 							desc = scan.nextLine();
 							System.out.println("Enter the price of the Promotional Set Package");
@@ -113,7 +104,6 @@ public class mainApp{
 							pMenu.createPromotionPackage(menu.getArray(), package1);
 
 							promotionMenu.add(package1);
-
 							break;
 						case 2: 
 							boolean check;
@@ -183,7 +173,6 @@ public class mainApp{
 					//TODO: code to check if reservation is available**
 					//if it is then execute the following code
 					reservationList.add(res);
-
 					break;
 				case 7: //Check/Remove reservation
 					System.out.println("Enter name");
@@ -205,7 +194,6 @@ public class mainApp{
 					if(flag == 0){
 						System.out.println("Name not found");
 					}
-
 					break;
 				case 8: //Change table availability
 					int boolCheck;				
@@ -247,7 +235,6 @@ public class mainApp{
 					System.out.println("Restaurant reservation app terminated.");
 					break;
 			}
-
 			//code to save entire array
 			menuFile.WriteMenuToFile(menu.getArray(), ".\\Main\\menu.txt");
 			tableFile.WriteTablesToFile(tableList, tablePath);

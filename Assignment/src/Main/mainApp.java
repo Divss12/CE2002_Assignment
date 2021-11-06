@@ -26,7 +26,7 @@ public class mainApp{
 		
 		menuFile.readMenuFromFile(menu);
 
-		ArrayList<Order> orderList = new ArrayList<Order>();
+		OrdersList ordersList = new OrdersList();
 
 		ArrayList<Table> tableList = new ArrayList<Table>();
 		
@@ -148,83 +148,32 @@ public class mainApp{
 					break;
 
 				case 3: //Create order
-					System.out.println("Enter Table no.");
-					int tableNumber3 = scan.nextInt();
-					int time = 0; //add code to get time from Calendar class
-					System.out.println("Enter Staff ID: ");
-					int staffID = scan.nextInt();
-					Staff staff = null;	// Initializing staff
-					for(Staff s : staffList){
-						if(s.getID() == staffID){
-							staff = s;
-							break;
-						}
-					}
-					Order order = new Order(tableNumber3, time, staff);
-					orderList.add(order);
+					ordersList.createOrder(staffList);
 					break;
 				case 4: //View order
-					System.out.println("Enter the Table no.:");
-					int tableNumber4 = scan.nextInt();	// Changed from tableNumber to tableNumber2 to avoid duplicate (Reason 1)
-					for(Order o : orderList){
-						if(o.getTableNumber() == tableNumber4){
-							o.viewOrder();
-							break;
-						}
-					}
+					ordersList.viewOrder();
 					break;
 				case 5: //Add/remove item from order
-					System.out.println("Enter the Table no.:");
-					int tableNumber5 = scan.nextInt();	// (Reason 1)
-
-					for(Order o : orderList){
-						if(o.getTableNumber() == tableNumber5){	
-							System.out.println("Enter your choice:" +
+					System.out.println("Enter Table Number:");
+					int ind = ordersList.findOrder(scan.nextInt());
+					if(ind == -1) {
+						System.out.println("Not Found");
+						break;
+					}
+					System.out.println("Enter your choice:" +
 												"\n 1. Add to Order" +
 												"\n 2. Add Promotional Package to Order" +
 												"\n 3. Remove from Order" +
 												"\n 4. Cancel");
-							int c3 = scan.nextInt();
-							switch(c3){
-								case 1:
-									System.out.println("Enter dish name: ");
-									scan.nextLine(); //Clear input buffer
-									name = scan.nextLine();
-									for(MenuItem m : menu){
-										if(m.getName().equals(name)){
-											System.out.println("Enter Quantity: ");
-											int quantity = scan.nextInt();
-											o.addToOrder(m, quantity);
-											break;
-										}
-									}
-									break;
-								case 2:
-									System.out.println("Enter package name: ");
-									scan.nextLine(); // Clear input buffer
-									name = scan.nextLine();
-									for(Promotion p : promotionMenu) {
-										if(p.getName().equals(name)) {
-											System.out.println("Enter Quantity");
-											o.orderPromoItem(p, scan.nextInt());
-											break;
-										}
-									}
-								
-									
-									break;
-								case 3:
-									System.out.println("Enter the index of the item to remove (to remove latest enter -1): ");
-									int index = scan.nextInt();
-									//order.removeFromOrder(index);	//TODO
-									break;
-								case 4:
-									break;
-								default:
-									break;
-							}
-							break;
-						}
+					int c3 = scan.nextInt();
+					switch(c3) {
+						case 1: //Add to Order
+							ordersList.addToOrder(menu, ind);
+						case 2: //Add promo pkg to order
+							ordersList.addPromoToOrder(promotionMenu, ind);
+						case 3: //remove from order
+							ordersList.removeFromOrder(ind);
+							
 					}
 					break;
 				case 6: //Create reservation
@@ -302,21 +251,8 @@ public class mainApp{
 					break;
 				case 10: //print order invoice
 					System.out.println("Enter the Table no.:");
-					int tableNumber10 = scan.nextInt();	// (Reason 1)
-					int i = -1;
-					for(Order o : orderList){
-						i++;
-						if(o.getTableNumber() == tableNumber10){
-							System.out.println("Does customer have membership? (Y/N)");
-							Boolean isMember = false;
-							if(scan.nextLine().equals("Y")) {
-								isMember = true;
-							}
-							o.printInvoice(isMember);
-							break;
-						}
- 					}
-					orderList.remove(i);
+					int index = ordersList.findOrder(scan.nextInt());
+					ordersList.printInvoice(index);
 					break;
 				case 11: //print sales revenue report
 					//need to discuss the implementation of this as well

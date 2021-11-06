@@ -21,10 +21,11 @@ public class mainApp{
 		EditFile tableFile = new EditFile(tablePath); // Create a Table File
 		EditFile reservationFile = new EditFile(reservationPath); // Create a Reservation File
 
-		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
+		//ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
 		ArrayList<Promotion> promotionMenu = new ArrayList<Promotion>();
 		
-		menuFile.readMenuFromFile(menu);
+		Menu menu = new Menu();
+		menuFile.readMenuFromFile(menu.getArray());
 
 		OrdersList ordersList = new OrdersList();
 
@@ -66,36 +67,21 @@ public class mainApp{
 					int c1 = scan.nextInt();
 					switch(c1){
 						case 1: 
-							System.out.println("Enter item name:");
-							scan.nextLine(); // Clear input buffer
-							String n = scan.nextLine();
-							System.out.println("Enter item description:");
-							String d = scan.nextLine();
-							System.out.println("Enter item price:");
-							double p = scan.nextDouble();
-							MenuItem m = new MenuItem(n,d,p);
-							menu.add(m);	// Add newly created item to menu arraylist
+							menu.createMenuItem();
 							break;
 						case 2: 
-							System.out.println("Enter name of item you want to update:");
-							String newName = scan.nextLine();
-							for (MenuItem menuItem: menu) {
-								if (menuItem.getName().equals(newName)) {
-									menuItem.updateItem();
-								}
-							}
+							menu.updateMenuItem();
 							// TODO: Remove MenuItems from RestMenu file
 							break;
 						case 3: 
-							Menu myMenu = new Menu(menu);
-							myMenu.removeItem();
+							menu.removeItem();
 							break;
 						case 4:
 							break;
 						default:
 							break;
 					}
-					for (int i=0;i<menu.size();i++) {
+					for (int i=0;i<menu.getSize();i++) {
 						//edit.WriteToFile(menu.get(i));	// Writing each menu item in the arraylist to RestMenu file
 					}
 					break;
@@ -124,7 +110,7 @@ public class mainApp{
 
 							Promotion package1 = new Promotion(name, desc, price);
 							PromotionMenu pMenu = new PromotionMenu(promotionMenu);
-							pMenu.createPromotionPackage(menu, package1);
+							pMenu.createPromotionPackage(menu.getArray(), package1);
 
 							promotionMenu.add(package1);
 
@@ -132,15 +118,15 @@ public class mainApp{
 						case 2: 
 							boolean check;
 							PromotionMenu pMenu1 = new PromotionMenu(promotionMenu);
-							check = pMenu1.updatePromotionPackage(menu);
+							check = pMenu1.updatePromotionPackage(menu.getArray());
 							if (!check) break;
 							break;
 						case 3:
 							PromotionMenu pMenu2 = new PromotionMenu(promotionMenu);
-							pMenu2.removePromotionPackage(menu);
+							pMenu2.removePromotionPackage(menu.getArray());
 						case 4:
 							PromotionMenu pMenu3 = new PromotionMenu(promotionMenu);
-							pMenu3.displayPromotionPackage(menu);
+							pMenu3.displayPromotionPackage(menu.getArray());
 							break;
 						default:
 							break;
@@ -168,7 +154,7 @@ public class mainApp{
 					int c3 = scan.nextInt();
 					switch(c3) {
 						case 1: //Add to Order
-							ordersList.addToOrder(menu, ind);
+							ordersList.addToOrder(menu.getArray(), ind);
 						case 2: //Add promo pkg to order
 							ordersList.addPromoToOrder(promotionMenu, ind);
 						case 3: //remove from order
@@ -263,7 +249,7 @@ public class mainApp{
 			}
 
 			//code to save entire array
-			menuFile.WriteMenuToFile(menu, ".\\Main\\menu.txt");
+			menuFile.WriteMenuToFile(menu.getArray(), ".\\Main\\menu.txt");
 			tableFile.WriteTablesToFile(tableList, tablePath);
 			reservationFile.WriteReservationsToFile(reservationList, reservationPath);
 		}while(choice>0 && choice <12);

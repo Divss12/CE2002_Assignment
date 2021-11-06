@@ -7,8 +7,8 @@ public class Menu {
 	private ArrayList<MenuItem> menu;
 	Scanner sc = new Scanner(System.in);
 	
-	public Menu(ArrayList<MenuItem> menu) {
-		this.menu = menu;
+	public Menu() {
+		this.menu = new ArrayList<MenuItem>();
 	}
 	
 	/////////// Functions to work with menu ArrayList //////////////
@@ -24,5 +24,37 @@ public class Menu {
 				System.out.println("Target item does not exist.");
 			}
 		}
+	}
+	public void createMenuItem() {
+		System.out.println("Enter item name:");
+		String n = sc.nextLine();
+		System.out.println("Enter item description:");
+		String d = sc.nextLine();
+		System.out.println("Enter item price:");
+		double p = sc.nextDouble();
+		sc.nextLine(); //Clear input buffer
+		MenuItem m = new MenuItem(n,d,p);
+		menu.add(m);	// Add newly created item to menu arraylist
+		System.out.println(n + " added to menu.");
+	}
+	
+	public void updateMenuItem() {
+		System.out.println("Enter name of item you want to update:");
+		String newName = sc.nextLine();
+		for (MenuItem menuItem: menu) {
+			if (menuItem.getName().equals(newName)) {
+				System.out.println(newName + " updated.");
+				menuItem.updateItem();
+				return;
+			}
+		}
+		System.out.println("Menu item not found.");
+	}
+	public ArrayList<MenuItem> getArray(){
+		return this.menu;
+	}
+	
+	public int getSize() {
+		return this.menu.size();
 	}
 }

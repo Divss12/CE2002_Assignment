@@ -1,3 +1,6 @@
 Chicken rice	Steamed chicken and rice	3.0
 hi	bye	6.0
 Prata	prata	0.8
+bye	hi	2.0
+haha	hehe	2.3
+Sandwich	Subway	7.9

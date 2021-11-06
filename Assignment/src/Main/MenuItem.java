@@ -58,11 +58,12 @@ public class MenuItem{
 	    	System.out.println("[1] Item name");
 	    	System.out.println("[2] Item description");
 	    	System.out.println("[3] Item price");
-	    	System.out.println("Press any button to exit.");
+	    	System.out.println("[4] Exit.");
     		choice = sc.nextInt();
 	    	switch(choice) {
 	    	case 1:
 	    		System.out.println("Enter new item name:");
+	    		sc.nextLine(); //Clear input buffer
 	    		String n = sc.nextLine();
 	    		this.name = n;	// Update MenuItem name
 		    	changes++;

@@ -40,17 +40,14 @@ public class EditFile {
 	}
 	
 	public static void WriteMenuToFile(ArrayList<MenuItem> array, String filepath){ 
-		//String data = item.convertToString();
 		try {
 			FileWriter myWriter = new FileWriter(filepath);
-			//write this using normal for or while loop
 			for(int i = 0; i < array.size(); i++){
-				myWriter.write(array.get(i).convertToString());	// Downcast object to MenuItem to use MenuItem.convertToString
+				myWriter.write(array.get(i).convertToString());
 				myWriter.write("\n");
 			}
 			
 			myWriter.close();
-			//System.out.println("Successfully wrote to the menu file.");
 		}catch (IOException e) {
 			System.out.println("An error occurred while writing to menu file.");
 			e.printStackTrace();
@@ -58,17 +55,14 @@ public class EditFile {
 	}
 	
 	public static void WriteTablesToFile(ArrayList<Table> array, String filepath){ 
-		//String data = item.convertToString();
 		try {
 			FileWriter myWriter = new FileWriter(filepath);
-			//write this using normal for or while loop
 			for(int i = 0; i < array.size(); i++){
-				myWriter.write(array.get(i).convertToString());	// Downcast object to MenuItem to use MenuItem.convertToString
+				myWriter.write(array.get(i).convertToString());	
 				myWriter.write("\n");
 			}
 			
 			myWriter.close();
-			//System.out.println("Successfully wrote to tables file.");
 		}catch (IOException e) {
 			System.out.println("An error occurred while writing to tables file.");
 			e.printStackTrace();
@@ -76,24 +70,20 @@ public class EditFile {
 	}
 	
 	public static void WriteReservationsToFile(ArrayList<Reservation> array, String filepath){ 
-		//String data = item.convertToString();
 		try {
 			FileWriter myWriter = new FileWriter(filepath);
-			//write this using normal for or while loop
 			for(int i = 0; i < array.size(); i++){
-				myWriter.write(array.get(i).convertToString());	// Downcast object to MenuItem to use MenuItem.convertToString
+				myWriter.write(array.get(i).convertToString());	
 				myWriter.write("\n");
 			}
-			
 			myWriter.close();
-			//System.out.println("Successfully wrote to reservations file.");
 		}catch (IOException e) {
 			System.out.println("An error occurred while writing to reservations file.");
 			e.printStackTrace();
 		}
 	}
 	
-	public void readMenuFromFile(ArrayList<MenuItem> array) { //make this for others
+	public void readMenuFromFile(ArrayList<MenuItem> array) { 
 		while(myReader.hasNextLine()) {
 			String str = myReader.nextLine();
 			String[] parts = str.split("\t");
@@ -107,7 +97,7 @@ public class EditFile {
 	}
 
 		
-	public void readTablesFromFile(ArrayList<Table> array) { //make this for others
+	public void readTablesFromFile(ArrayList<Table> array) {
 		while(myReader.hasNextLine()) {
 			String str = myReader.nextLine();
 			String[] parts = str.split("\t");
@@ -119,7 +109,7 @@ public class EditFile {
 		myReader.close();
 	}
 
-	public void readReservationsFromFile(ArrayList<Reservation> array) { //make this for others
+	public void readReservationsFromFile(ArrayList<Reservation> array) { 
 		while(myReader.hasNextLine()) {
 			String str = myReader.nextLine();
 			String[] parts = str.split("\t");

@@ -1,7 +1,21 @@
-Chicken rice	Steamed chicken and rice	3.0
-hi	bye	6.0
-Prata	prata	0.8
-bye	hi	2.0
-haha	hehe	2.3
-Sandwich	Subway	7.9
-Satay	Chicken	1.2
+cheese burger	Delectable, premium beef with lettuce and sweet tomatoes	16
+double cheese burger	Delectable, double premium beef with lettuce and sweet tomatoes	24
+steak	Delectable, premium beef	20
+fries	Fried potato	3.5
+cheese fries	Fried potato with cheese	5
+chilli cheese fries	Fried potato with chilli and cheese	7.5
+chilli cheese fries with bacon	Fried potato with chilli, bacon and cheese	10
+truffle chilli cheese fries	Fried potato with chilli, truffle oil and cheese	10.5
+chicken cutlet	Fried chicken	10
+chicken tendies	Yummy fried chicken	10
+chicken chop	Delectable chicken drizzled in mushroom sauce	10
+mushroom soup	mushroom flavoured water appetizer	5
+salad	vegan's favourite	3
+mash potatoes	mashed potatoes	3
+baked potato	Steaming hot baked potatoes	3
+beer battered cod	cod battered with tiger beer	13
+coke	coca cola	2
+sprite	sprite	2
+milo	milo	3
+ice lemon tea	Homemade lemon tea with ice	2.5
+green tea	Japanese green tea	2.5

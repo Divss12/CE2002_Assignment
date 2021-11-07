@@ -2,6 +2,7 @@ package Main;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.Calendar;
 import java.io.File;
 
 public class mainApp{
@@ -40,6 +41,19 @@ public class mainApp{
 
 		ArrayList<Staff> staffList = new ArrayList<Staff>(); //code to read saved staff from a file
 		do{
+			
+			///////////////////// Check if Reservation has expired /////////////////////
+	    	GregorianCalendar now = new GregorianCalendar();	// Get current time
+	    	GregorianCalendar old = new GregorianCalendar();
+	    	for (int i=0;i<reservationList.size();i++) {
+	    		old = reservationList.get(i).getTime();
+	    		old.add(Calendar.HOUR_OF_DAY, 2);
+	    		if (now.after(old)) {	// Remove reservation if more than 2h old
+	    			System.out.println("WARNING!!! " + reservationList.get(i).getName() + "'s reservation expired.");
+	    			reservationList.remove(i);
+	    		}
+	    	}
+	    	
 			System.out.println("Enter your choice: " +
 									"\n 1. Create/Update/Remove menu item" +
 									"\n 2. Create/Update/Remove promotion" +
@@ -257,18 +271,6 @@ public class mainApp{
 			tableFile.WriteTablesToFile(tableList, tablePath);
 			reservationFile.WriteReservationsToFile(reservationList, reservationPath);
 			promoFile.writePromoMenu(promotionMenu, promoPath);
-			
-			///////////////////// Check if Reservation has expired /////////////////////
-	    	GregorianCalendar now = new GregorianCalendar();	// Get current time
-	    	GregorianCalendar old = new GregorianCalendar();
-	    	for (int i=0;i<reservationList.size();i++) {
-	    		old = reservationList.get(i).getTime();
-	    		old.add(reservationList.get(i).getTime().HOUR_OF_DAY, 2);
-	    		if (old.after(now)) {	// Remove reservation if more than 2h old
-	    			System.out.println(reservationList.get(i).getName() + "'s reservation expired.");
-	    			reservationList.remove(i);
-	    		}
-	    	}
 
 			
 		}while(choice>0 && choice <12);

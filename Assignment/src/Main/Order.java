@@ -1,9 +1,10 @@
 package Main;
 import java.util.ArrayList; 
+import java.util.GregorianCalendar;
 
 public class Order {
     private int tableNumber;
-    private int time;//maybe time uses some other data type, i think we are supposed to use some library
+    private GregorianCalendar time;//maybe time uses some other data type, i think we are supposed to use some library
 
     private Staff server;
 
@@ -14,7 +15,7 @@ public class Order {
     private ArrayList<Integer> quantp;
     
 
-    public Order(int tableNumber, int time, Staff server){
+    public Order(int tableNumber, GregorianCalendar time, Staff server){
         this.tableNumber = tableNumber;
         this.time = time;
         this.server = server;

@@ -1,5 +1,6 @@
 package Main;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class OrdersList {
@@ -73,7 +74,7 @@ public class OrdersList {
 		System.out.println("Enter Table no.");
 		Scanner scan = new Scanner(System.in);
 		int tableNumber3 = scan.nextInt();
-		int time = 0; //add code to get time from Calendar class
+		GregorianCalendar time = new GregorianCalendar(); //add code to get time from Calendar class
 		System.out.println("Enter Staff ID: ");
 		int staffID = scan.nextInt();
 		Staff staff = null;	// Initializing staff
@@ -97,6 +98,8 @@ public class OrdersList {
 		
 		array.get(index).printInvoice(isMember);
 		
+		//TODO: over here the order should be added to a log from where we can print the sales revenue report
+
 		array.remove(index);
 	}
 }

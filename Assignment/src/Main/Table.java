@@ -20,6 +20,10 @@ public class Table {
         }
     }
 
+    public void setTimeSlots(boolean[] array){
+        this.timeSlots = array;
+    }
+
     public void changeAvailability(boolean newBool){
         this.occupied = newBool;
     }
@@ -29,7 +33,13 @@ public class Table {
     }
 
     public String convertToString(){
-        return Integer.toString(this.tableNumber); //complete this
+        String out = Integer.toString(this.tableNumber) + "\t" + Integer.toString(this.size);
+        String s;
+        for(boolean b: timeSlots){
+        	if(b) {s = "1";} else {s = "0";}
+            out = out + "\t" + s;
+        }
+        return out;
     }
     
     public boolean reserveTimeSlot(GregorianCalendar time, int pax) {

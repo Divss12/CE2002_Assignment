@@ -104,7 +104,21 @@ public class EditFile {
 			int tableNumber = Integer.parseInt(parts[0]);
 			int size = Integer.parseInt(parts[1]);
 
-			array.add(new Table(tableNumber, size));
+			boolean[] boolArray = new boolean[84];
+			int j;
+			for(int i = 2; i < parts.length; i++){
+				j = Integer.parseInt(parts[i]);
+				if(j == 1) {boolArray[i-2] = true;}
+				else {boolArray[i-2] = false;}
+			}
+			for(int k = parts.length - 2; k < 84; k++) { //if the file has incomplete values for timeSlots[]
+				boolArray[k] = false;
+			}
+
+			Table t = new Table(tableNumber, size);
+			t.setTimeSlots(boolArray);
+
+			array.add(t);
 		}
 		myReader.close();
 	}

@@ -21,6 +21,10 @@ public class Reservation {
     	// Format: name	pax	YEAR MONTH DATE HOUR MINUTE
     }
 
+    public GregorianCalendar getTime() {
+    	return this.time;
+    }
+    
     public String getName(){
         return this.name;
     }
@@ -40,5 +44,19 @@ public class Reservation {
     	return false;
     }
 
+    public boolean checkExpiration(ArrayList<Reservation> reservationList) {
+    	GregorianCalendar now = new GregorianCalendar();	// Get current time
+    	GregorianCalendar old = new GregorianCalendar();
+    	for (int i=0;i<reservationList.size();i++) {
+    		old = reservationList.get(i).getTime();
+    		old.add(reservationList.get(i).getTime().HOUR_OF_DAY, 2);
+    		if (old.after(now)) {	// Remove reservation if more than 2h old
+    			System.out.println(reservationList.get(i).getName() + "'s reservation expired.");
+    			reservationList.remove(i);
+    			return true;
+    		}
+    	}
+    	return false;
+    }
 }
 	

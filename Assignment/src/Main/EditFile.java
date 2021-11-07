@@ -125,4 +125,42 @@ public class EditFile {
 		}
 		myReader.close();
 	}
+	
+	public void writePromoMenu(ArrayList<Promotion> array, String filepath) {
+		try {
+			FileWriter myWriter = new FileWriter(filepath);
+			for(int i = 0; i < array.size(); i++){
+				myWriter.write(array.get(i).convertToString());	
+				myWriter.write("\n");
+			}
+			myWriter.close();
+		}catch (IOException e) {
+			System.out.println("An error occurred while writing to promotions file.");
+			e.printStackTrace();
+		}
+	}
+	
+	public void readPromotionsFromFile(ArrayList<Promotion> array, ArrayList<MenuItem> menu) {
+		while(myReader.hasNextLine()) {
+			String str = myReader.nextLine();
+			String[] parts = str.split("\t");
+			String name = parts[0];
+			String desc = parts[1];
+			double price = Double.parseDouble(parts[2]);
+			
+			Promotion promo = new Promotion(name, desc, price);
+			
+			for(int i = 3; i < parts.length; i++) {
+				for(MenuItem m: menu) {
+					if(parts[i].equals(m.getName())) {
+						promo.addItemToPromotion(m);
+						break;
+					}
+				}
+			}
+		myReader.close();
+		}
+	}
 }
+	
+	

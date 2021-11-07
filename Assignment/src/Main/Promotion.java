@@ -59,4 +59,12 @@ public class Promotion{
     	}
     }
     
+    public String convertToString() {
+    	String out = this.name + "\t" + this.description + "\t" + Double.toString(this.price);
+    	for(MenuItem m : array) {
+    		out = out + "\t" + m.getName();
+    	}
+    	return out;
+    }
+    
 }

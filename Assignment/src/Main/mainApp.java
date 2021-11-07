@@ -16,12 +16,13 @@ public class mainApp{
 		String menuPath = ".\\Main\\menu.txt";
 		String tablePath = ".\\Main\\tables.txt";
 		String reservationPath = ".\\Main\\reservations.txt";
+		String promoPath = ".\\Main\\promos.txt";
 		
 		EditFile menuFile = new EditFile(menuPath);	// Create a Menu File
 		EditFile tableFile = new EditFile(tablePath); // Create a Table File
 		EditFile reservationFile = new EditFile(reservationPath); // Create a Reservation File
+		EditFile promoFile = new EditFile(promoPath); //Create a Promotions file
 
-		ArrayList<Promotion> promotionMenu = new ArrayList<Promotion>();
 		Menu menu = new Menu();	// Creating new menu
 		menuFile.readMenuFromFile(menu.getArray());	// Reading menu.txt and storing contents into menu arraylist
 
@@ -32,6 +33,9 @@ public class mainApp{
 
 		ArrayList<Reservation> reservationList = new ArrayList<Reservation>();		
 		reservationFile.readReservationsFromFile(reservationList);
+		
+		ArrayList<Promotion> promotionMenu = new ArrayList<Promotion>();
+		promoFile.readPromotionsFromFile(promotionMenu, menu.getArray());
 
 		ArrayList<Staff> staffList = new ArrayList<Staff>(); //code to read saved staff from a file
 		do{
@@ -239,6 +243,10 @@ public class mainApp{
 			menuFile.WriteMenuToFile(menu.getArray(), ".\\Main\\menu.txt");
 			tableFile.WriteTablesToFile(tableList, tablePath);
 			reservationFile.WriteReservationsToFile(reservationList, reservationPath);
+			promoFile.WritePromoMenu(promotionMenu, promoPath);
+			
+			
+			
 		}while(choice>0 && choice <12);
 		//scan.close();
 	}

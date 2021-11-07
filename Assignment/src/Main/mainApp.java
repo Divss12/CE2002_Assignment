@@ -243,7 +243,7 @@ public class mainApp{
 			menuFile.WriteMenuToFile(menu.getArray(), ".\\Main\\menu.txt");
 			tableFile.WriteTablesToFile(tableList, tablePath);
 			reservationFile.WriteReservationsToFile(reservationList, reservationPath);
-			promoFile.WritePromoMenu(promotionMenu, promoPath);
+			promoFile.writePromoMenu(promotionMenu, promoPath);
 			
 			
 			

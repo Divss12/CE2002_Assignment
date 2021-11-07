@@ -119,9 +119,8 @@ public class EditFile {
 			int month = Integer.parseInt(parts[3]);
 			int date = Integer.parseInt(parts[4]);
 			int hours = Integer.parseInt(parts[5]);
-			int minutes = Integer.parseInt(parts[6]);
 
-			array.add(new Reservation(pax, name, year, month, date, hours, minutes));
+			array.add(new Reservation(pax, name, year, month, date, hours));
 		}
 		myReader.close();
 	}

@@ -2,6 +2,7 @@ package Main;
 
 import java.util.GregorianCalendar;
 import java.util.Calendar;
+import java.util.ArrayList;
 
 public class Reservation {
     private int pax;
@@ -9,14 +10,14 @@ public class Reservation {
     private String name;
     private String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};    //customer, table
 
-    public Reservation(int pax, String name, int year, int month, int day, int hours, int minutes){
+    public Reservation(int pax, String name, int year, int month, int day, int hours){
         this.pax = pax;
         this.name = name;
-    	this.time = new GregorianCalendar(year, month, day, hours, minutes);
+    	this.time = new GregorianCalendar(year, month, day, hours, 0);
     }
 
     public String convertToString() {	//name \n $p \n description
-    	return name + "\t" + Integer.toString(pax) + "\t" + Integer.toString(this.time.get(Calendar.YEAR)) + "\t" + Integer.toString(this.time.get(Calendar.MONTH)) + "\t" + Integer.toString(this.time.get(Calendar.DATE)) + "\t" + Integer.toString(this.time.get(Calendar.HOUR)) + "\t" + Integer.toString(this.time.get(Calendar.MINUTE));
+    	return name + "\t" + Integer.toString(pax) + "\t" + Integer.toString(this.time.get(Calendar.YEAR)) + "\t" + Integer.toString(this.time.get(Calendar.MONTH)) + "\t" + Integer.toString(this.time.get(Calendar.DATE)) + "\t" + Integer.toString(this.time.get(Calendar.HOUR));
     	// Format: name	pax	YEAR MONTH DATE HOUR MINUTE
     }
 
@@ -30,7 +31,14 @@ public class Reservation {
         System.out.println("Time: " + this.time.get(Calendar.HOUR) + ":" + this.time.get(Calendar.MINUTE));
     }
 
-    
+    public boolean isValidReservation(ArrayList<Table> tableList) {
+    	for (Table t:tableList) {
+    		if (t.reserveTimeSlot(this.time, this.pax)){
+    			return true;
+    		}
+    	}
+    	return false;
+    }
 
 }
 	

@@ -113,8 +113,8 @@ public class EditFile {
 		while(myReader.hasNextLine()) {
 			String str = myReader.nextLine();
 			String[] parts = str.split("\t");
-			int pax = Integer.parseInt(parts[0]);
-			String name = parts[1];
+			String name = parts[0];
+			int pax = Integer.parseInt(parts[1]);
 			int year = Integer.parseInt(parts[2]);
 			int month = Integer.parseInt(parts[3]);
 			int date = Integer.parseInt(parts[4]);

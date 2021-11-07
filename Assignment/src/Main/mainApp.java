@@ -158,6 +158,7 @@ public class mainApp{
 					break;
 				case 6: //Create reservation
 					System.out.println("Enter name for the reservation");
+					scan.nextLine(); // Clear input buffer
 					name = scan.nextLine();
 					System.out.println("Enter pax");
 					int pax = scan.nextInt();
@@ -179,9 +180,11 @@ public class mainApp{
 					reservationList.add(res);
 					break;
 				case 7: //Check/Remove reservation
-					System.out.println("Enter name");
+					System.out.println("Enter name:");
+					scan.nextLine(); // Clear input buffer
 					String name1 = scan.nextLine();
 					int flag = 0;
+					int flag1 = 0;
 					int counterr = 0;
 					for(Reservation r: reservationList){
 						if(r.getName().equals(name1)){
@@ -190,10 +193,16 @@ public class mainApp{
 							System.out.println("Remove Reservation (Y/N)?");
 							String C = scan.nextLine();
 							if(C.equals("Y")){
-								reservationList.remove(counterr);
+								flag1++;
+								break;
 							}
 						}
 						counterr++;
+					}
+					if (flag1>0)
+					{
+						System.out.println(name1 + "'s reservation has been removed.");
+						reservationList.remove(counterr);
 					}
 					if(flag == 0){
 						System.out.println("Name not found");

@@ -170,14 +170,17 @@ public class mainApp{
 					int date = scan.nextInt();
 					System.out.println("Enter hour");
 					int hour = scan.nextInt();
-					System.out.println("Enter minute");
-					int minute = scan.nextInt();
 
-					Reservation res = new Reservation(pax, name, year, month, date, hour, minute);
+
+					Reservation res = new Reservation(pax, name, year, month, date, hour);
 
 					//TODO: code to check if reservation is available**
-					//if it is then execute the following code
-					reservationList.add(res);
+					if (res.isValidReservation(tableList)) {
+						//if it is then execute the following code
+						reservationList.add(res);
+					}else {
+						System.out.println("Reservation not made.");
+					}
 					break;
 				case 7: //Check/Remove reservation
 					System.out.println("Enter name:");

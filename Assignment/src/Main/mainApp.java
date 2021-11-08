@@ -273,6 +273,6 @@ public class mainApp{
 
 			
 		}while(choice>0 && choice <12);
-		//scan.close();
+		scan.close();
 	}
 }

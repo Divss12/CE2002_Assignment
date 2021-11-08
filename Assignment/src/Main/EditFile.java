@@ -201,7 +201,7 @@ public class EditFile {
 	public void readPromotionsFromFile(ArrayList<Promotion> array, ArrayList<MenuItem> menu) {
 		while(myReader.hasNextLine()) {
 			String str = myReader.nextLine();
-			String[] parts = str.split("\t");
+			String[] parts = str.split("/");
 			String name = parts[0];
 			String desc = parts[1];
 			double price = Double.parseDouble(parts[2]);

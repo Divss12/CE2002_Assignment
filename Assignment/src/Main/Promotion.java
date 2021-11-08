@@ -114,9 +114,9 @@ public class Promotion{
      * @return String formatted for promos.txt
      */
     public String convertToString() {
-    	String out = this.name + "\t" + this.description + "\t" + Double.toString(this.price);
+    	String out = this.name + "/" + this.description + "/" + Double.toString(this.price);
     	for(MenuItem m : array) {
-    		out = out + "\t" + m.getName();
+    		out = out + "/" + m.getName();
     	}
     	return out;
     }

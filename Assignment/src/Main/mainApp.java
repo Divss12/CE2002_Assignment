@@ -55,7 +55,7 @@ public class mainApp{
 	    	}
 	    	
 			System.out.println("Enter your choice: " +
-									"\n 1. Create/Update/Remove menu item" +
+									"\n 1. View/Create/Update/Remove menu item" +
 									"\n 2. Create/Update/Remove promotion" +
 									"\n 3. Create Order" +
 									"\n 4. View Order" +
@@ -76,7 +76,8 @@ public class mainApp{
 										"\n 1. Create a new menu item" +
 										"\n 2. Update an existing menu item" +
 										"\n 3. Remove a menu item" +
-										"\n 4. Cancel"); 
+										"\n 4. Display the menu" +
+										"\n 5. Cancel"); 
 					int c1 = scan.nextInt();
 					switch(c1){
 						case 1: 
@@ -89,13 +90,11 @@ public class mainApp{
 						case 3: 
 							menu.removeItem();
 							break;
+						case 4:
+							menu.viewMenu();
 						default:
 							break;
 					}
-					for (int i=0;i<menu.getSize();i++) {
-						//edit.WriteToFile(menu.get(i));	// Writing each menu item in the arraylist to RestMenu file
-					}
-					break;
 					
 				case 2: //Create/Update/Remove promotion
 					String name;

@@ -170,6 +170,7 @@ public class EditFile {
 						break;
 					}
 				}
+				array.add(promo);
 			}
 		myReader.close();
 		}

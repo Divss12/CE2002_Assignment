@@ -50,6 +50,13 @@ public class Menu {
 		}
 		System.out.println("Menu item not found.");
 	}
+	
+	public void viewMenu() {
+		System.out.println("Name\t\t\t\t\tPrice");
+		for(MenuItem m: menu) {
+			System.out.println(m.getName() + "\t\t\t\t\t" + m.getPrice());
+		}
+	}
 	public ArrayList<MenuItem> getArray(){
 		return this.menu;
 	}

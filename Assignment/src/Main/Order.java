@@ -1,3 +1,8 @@
+/**
+* @author Divyansh
+* @version 1.0
+* @since 6th November 2021
+*/
 package Main;
 import java.util.ArrayList; 
 import java.util.GregorianCalendar;
@@ -14,7 +19,12 @@ public class Order {
     private ArrayList<Promotion> promoList;
     private ArrayList<Integer> quantp;
     
-
+    /**
+     * Order constructor
+     * @param tableNumber
+     * @param time
+     * @param server
+     */
     public Order(int tableNumber, GregorianCalendar time, Staff server){
         this.tableNumber = tableNumber;
         this.time = time;
@@ -28,11 +38,20 @@ public class Order {
 
     }
 
+    /**
+     * Adds menu item to MenuItem list and quantity to quant list
+     * @param dish
+     * @param quantity
+     */
     public void addToOrder(MenuItem dish, int quantity){
         list.add(dish);
         quant.add(quantity);
     }
     
+    /**
+     * Removes an order from MenuItem list
+     * @param index
+     */
     public void removeFromOrder(int index){
         if(index == -1){
             list.remove(list.size() - 1);
@@ -42,17 +61,23 @@ public class Order {
         }
     }
     
+    /**
+     * Adds promotion item to Promotion list and quantity to quantp list
+     * @param promo
+     * @param quantity
+     */
     public void orderPromoItem(Promotion promo, int quantity) {
     	promoList.add(promo);
     	quantp.add(quantity);
     }
 
+    /**
+     * prints invoice from the menu items ordered
+     * @param isMember 
+     */
     public void printInvoice(Boolean isMember){
 
         System.out.println("Waiter: " + this.server.getName());
-
-        //Print time
-
 
         MenuItem item;
         String name;
@@ -105,6 +130,9 @@ public class Order {
 
     }
 
+    /**
+     * Prints a list of all orders
+     */
     public void viewOrder(){
         MenuItem item;
         String name;
@@ -116,6 +144,18 @@ public class Order {
 
             System.out.println((i+1) + ". " + name + " (" + q + ")");
         }
+    }
+    /**
+     * Prints a list of orders from the Promotional menu
+     */
+    public void viewPromoOrder() {
+    	int q;
+    	System.out.println("Special menu items:");
+    	System.out.println("--------------------------");
+		for (int i=0;i<promoList.size();i++) {
+			q = quantp.get(i);
+			System.out.println((i+1) + ". " + promoList.get(i).getName() + " (" + q + ")");
+		}
     }
 
     public int getTableNumber(){

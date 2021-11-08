@@ -1,3 +1,9 @@
+/**
+* @author Zavier
+* @version 1.0
+* @since 3rd November 2021
+* This class is used to create, write to and read from files
+*/
 package Main;
 import java.io.File;
 import java.io.FileNotFoundException;	// Handle error when reading from files
@@ -18,15 +24,18 @@ public class EditFile {
 			try {
 				this.myReader = new Scanner(myFile);
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				System.out.println("Error creating file");
 				e.printStackTrace();
 			}
-			// Set location of txt file which contains menu items
 			CreateFile(myFile);
 		}
 
-	public static void CreateFile(File filename) {
+	/**
+	 * Creates a new file with the name filename
+	 * Abstraction
+	 * @param filename
+	 */
+	private static void CreateFile(File filename) {
 		try {	
 			if (filename.createNewFile()) {
 				System.out.println("File created: " + filename.getName());
@@ -39,6 +48,11 @@ public class EditFile {
 		}
 	}
 	
+	/**
+	 * Writes MenuItem objects to file at filepath
+	 * @param array
+	 * @param filepath
+	 */
 	public static void WriteMenuToFile(ArrayList<MenuItem> array, String filepath){ 
 		try {
 			FileWriter myWriter = new FileWriter(filepath);
@@ -54,6 +68,11 @@ public class EditFile {
 		}
 	}
 	
+	/**
+	 * Writes Table objects to file at filepath
+	 * @param array
+	 * @param filepath
+	 */
 	public static void WriteTablesToFile(ArrayList<Table> array, String filepath){ 
 		try {
 			FileWriter myWriter = new FileWriter(filepath);
@@ -69,6 +88,11 @@ public class EditFile {
 		}
 	}
 	
+	/**
+	 * Writes Reservation objects to file at filepath
+	 * @param array
+	 * @param filepath
+	 */
 	public static void WriteReservationsToFile(ArrayList<Reservation> array, String filepath){ 
 		try {
 			FileWriter myWriter = new FileWriter(filepath);
@@ -83,6 +107,29 @@ public class EditFile {
 		}
 	}
 	
+	/**
+	 * Writes Promotion objects to file at filepath
+	 * @param array
+	 * @param filepath
+	 */
+	public void writePromoMenu(ArrayList<Promotion> array, String filepath) {
+		try {
+			FileWriter myWriter = new FileWriter(filepath);
+			for(int i = 0; i < array.size(); i++){
+				myWriter.write(array.get(i).convertToString());	
+				myWriter.write("\n");
+			}
+			myWriter.close();
+		}catch (IOException e) {
+			System.out.println("An error occurred while writing to promotions file.");
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Reads String objects from file and uses them as arguments to initialize MenuItem objects
+	 * @param array
+	 */
 	public void readMenuFromFile(ArrayList<MenuItem> array) { 
 		while(myReader.hasNextLine()) {
 			String str = myReader.nextLine();
@@ -96,7 +143,10 @@ public class EditFile {
 		myReader.close();
 	}
 
-		
+	/**
+	 * Reads String objects from file and uses them as arguments to initialize Table objects	
+	 * @param array
+	 */
 	public void readTablesFromFile(ArrayList<Table> array) {
 		while(myReader.hasNextLine()) {
 			String str = myReader.nextLine();
@@ -123,6 +173,10 @@ public class EditFile {
 		myReader.close();
 	}
 
+	/**
+	 * Reads Reservation objects from file and uses them as arguments to initialize Reservation objects
+	 * @param array
+	 */
 	public void readReservationsFromFile(ArrayList<Reservation> array) { 
 		while(myReader.hasNextLine()) {
 			String str = myReader.nextLine();
@@ -139,20 +193,11 @@ public class EditFile {
 		myReader.close();
 	}
 	
-	public void writePromoMenu(ArrayList<Promotion> array, String filepath) {
-		try {
-			FileWriter myWriter = new FileWriter(filepath);
-			for(int i = 0; i < array.size(); i++){
-				myWriter.write(array.get(i).convertToString());	
-				myWriter.write("\n");
-			}
-			myWriter.close();
-		}catch (IOException e) {
-			System.out.println("An error occurred while writing to promotions file.");
-			e.printStackTrace();
-		}
-	}
-	
+	/**
+	 * Reads Promotion objects from file and uses them as arguments to initialize Promotion objects
+	 * @param array
+	 * @param menu
+	 */
 	public void readPromotionsFromFile(ArrayList<Promotion> array, ArrayList<MenuItem> menu) {
 		while(myReader.hasNextLine()) {
 			String str = myReader.nextLine();
@@ -170,9 +215,8 @@ public class EditFile {
 						break;
 					}
 				}
-				array.add(promo);
 			}
-		myReader.close();
+			array.add(promo);
 		}
 	}
 }

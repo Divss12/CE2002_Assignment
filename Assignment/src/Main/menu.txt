@@ -1,21 +1,21 @@
-cheese burger	Delectable, premium beef with lettuce and sweet tomatoes	16
-double cheese burger	Delectable, double premium beef with lettuce and sweet tomatoes	24
-steak	Delectable, premium beef	20
+cheese burger	Delectable, premium beef with lettuce and sweet tomatoes	16.0
+double cheese burger	Delectable, double premium beef with lettuce and sweet tomatoes	24.0
+steak	Delectable, premium beef	20.0
 fries	Fried potato	3.5
-cheese fries	Fried potato with cheese	5
+cheese fries	Fried potato with cheese	5.0
 chilli cheese fries	Fried potato with chilli and cheese	7.5
-chilli cheese fries with bacon	Fried potato with chilli, bacon and cheese	10
+chilli cheese fries with bacon	Fried potato with chilli, bacon and cheese	10.0
 truffle chilli cheese fries	Fried potato with chilli, truffle oil and cheese	10.5
-chicken cutlet	Fried chicken	10
-chicken tendies	Yummy fried chicken	10
-chicken chop	Delectable chicken drizzled in mushroom sauce	10
-mushroom soup	mushroom flavoured water appetizer	5
-salad	vegan's favourite	3
-mash potatoes	mashed potatoes	3
-baked potato	Steaming hot baked potatoes	3
-beer battered cod	cod battered with tiger beer	13
-coke	coca cola	2
-sprite	sprite	2
-milo	milo	3
+chicken cutlet	Fried chicken	10.0
+chicken tendies	Yummy fried chicken	10.0
+chicken chop	Delectable chicken drizzled in mushroom sauce	10.0
+mushroom soup	mushroom flavoured water appetizer	5.0
+salad	vegan's favourite	3.0
+mash potatoes	mashed potatoes	3.0
+baked potato	Steaming hot baked potatoes	3.0
+beer battered cod	cod battered with tiger beer	13.0
+coke	coca cola	2.0
+sprite	sprite	2.0
+milo	milo	3.0
 ice lemon tea	Homemade lemon tea with ice	2.5
 green tea	Japanese green tea	2.5

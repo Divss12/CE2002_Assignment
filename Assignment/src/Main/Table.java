@@ -1,3 +1,8 @@
+/**
+* @author Divyansh
+* @version 1.0
+* @since 6th November 2021
+*/
 package Main;
 import java.io.IOException;	// Handle errors when writing to files
 import java.io.FileWriter;	// Import FileWriter class to write menuItem attributes to RestMenu
@@ -11,6 +16,11 @@ public class Table {
     private int size;
     private boolean[] timeSlots = new boolean[84];
 
+    /**
+     * Constructor for Table
+     * @param tableNumber
+     * @param size
+     */
     public Table(int tableNumber, int size){
         this.tableNumber = tableNumber;
         this.occupied = false;
@@ -20,18 +30,34 @@ public class Table {
         }
     }
 
+    /**
+     * 
+     * @param array to set timeSlots
+     */
     public void setTimeSlots(boolean[] array){
         this.timeSlots = array;
     }
 
+    /**
+     * 
+     * @param newBool to set occupied
+     */
     public void changeAvailability(boolean newBool){
         this.occupied = newBool;
     }
 
+    /**
+     * Checks if a table is occupied by a customer
+     * @return true if not occupied
+     */
     public Boolean checkAvailability(){
         return !occupied;
     }
 
+    /**
+     * 
+     * @return String formatted for tables.txt
+     */
     public String convertToString(){
         String out = Integer.toString(this.tableNumber) + "\t" + Integer.toString(this.size);
         String s;
@@ -42,6 +68,13 @@ public class Table {
         return out;
     }
     
+    /**
+     * Set corresponding table index to true in timeSlots array if a reservation
+     * has already been made for a particular table at a time slot
+     * @param time
+     * @param pax
+     * @return true if time slot is taken
+     */
     public boolean reserveTimeSlot(GregorianCalendar time, int pax) {
     	GregorianCalendar now = new GregorianCalendar();
     	int dayOfWeek;

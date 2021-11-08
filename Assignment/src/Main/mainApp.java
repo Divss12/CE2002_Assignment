@@ -1,3 +1,8 @@
+/**
+ * @author Divyansh
+ * @version 1.0
+ * @since 31st October 2021
+ */
 package Main;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -8,38 +13,50 @@ import java.io.File;
 public class mainApp{
 	
 	public static void main(String[] args){
+		/***
+		 * @param choice
+		 * User input for menu choice
+		 */
 		int choice;
+		
 		Scanner scan = new Scanner(System.in);
 		
 		File file = new File(".");
 		for(String fileNames : file.list()) System.out.println(fileNames);
 		
-		//path names
+		
+		//Assigning file paths for menu, tables, reservations, promos
+		//Create the files at the assigned directory 
 		String menuPath = ".\\Main\\menu.txt";
 		String tablePath = ".\\Main\\tables.txt";
 		String reservationPath = ".\\Main\\reservations.txt";
 		String promoPath = ".\\Main\\promos.txt";
-		
-		EditFile menuFile = new EditFile(menuPath);	// Create a Menu File
-		EditFile tableFile = new EditFile(tablePath); // Create a Table File
-		EditFile reservationFile = new EditFile(reservationPath); // Create a Reservation File
-		EditFile promoFile = new EditFile(promoPath); //Create a Promotions file
+		EditFile menuFile = new EditFile(menuPath);
+		EditFile tableFile = new EditFile(tablePath);
+		EditFile reservationFile = new EditFile(reservationPath); 
+		EditFile promoFile = new EditFile(promoPath); 
 
+		
+		//Create arrays for orders, reservations and promotions.
+		//Then, read their respective files and store the data in the array.
 		Menu menu = new Menu();	// Creating new menu
 		menuFile.readMenuFromFile(menu.getArray());	// Reading menu.txt and storing contents into menu arraylist
-
 		OrdersList ordersList = new OrdersList();	
-
+		
 		ArrayList<Table> tableList = new ArrayList<Table>();	
 		tableFile.readTablesFromFile(tableList);
-
+		
 		ArrayList<Reservation> reservationList = new ArrayList<Reservation>();		
 		reservationFile.readReservationsFromFile(reservationList);
 		
 		ArrayList<Promotion> promotionMenu = new ArrayList<Promotion>();
 		promoFile.readPromotionsFromFile(promotionMenu, menu.getArray());
 
-		ArrayList<Staff> staffList = new ArrayList<Staff>(); //code to read saved staff from a file
+		//the pMenu object is used to perform actions on the promotionMenu array,
+		//including update, add, remove and display.
+		PromotionMenu pMenu = new PromotionMenu(promotionMenu);
+		ArrayList<Staff> staffList = new ArrayList<Staff>(); 
+		
 		do{
 			
 			///////////////////// Check if Reservation has expired /////////////////////
@@ -85,7 +102,6 @@ public class mainApp{
 							break;
 						case 2: 
 							menu.updateMenuItem();
-							// TODO: Remove MenuItems from RestMenu file
 							break;
 						case 3: 
 							menu.removeItem();
@@ -107,34 +123,50 @@ public class mainApp{
 										"\n 4. Display all promotion packages" +
 										"\n 5. Cancel"); 
 					int c2 = scan.nextInt();
+					scan.nextLine(); // Clear input buffer
+
 					switch(c2){
+
 						case 1: // Create New Item
 							System.out.println("Enter name of the Promotional Set Package:");
-							scan.nextLine(); // Clear input buffer
 							name = scan.nextLine();
 							System.out.println("Enter the description of the Promotional Set Package");
 							desc = scan.nextLine();
 							System.out.println("Enter the price of the Promotional Set Package");
 							price = scan.nextDouble();
 
-							Promotion package1 = new Promotion(name, desc, price);
-							PromotionMenu pMenu = new PromotionMenu(promotionMenu);
-							pMenu.createPromotionPackage(menu.getArray(), package1);
-
-							promotionMenu.add(package1);
+							int lastIdx = pMenu.createPromotionPackage(menu.getArray(), name, desc, price);
+							System.out.println("Enter the number of items you want to add to the Promotional Set Package:");
+							int numItems = scan.nextInt();
+							scan.nextLine(); // Clear input buffer
+							String name1;
+							int flag = 0;
+							for (int i=0;i<numItems;i++) {
+								while(flag==0) {
+									System.out.println("Enter name of item to be added:");
+									name1 = scan.nextLine();
+									for (MenuItem m:menu.getArray()) {
+										if (m.getName().equals(name1)) {
+											pMenu.addToPromoPackage(m, lastIdx);
+											flag++;
+											break;
+										}
+									}
+									if (flag==0) {
+										System.out.println("Item not found. Please enter again.");
+									}
+								}
+							}
 							break;
 						case 2: 
 							boolean check;
-							PromotionMenu pMenu1 = new PromotionMenu(promotionMenu);
-							check = pMenu1.updatePromotionPackage(menu.getArray());
+							check = pMenu.updatePromotionPackage(menu.getArray());
 							if (!check) break;
 							break;
 						case 3:
-							PromotionMenu pMenu2 = new PromotionMenu(promotionMenu);
-							pMenu2.removePromotionPackage(menu.getArray());
+							pMenu.removePromotionPackage(menu.getArray());
 						case 4:
-							PromotionMenu pMenu3 = new PromotionMenu(promotionMenu);
-							pMenu3.displayPromotionPackage(menu.getArray());
+							pMenu.displayPromotionPackage();
 							break;
 						default:
 							break;
@@ -163,10 +195,13 @@ public class mainApp{
 					switch(c3) {
 						case 1: //Add to Order
 							ordersList.addToOrder(menu.getArray(), ind);
+							break;
 						case 2: //Add promo pkg to order
 							ordersList.addPromoToOrder(promotionMenu, ind);
+							break;
 						case 3: //remove from order
 							ordersList.removeFromOrder(ind);
+							break;
 							
 					}
 					break;
@@ -185,12 +220,8 @@ public class mainApp{
 					System.out.println("Enter hour (10-21)");
 					int hour = scan.nextInt();
 
-
 					Reservation res = new Reservation(pax, name, year, month, date, hour);
-
-					//TODO: code to check if reservation is available**
 					if (res.isValidReservation(tableList)) {
-						//if it is then execute the following code
 						reservationList.add(res);
 					}else {
 						System.out.println("Reservation not made.");
@@ -229,11 +260,10 @@ public class mainApp{
 					int boolCheck;				
 					boolean newBool;
 					System.out.println("Enter table no.: ");
-					int tableNumber8 = scan.nextInt();	// (Reason 1)
+					int tableNumber8 = scan.nextInt();
 					System.out.println("Change availability to?" +
 										"\n 1. Available" +
 										"\n 2. Not Available");
-					//Boolean newBool = (Boolean) scan.nextInt() - 1;
 					if ((boolCheck= scan.nextInt() - 1) > 0) {
 						newBool = true;
 					}else {
@@ -273,6 +303,5 @@ public class mainApp{
 
 			
 		}while(choice>0 && choice <12);
-		//scan.close();
 	}
 }

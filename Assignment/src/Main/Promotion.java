@@ -1,3 +1,8 @@
+/**
+* @author Zavier
+* @version 1.0
+* @since 5th November 2021
+*/
 package Main;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,6 +14,12 @@ public class Promotion{
 	private double price;
 	Scanner sc = new Scanner(System.in);
     
+	/**
+	 * Constructor for Promotion
+	 * @param n
+	 * @param d
+	 * @param p
+	 */
     public Promotion(String n, String d, double p) {
         this.name = n;
         this.description = d;
@@ -16,18 +27,57 @@ public class Promotion{
         this.array = new ArrayList<MenuItem>();
     }
     
+    /**
+     * 
+     * @return name
+     */
     public String getName() {
     	return this.name;
     }
     
+    /**
+     * 
+     * @return price
+     */
     public double getPrice() {
     	return this.price;
     }
+    
+    /**
+     * 
+     * @param set name as name
+     */
+    public void setName(String name) {
+    	this.name = name;
+    }
+    
+    /**
+     * 
+     * @param set description as desc
+     */
+    public void setDescription(String desc) {
+    	this.description = desc;
+    }
+    
+    /**
+     * 
+     * @param set price as price
+     */
+    public void setPrice(double price) {
+    	this.price = price;
+    }
 
+    /**
+     * Adds MenuItem to Promotion array
+     * @param item
+     */
     public void addItemToPromotion(MenuItem item){
         this.array.add(item);
     }
 
+    /**
+     * Updates package name, description or price
+     */
     public void updateInfo() {
     	System.out.println("[1] Update package name");
     	System.out.println("[2] Update package description");
@@ -59,6 +109,10 @@ public class Promotion{
     	}
     }
     
+    /**
+     * 
+     * @return String formatted for promos.txt
+     */
     public String convertToString() {
     	String out = this.name + "\t" + this.description + "\t" + Double.toString(this.price);
     	for(MenuItem m : array) {

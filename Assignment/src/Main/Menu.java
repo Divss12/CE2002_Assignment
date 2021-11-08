@@ -1,12 +1,20 @@
+/**
+* @author Zavier
+* @version 1.0
+* @since 6th November 2021
+* This class is a manager used to interact with MenuItems
+*/
 package Main;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
-	private MenuItem item;
 	private ArrayList<MenuItem> menu;
 	Scanner sc = new Scanner(System.in);
 	
+	/**
+	 * Constructor for Menu
+	 */
 	public Menu() {
 		this.menu = new ArrayList<MenuItem>();
 	}
@@ -25,6 +33,9 @@ public class Menu {
 			}
 		}
 	}
+	/**
+	 * Creates a MenuItem object using user input for the parameters
+	 */
 	public void createMenuItem() {
 		System.out.println("Enter item name:");
 		String n = sc.nextLine();
@@ -38,6 +49,9 @@ public class Menu {
 		System.out.println(n + " added to menu.");
 	}
 	
+	/**
+	 * Updates a MenuItem by using the updateItem method
+	 */
 	public void updateMenuItem() {
 		System.out.println("Enter name of item you want to update:");
 		String newName = sc.nextLine();
@@ -51,16 +65,27 @@ public class Menu {
 		System.out.println("Menu item not found.");
 	}
 	
+	/**
+	 * Prints a list of the name and price parameters of every MenuItem object in the menu ArrayList
+	 */
 	public void viewMenu() {
 		System.out.println("Name\t\t\t\t\tPrice");
 		for(MenuItem m: menu) {
 			System.out.println(m.getName() + "\t\t\t\t\t" + m.getPrice());
 		}
 	}
+	/**
+	 * 
+	 * @return MenuItem ArrayList
+	 */
 	public ArrayList<MenuItem> getArray(){
 		return this.menu;
 	}
 	
+	/**
+	 * 
+	 * @return size of MenuItem ArrayList
+	 */
 	public int getSize() {
 		return this.menu.size();
 	}

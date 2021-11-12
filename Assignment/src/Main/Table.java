@@ -30,19 +30,26 @@ public class Table {
         }
     }
 
-
+    /**
+     * returns table number
+     * @return tableNumber
+     */
     public int getTableNumber() {
     	return this.tableNumber;
     }
     
     /**
-     * 
+     * Sets timeSlots from boolean array input
      * @param array to set timeSlots
      */
     public void setTimeSlots(boolean[] array){
         this.timeSlots = array;
     }
     
+    /**
+     * sets timeSlot at index to free;
+     * @param idx for which timeSlot to free
+     */
     public void freeTimeSlot(int idx) {
     	timeSlots[idx] = false;
     }
@@ -84,7 +91,7 @@ public class Table {
     }
 
     /**
-     * 
+     * formats and converts to String
      * @return String formatted for tables.txt
      */
     public String convertToString(){

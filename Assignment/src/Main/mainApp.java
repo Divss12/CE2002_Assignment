@@ -211,7 +211,7 @@ public class mainApp{
 					int idx = 1;	
 					for (Staff staff:staffList) {
 						System.out.println("[" + idx + "] Staff name:" + staff.getName() + ", " + staff.getGender());
-						System.out.println("   ID:" + staff.getID() + ", Job Title: " + staff.getJobTitle());
+						System.out.println("   ID:" + staff.getID() + ", Job Title: " + staff.getTitle());
 						idx++;
 					}
 					break;

@@ -53,6 +53,7 @@ public class mainApp{
 		
 		ArrayList<Reservation> reservationList = new ArrayList<Reservation>();		
 		reservationFile.readReservationsFromFile(reservationList);
+		ReservationList rList = new ReservationList(reservationList);
 		
 		ArrayList<Promotion> promotionMenu = new ArrayList<Promotion>();
 		promoFile.readPromotionsFromFile(promotionMenu, menu.getArray());
@@ -219,55 +220,10 @@ public class mainApp{
 					}
 					break;
 				case 6: //Create reservation
-					System.out.println("Enter name for the reservation");
-					scan.nextLine(); // Clear input buffer
-					name = scan.nextLine();
-					System.out.println("Enter pax:");
-					int pax = scan.nextInt();
-					System.out.println("Enter year:");
-					int year = scan.nextInt();
-					System.out.println("Enter month (1-12):");
-					int month = scan.nextInt() - 1;
-					System.out.println("Enter day of month (1-31)");
-					int date = scan.nextInt();
-					System.out.println("Enter hour (10-21)");
-					int hour = scan.nextInt();
-
-					Reservation res = new Reservation(pax, name, year, month, date, hour);
-					if (res.isValidReservation(tableList)) {
-						reservationList.add(res);
-					}else {
-						System.out.println("Reservation not made.");
-					}
+					rList.createReservation(tableList);
 					break;
 				case 7: //Check/Remove reservation
-					System.out.println("Enter name:");
-					scan.nextLine(); // Clear input buffer
-					String name1 = scan.nextLine();
-					int flag = 0;
-					int flag1 = 0;
-					int counterr = 0;
-					for(Reservation r: reservationList){
-						if(r.getName().equals(name1)){
-							flag = 1;
-							r.printDetails();
-							System.out.println("Remove Reservation (Y/N)?");
-							String C = scan.nextLine();
-							if(C.equals("Y")){
-								flag1++;
-								break;
-							}
-						}
-						counterr++;
-					}
-					if (flag1>0)
-					{
-						System.out.println(name1 + "'s reservation has been removed.");
-						reservationList.remove(counterr);
-					}
-					if(flag == 0){
-						System.out.println("Name not found");
-					}
+					rList.editReservation();
 					break;
 				case 8: //Change table availability
 					int boolCheck;				

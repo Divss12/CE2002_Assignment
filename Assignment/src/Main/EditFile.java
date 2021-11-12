@@ -33,7 +33,6 @@ public class EditFile {
 
 	/**
 	 * Creates a new file with the name filename
-	 * Abstraction
 	 * @param filename
 	 */
 	private static void CreateFile(File filename) {
@@ -70,7 +69,7 @@ public class EditFile {
 	}
 	
 	/**
-	 * Writes Table objects to file at filepath
+	 * Writes Table objects in the ArrayList "array" to file at filepath
 	 * @param array
 	 * @param filepath
 	 */
@@ -90,7 +89,7 @@ public class EditFile {
 	}
 	
 	/**
-	 * Writes Reservation objects to file at filepath
+	 * Writes Reservation objects in the ArrayList "array" to file at filepath
 	 * @param array
 	 * @param filepath
 	 */
@@ -109,7 +108,7 @@ public class EditFile {
 	}
 	
 	/**
-	 * Writes Promotion objects to file at filepath
+	 * Writes Promotion objects in the ArrayList "array" to file at filepath
 	 * @param array
 	 * @param filepath
 	 */
@@ -127,6 +126,11 @@ public class EditFile {
 		}
 	}
 	
+	/**
+	 * Writes Order objects in the ArrayList "array" to tfile at filepath
+	 * @param array
+	 * @param filepath
+	 */
 	public void writeLogs(ArrayList<Order> array, String filepath) {
 		try {
 			FileWriter myWriter = new FileWriter(filepath);
@@ -159,7 +163,9 @@ public class EditFile {
 	}
 
 	/**
-	 * Reads String objects from file and uses them as arguments to initialize Table objects	
+	 * Reads String objects from file and uses them as arguments to initialize Table objects.
+	 * Additionally, sets the corresponding Table's availability at different times [10, 21] 
+	 * in the timeSlot array. true = occupied, false = unoccupied.	
 	 * @param array
 	 */
 	public void readTablesFromFile(ArrayList<Table> array) {
@@ -209,7 +215,9 @@ public class EditFile {
 	}
 	
 	/**
-	 * Reads Promotion objects from file and uses them as arguments to initialize Promotion objects
+	 * Reads Promotion objects from file.
+	 * Also adds the Promotion object to the ArrayList "array" if this Promotion object has identical
+	 * parameters to a menuItem.
 	 * @param array
 	 * @param menu
 	 */
@@ -235,6 +243,14 @@ public class EditFile {
 		}
 	}
 	
+	/**
+	 * Reads time, order and item information from file.
+	 * Also extracts all menu items and promotion items and then reads their total cost.
+	 * @param array
+	 * @param staffList
+	 * @param menu
+	 * @param pMenu
+	 */
 	public void readLogsFromFile(ArrayList<Order> array, ArrayList<Staff> staffList, ArrayList<MenuItem> menu, ArrayList<Promotion> pMenu) {
 		while(myReader.hasNextLine()) {
 			String str = myReader.nextLine();
@@ -294,6 +310,10 @@ public class EditFile {
 		}
 	}
 	
+	/**
+	 * Reads staff objects from file and then stores them in the ArrayList "array"
+	 * @param array
+	 */
 	public void readStaffFromFile(ArrayList<Staff> array) {
 		while(myReader.hasNextLine()) {
 			boolean gender;

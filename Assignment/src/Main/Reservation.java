@@ -40,28 +40,48 @@ public class Reservation {
     }
 
     ///////////////// MUTATORS ///////////////// 
+    /**
+     * 
+     * @return year
+     */
     public int getYear() {
 		return year;
 	}
 
+    /**
+     * 
+     * @return month
+     */
 	public int getMonth() {
 		return month;
 	}
 
+	/**
+	 * 
+	 * @return day
+	 */
 	public int getDay() {
 		return day;
 	}
 
+	/**
+	 * 
+	 * @return hours
+	 */
 	public int getHours() {
 		return hours;
 	}
 	
+	/**
+	 * 
+	 * @return tableNumber
+	 */
 	public int getTableNumber() {
 		return this.tableNumber;
 	}
 	
     /**
-     * @return String formatted for reservations.txt
+     * @return String of all Reservation parameters formatted for reservations.txt
      */
     public String convertToString() {	//name \n $p \n description
     	return name + "\t" + Integer.toString(pax) + "\t" + Integer.toString(this.time.get(Calendar.YEAR)) + "\t" + Integer.toString(this.time.get(Calendar.MONTH)) + "\t" + Integer.toString(this.time.get(Calendar.DATE)) + "\t" + Integer.toString(this.time.get(Calendar.HOUR));

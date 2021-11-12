@@ -13,10 +13,6 @@ import java.io.File;
 public class mainApp{
 	
 	public static void main(String[] args){
-		/***
-		 * @param choice
-		 * User input for menu choice
-		 */
 		int choice;
 		
 		Scanner scan = new Scanner(System.in);
@@ -208,12 +204,14 @@ public class mainApp{
 					log.printReport(month1);
 					break;
 				case 12:
-					int idx = 1;	
+					int idx = 1;
+					System.out.println("Staff List\n-----------------------------------");
 					for (Staff staff:staffList) {
 						System.out.println("[" + idx + "] Staff name:" + staff.getName() + ", " + staff.getGender());
 						System.out.println("   ID:" + staff.getID() + ", Job Title: " + staff.getTitle());
 						idx++;
 					}
+					System.out.println("-----------------------------------\n");
 					break;
 				default:	//Exit
 					System.out.println("Restaurant reservation app terminated.");

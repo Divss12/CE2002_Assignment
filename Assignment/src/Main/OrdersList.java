@@ -11,6 +11,9 @@ import java.util.Scanner;
 public class OrdersList {
 	private ArrayList<Order> array;
 	
+	/**
+	 * Constructor for OrdersList
+	 */
 	public OrdersList() {
 		this.array = new ArrayList<Order>();
 	}
@@ -31,7 +34,7 @@ public class OrdersList {
 	}
 	
 	/**
-	 * Prints a list of order for a table
+	 * Prints a list of orders for a table
 	 */
 	public void viewOrder() {
 		int flag = 0;
@@ -72,6 +75,18 @@ public class OrdersList {
 	}
 	
 	/**
+	 * Removes an Order from the order ArrayList
+	 * @param index
+	 */
+	public void removeFromOrder(int index) {
+		System.out.println("Enter index of item to remove (-1 for latest)");
+		Scanner scan = new Scanner(System.in);
+		int ind = scan.nextInt();
+		scan.nextLine(); //Clear input buffer
+		array.get(index).removeFromOrder(ind);
+	}
+	
+	/**
 	 * Adds Promotion objects to order ArrayList
 	 * @param promoMenu
 	 * @param index
@@ -88,14 +103,6 @@ public class OrdersList {
 				break;
 			}
 		}
-	}
-	
-	public void removeFromOrder(int index) {
-		System.out.println("Enter index of item to remove (-1 for latest)");
-		Scanner scan = new Scanner(System.in);
-		int ind = scan.nextInt();
-		scan.nextLine(); //Clear input buffer
-		array.get(index).removeFromOrder(ind);
 	}
 	
 	/**

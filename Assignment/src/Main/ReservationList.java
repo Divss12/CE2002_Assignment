@@ -7,10 +7,27 @@ import java.util.Scanner;
 public class ReservationList {
 	ArrayList<Reservation> array;
 	
+	/**
+	 * Constructor for ReservationList
+	 * @param rList
+	 */
 	public ReservationList(ArrayList<Reservation> rList) {
 		array = rList;
 	}
 	
+	/**
+	 * 
+	 * @return Reservation array
+	 */
+	public ArrayList<Reservation> getArray(){
+		return array;
+	}
+	
+	/**
+	 * Creates a Reservation object and adds it to tableList if it is
+	 * a valid reservation.
+	 * @param tableList
+	 */
 	public void createReservation(ArrayList<Table> tableList) {
 		System.out.println("Enter name for the reservation");
 		//scan.nextLine(); // Clear input buffer
@@ -35,6 +52,9 @@ public class ReservationList {
 		}
 	}
 	
+	/**
+	 * Function to remove Reservation object from the Reservation ArrayList
+	 */
 	public void editReservation() {
 		System.out.println("Enter name:");
 		Scanner scan = new Scanner(System.in);
@@ -66,10 +86,12 @@ public class ReservationList {
 		}
 	}
 	
-	public ArrayList<Reservation> getArray(){
-		return array;
-	}
-	
+	/**
+	 * Checks if a reservation has exceeded its allocated time frame (2h)
+	 * If it has, the reservation is removed from the reservations file, and
+	 * the table is made available.
+	 * @param tableList
+	 */
 	public void checkExpiration(ArrayList<Table> tableList) {
 		GregorianCalendar now = new GregorianCalendar();	// Get current time
     	GregorianCalendar old = new GregorianCalendar();

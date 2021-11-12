@@ -30,12 +30,21 @@ public class Table {
         }
     }
 
+
+    public int getTableNumber() {
+    	return this.tableNumber;
+    }
+    
     /**
      * 
      * @param array to set timeSlots
      */
     public void setTimeSlots(boolean[] array){
         this.timeSlots = array;
+    }
+    
+    public void freeTimeSlot(int idx) {
+    	timeSlots[idx] = false;
     }
 
     /**

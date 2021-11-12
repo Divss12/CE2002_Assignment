@@ -32,12 +32,14 @@ public class mainApp{
 		String reservationPath = ".\\Main\\reservations.txt";
 		String promoPath = ".\\Main\\promos.txt";
 		String logPath = ".\\Main\\log.txt";
+		String staffPath = ".\\Main\\staff.txt";
 		EditFile menuFile = new EditFile(menuPath);
 		EditFile tableFile = new EditFile(tablePath);
 		EditFile reservationFile = new EditFile(reservationPath); 
 		EditFile promoFile = new EditFile(promoPath); 
 		EditFile logFile = new EditFile(logPath);
 
+		EditFile staffFile = new EditFile(staffPath);
 		
 		//Create arrays for orders, reservations and promotions.
 		//Then, read their respective files and store the data in the array.
@@ -59,6 +61,7 @@ public class mainApp{
 		//including update, add, remove and display.
 		PromotionMenu pMenu = new PromotionMenu(promotionMenu);
 		ArrayList<Staff> staffList = new ArrayList<Staff>(); 
+		staffFile.readStaffFromFile(staffList);
 		
 		//Create a SalesLog object to log each transaction
 		//Use logPath parameter to know which file to read/write
@@ -92,7 +95,8 @@ public class mainApp{
 									"\n 9. Check Table availability" +
 									"\n 10. Print order invoice" +
 									"\n 11. Print sale revenue report by period" + 
-									"\n 12. Exit");
+									"\n 12. Print list of Staff" +
+									"\n 13. Exit");
 
 			choice = scan.nextInt();
 
@@ -303,6 +307,13 @@ public class mainApp{
 					int month1 = scan.nextInt() - 1;
 					log.printReport(month1);
 					break;
+				case 12:
+					int idx = 1;	
+					for (Staff staff:staffList) {
+						System.out.println("[" + idx + "] Staff name:" + staff.getName() + ", " + staff.getGender());
+						System.out.println("   ID:" + staff.getID() + ", Job Title: " + staff.getJobTitle());
+						idx++;
+					}
 				default:	//Exit
 					System.out.println("Restaurant reservation app terminated.");
 					break;
@@ -315,7 +326,7 @@ public class mainApp{
 			logFile.writeLogs(log.getArray(), logPath);
 
 			
-		}while(choice>0 && choice <12);
+		}while(choice>0 && choice <13);
 		scan.close();
 	}
 }

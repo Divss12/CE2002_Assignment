@@ -4,7 +4,7 @@
 * @since 6th November 2021
 */
 package Main;
-import java.awt.MenuItem;
+//import java.awt.MenuItem;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -172,19 +172,20 @@ public class Order {
     public String convertToString() {
     	String out = Integer.toString(this.time.get(Calendar.YEAR)) + "\t" + Integer.toString(this.time.get(Calendar.MONTH)) + "\t" + Integer.toString(this.time.get(Calendar.DATE)) + "\t" + Integer.toString(this.time.get(Calendar.HOUR));
     	out = out + "\t" + Integer.toString(this.tableNumber) + "\t" + Integer.toString(this.server.getID()) + "\t" + Integer.toString(list.size());
-    	for(int i; i < list.size(); i++) {
+    	for(int i = 0; i < list.size(); i++) {
     		out = out + "\t" + list.get(i).getName() + "\t" + Integer.toString(quant.get(i));
     	}
     	
-    	for(int j; j < promoList.size(); j++) {
-    		out = out + "\t" + promoList.get(i).getName() + "\t" + Integer.toString(quantp.get(i));
+    	for(int j = 0; j < promoList.size(); j++) {
+    		out = out + "\t" + promoList.get(j).getName() + "\t" + Integer.toString(quantp.get(j));
     	}
     	
-    	out = out + "\t" + Doubele.toString(this.total)
+    	out = out + "\t" + Double.toString(this.total);
+    	return out;
     }
     
     public int getMonth() {
-    	return this.time.get(Calendar.MONTH)
+    	return this.time.get(Calendar.MONTH);
     }
     
     public double getTotal() {

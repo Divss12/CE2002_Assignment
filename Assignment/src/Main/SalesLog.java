@@ -14,7 +14,7 @@ public class SalesLog {
 		for(Order o: array) {
 			if(o.getMonth() == month) {
 				Staff s = o.getServer();
-				System.out.println(s.getTitle() + s.getName() + " took order at table number " + o.getTableNumber() + ". The final bill was $" + o.getTotal());
+				System.out.println(s.getTitle() + " " + s.getName() + " took order at table number " + o.getTableNumber() + ". The final bill was $" + o.getTotal());
 			}
 		}
 	}

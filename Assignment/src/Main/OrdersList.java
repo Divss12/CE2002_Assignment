@@ -116,6 +116,7 @@ public class OrdersList {
 		for(Staff s : staffList){
 			if(s.getID() == staffID){
 				staff = s;
+				System.out.println("Staff found");
 				break;
 			}
 		}

@@ -1,0 +1,6 @@
+Karen/1/0/Manager
+Zavier/0/1/Waiter
+Ben/0/2/Waiter
+Divyansh/0/3/Cashier
+Yi an/0/4/Chef
+An Sheng/0/5/Chef

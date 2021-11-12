@@ -126,6 +126,7 @@ public class EditFile {
 		}
 	}
 	
+	
 	/**
 	 * Reads String objects from file and uses them as arguments to initialize MenuItem objects
 	 * @param array
@@ -217,6 +218,25 @@ public class EditFile {
 				}
 			}
 			array.add(promo);
+		}
+	}
+	
+	public void readStaffFromFile(ArrayList<Staff> array) {
+		while(myReader.hasNextLine()) {
+			boolean gender;
+			String str = myReader.nextLine();
+			String[] parts = str.split("/");
+			String name = parts[0];
+			String strGender  = parts[1];
+			if (strGender.equals("0")) {
+				gender = false;	// Male
+			}else
+				gender = true;	// Female
+			int id = Integer.parseInt(parts[2]);
+			String jobTitle = parts[3];
+			
+			Staff staff = new Staff(name, gender, id, jobTitle);
+			array.add(staff);
 		}
 	}
 }

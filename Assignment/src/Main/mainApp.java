@@ -31,11 +31,12 @@ public class mainApp{
 		String tablePath = ".\\Main\\tables.txt";
 		String reservationPath = ".\\Main\\reservations.txt";
 		String promoPath = ".\\Main\\promos.txt";
+		String staffPath = ".\\Main\\staff.txt";
 		EditFile menuFile = new EditFile(menuPath);
 		EditFile tableFile = new EditFile(tablePath);
 		EditFile reservationFile = new EditFile(reservationPath); 
 		EditFile promoFile = new EditFile(promoPath); 
-
+		EditFile staffFile = new EditFile(staffPath);
 		
 		//Create arrays for orders, reservations and promotions.
 		//Then, read their respective files and store the data in the array.
@@ -83,7 +84,8 @@ public class mainApp{
 									"\n 9. Check Table availability" +
 									"\n 10. Print order invoice" +
 									"\n 11. Print sale revenue report by period" + 
-									"\n 12. Exit");
+									"\n 12. Print list of Staff" +
+									"\n 13. Exit");
 
 			choice = scan.nextInt();
 
@@ -291,6 +293,14 @@ public class mainApp{
 				case 11: //print sales revenue report
 					//need to discuss the implementation of this as well
 					break;
+				case 12:
+					int idx = 1;	
+					staffFile.readStaffFromFile(staffList);
+					for (Staff staff:staffList) {
+						System.out.println("[" + idx + "] Staff name:" + staff.getName() + ", " + staff.getGender());
+						System.out.println("   ID:" + staff.getID() + ", Job Title: " + staff.getJobTitle());
+						idx++;
+					}
 				default:	//Exit
 					System.out.println("Restaurant reservation app terminated.");
 					break;
@@ -302,7 +312,7 @@ public class mainApp{
 			promoFile.writePromoMenu(promotionMenu, promoPath);
 
 			
-		}while(choice>0 && choice <12);
+		}while(choice>0 && choice <13);
 		scan.close();
 	}
 }

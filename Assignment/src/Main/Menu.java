@@ -83,7 +83,6 @@ public class Menu {
 	}
 	
 	/**
-	 * 
 	 * @return size of MenuItem ArrayList
 	 */
 	public int getSize() {

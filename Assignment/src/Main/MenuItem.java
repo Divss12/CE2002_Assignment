@@ -129,7 +129,7 @@ public class MenuItem{
     }
     /**
      * 
-     * @return String formatted for each menu item in Menu.txt file
+     * @return String formatted for each menu item to be written to Menu.txt file
      */
     public String convertToString() {	//name \n $p \n description
     	return name + "\t" + description + "\t" + Double.toString(price);

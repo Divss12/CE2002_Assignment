@@ -275,12 +275,14 @@ public class mainApp{
 					log.printReport(month1);
 					break;
 				case 12:
-					int idx = 1;	
+					int idx = 1;
+					System.out.println("Staff List\n-----------------------------------");
 					for (Staff staff:staffList) {
 						System.out.println("[" + idx + "] Staff name:" + staff.getName() + ", " + staff.getGender());
 						System.out.println("   ID:" + staff.getID() + ", Job Title: " + staff.getJobTitle());
 						idx++;
 					}
+					System.out.println("-----------------------------------\n");
 					break;
 				default:	//Exit
 					System.out.println("Restaurant reservation app terminated.");

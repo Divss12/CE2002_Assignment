@@ -165,10 +165,18 @@ public class Order {
 		}
     }
 
+    /**
+     * 
+     * @return tableNumber
+     */
     public int getTableNumber(){
         return this.tableNumber;
     }
     
+    /**
+     * 
+     * @return String formatted for each order using Order and time parameters.
+     */
     public String convertToString() {
     	String out = Integer.toString(this.time.get(Calendar.YEAR)) + "\t" + Integer.toString(this.time.get(Calendar.MONTH)) + "\t" + Integer.toString(this.time.get(Calendar.DATE)) + "\t" + Integer.toString(this.time.get(Calendar.HOUR));
     	out = out + "\t" + Integer.toString(this.tableNumber) + "\t" + Integer.toString(this.server.getID()) + "\t" + Integer.toString(list.size());

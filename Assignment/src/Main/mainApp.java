@@ -113,6 +113,7 @@ public class mainApp{
 						default:
 							break;
 					}
+					break;
 					
 				case 2: //Create/Update/Remove promotion
 					String name;
@@ -197,6 +198,7 @@ public class mainApp{
 					System.out.println("Enter the Table no.:");
 					int index = ordersList.findOrder(scan.nextInt());
 					Order out = ordersList.printInvoice(index);
+					tList.freeTable(out.getTableNumber());
 					log.addToLog(out);
 					break;
 				case 11: //print sales revenue report
@@ -209,7 +211,7 @@ public class mainApp{
 					System.out.println("Staff List\n-----------------------------------");
 					for (Staff staff:staffList) {
 						System.out.println("[" + idx + "] Staff name:" + staff.getName() + ", " + staff.getGender());
-						System.out.println("   ID:" + staff.getID() + ", Job Title: " + staff.getJobTitle());
+						System.out.println("   ID:" + staff.getID() + ", Job Title: " + staff.getTitle());
 						idx++;
 					}
 					System.out.println("-----------------------------------\n");

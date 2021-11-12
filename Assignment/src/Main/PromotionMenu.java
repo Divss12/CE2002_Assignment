@@ -21,6 +21,14 @@ public class PromotionMenu {
 	}
 
 	/**
+	 * 
+	 * @return promoMenu ArrayList
+	 */
+	public ArrayList<Promotion> getArray(){
+		return promoMenu;
+	}
+	
+	/**
 	 * Creates a new Promotion object and appends in to the menu ArrayList
 	 * @param menu
 	 * @param name
@@ -205,10 +213,6 @@ public class PromotionMenu {
 			i++;
 		}
 		System.out.println("-----------------------------------------------------");
-	}
-	
-	public ArrayList<Promotion> getArray(){
-		return promoMenu;
 	}
 }
  

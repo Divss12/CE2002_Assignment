@@ -12,7 +12,7 @@ import java.util.GregorianCalendar;
 public class Table {
 
     private int tableNumber;
-    private boolean occupied;
+    //private boolean occupied;
     private int size;
     private boolean[] timeSlots = new boolean[84];
 
@@ -23,7 +23,7 @@ public class Table {
      */
     public Table(int tableNumber, int size){
         this.tableNumber = tableNumber;
-        this.occupied = false;
+        //this.occupied = false;
         this.size = size;
         for (int i=0;i<timeSlots.length;i++) {
         	timeSlots[i] = false;
@@ -48,19 +48,39 @@ public class Table {
     }
 
     /**
-     * 
-     * @param newBool to set occupied
+     * Occupies a table by changing the appropriate value in timeSlots[] according to current time;
+     * @return true if successful
+     * @return false if unsuccessful/table already occupied
      */
-    public void changeAvailability(boolean newBool){
-        this.occupied = newBool;
+    public boolean occupy(){
+        GregorianCalendar now = new GregorianCalendar();
+        int dayOfWeek = now.get(Calendar.DAY_OF_WEEK);
+		int hourOfDay = now.get(Calendar.HOUR_OF_DAY);
+		if (hourOfDay >= 10 && hourOfDay < 22) {
+			if(timeSlots[((dayOfWeek-1)*12) + (hourOfDay-10)]) {
+				return false;
+			}
+			else {
+				return timeSlots[((dayOfWeek-1)*12) + (hourOfDay-10)] = true;
+			}
+		}
+		return false;
     }
 
     /**
      * Checks if a table is occupied by a customer
-     * @return true if not occupied
+     * @return true if available
      */
     public Boolean checkAvailability(){
-        return !occupied;
+    	GregorianCalendar now = new GregorianCalendar();
+        int dayOfWeek = now.get(Calendar.DAY_OF_WEEK);
+		int hourOfDay = now.get(Calendar.HOUR_OF_DAY);
+		if (hourOfDay >= 10 && hourOfDay < 22) {
+			return timeSlots[((dayOfWeek-1)*12) + (hourOfDay-10)];
+		}
+		else {
+			return false;
+		}
     }
 
     /**

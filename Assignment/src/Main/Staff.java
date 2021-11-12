@@ -7,7 +7,10 @@ public class Staff {
     private String jobTitle;
 
     public Staff(String name, boolean gender, int ID, String jobTitle){
-
+    	this.name = name; 
+    	this.gender = gender;
+    	this.ID = ID;
+    	this.jobTitle = jobTitle;
     }
 
     public int getID(){
@@ -16,5 +19,9 @@ public class Staff {
 
     public String getName(){
         return this.name;
+    }
+    
+    public String getTitle() {
+    	return this.jobTitle;
     }
 }

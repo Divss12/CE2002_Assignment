@@ -31,16 +31,19 @@ public class mainApp{
 		String tablePath = ".\\Main\\tables.txt";
 		String reservationPath = ".\\Main\\reservations.txt";
 		String promoPath = ".\\Main\\promos.txt";
+		String logPath = ".\\Main\\log.txt";
 		EditFile menuFile = new EditFile(menuPath);
 		EditFile tableFile = new EditFile(tablePath);
 		EditFile reservationFile = new EditFile(reservationPath); 
 		EditFile promoFile = new EditFile(promoPath); 
+		EditFile logFile = new EditFile(logPath);
 
 		
 		//Create arrays for orders, reservations and promotions.
 		//Then, read their respective files and store the data in the array.
 		Menu menu = new Menu();	// Creating new menu
 		menuFile.readMenuFromFile(menu.getArray());	// Reading menu.txt and storing contents into menu arraylist
+		
 		OrdersList ordersList = new OrdersList();	
 		
 		ArrayList<Table> tableList = new ArrayList<Table>();	
@@ -56,6 +59,12 @@ public class mainApp{
 		//including update, add, remove and display.
 		PromotionMenu pMenu = new PromotionMenu(promotionMenu);
 		ArrayList<Staff> staffList = new ArrayList<Staff>(); 
+		
+		//Create a SalesLog object to log each transaction
+		//Use logPath parameter to know which file to read/write
+		ArrayList<Order> logArray = new ArrayList<Order>();
+		logFile.readLogsFromFile(logArray, staffList, menu.getArray(), promotionMenu);
+		SalesLog log = new SalesLog(logArray);
 		
 		do{
 			
@@ -286,10 +295,13 @@ public class mainApp{
 				case 10: //print order invoice
 					System.out.println("Enter the Table no.:");
 					int index = ordersList.findOrder(scan.nextInt());
-					ordersList.printInvoice(index);
+					Order out = ordersList.printInvoice(index);
+					log.addToLog(out);
 					break;
 				case 11: //print sales revenue report
-					//need to discuss the implementation of this as well
+					System.out.println("Enter which month you want to view the report for: ");
+					int month1 = scan.nextInt() - 1;
+					log.printReport(month1);
 					break;
 				default:	//Exit
 					System.out.println("Restaurant reservation app terminated.");
@@ -300,6 +312,7 @@ public class mainApp{
 			tableFile.WriteTablesToFile(tableList, tablePath);
 			reservationFile.WriteReservationsToFile(reservationList, reservationPath);
 			promoFile.writePromoMenu(promotionMenu, promoPath);
+			logFile.writeLogs(log.getArray(), logPath);
 
 			
 		}while(choice>0 && choice <12);

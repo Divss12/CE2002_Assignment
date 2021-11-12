@@ -5,6 +5,7 @@
 * This class is used to create, write to and read from files
 */
 package Main;
+import java.awt.MenuItem;
 import java.io.File;
 import java.io.FileNotFoundException;	// Handle error when reading from files
 import java.io.IOException;	// Handle error when writing to files
@@ -126,6 +127,20 @@ public class EditFile {
 		}
 	}
 	
+	public void writeLogs(ArrayList<Order> array, String filepath) {
+		try {
+			FileWriter myWriter = new FileWriter(filepath);
+			for(int i = 0; i < array.size(); i++) {
+				myWriter.write(array.get(i).convertToString());
+				myWriter.write("\n");
+			}
+			myWriter.close();
+		}catch(IOException e) {
+			System.out.println("An error occurred while writing to promotions file.");
+			e.printStackTrace();			
+		}
+	}
+	
 	/**
 	 * Reads String objects from file and uses them as arguments to initialize MenuItem objects
 	 * @param array
@@ -217,6 +232,62 @@ public class EditFile {
 				}
 			}
 			array.add(promo);
+		}
+	}
+	
+	public void readLogsFromFile(ArrayList<Order> array, ArrayList<Staff> staffList, ArrayList<MenuItem> menu, ArrayList<Promotion> pMenu) {
+		while(myReader.hasNextLine()) {
+			String str = myReader.nextLine();
+			String[] parts = str.split("\t");
+
+			int year = Integer.parseInt(parts[0]);
+			int month = Integer.parseInt(parts[1]);
+			int date = Integer.parseInt(parts[2]);
+			int hours = Integer.parseInt(parts[3]);
+			
+			GregorianCalendar time = new GregorianCalendar(year, month, date, hours, 0);
+			
+			int tableNumber = Integer.parseInt(parts[4]);
+			int ID = Integer.parseInt(parts[5]);
+			
+			Order o;
+			for(Staff s: staffList) {
+				if(s.getID() == ID) {
+					o = new Order(tableNumber, time, s);
+				}
+			}
+			
+			int limit = Integer.parseInt(parts[6]);
+			int i = 7;
+			int q;
+			String item;
+			while(i < 7+limit) {
+				item = parts[i];
+				for(MenuItem m: menu) {
+					if(m.getName().equals(item)) {
+						i++;
+						q = Integer.parseInt(parts[i]);
+						o.addToOrder(m, q);
+					}
+				}
+				i++;
+			}
+			while(i < parts.length - 1) {
+				item = parts[i];
+				for(Promotion p: pMenu) {
+					if(p.getName().equals(item)) {
+						i++;
+						q = Integer.parseInt(parts[i]);
+						o.orderPromoItem(p, q);
+					}
+				}
+				i++;
+			}
+			
+			int total = parts[parts.length - 1];
+			o.setTotal(total);
+			
+			array.add(o);
 		}
 	}
 }

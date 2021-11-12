@@ -127,7 +127,7 @@ public class OrdersList {
 	 * Prints invoice for a table based on their order 
 	 * @param index
 	 */
-	public void printInvoice(int index) {
+	public Order printInvoice(int index) {
 		System.out.println("Is the customer a member? (Y/N)");
 		Scanner scan = new Scanner(System.in);
 		Boolean isMember = false;
@@ -135,10 +135,9 @@ public class OrdersList {
 			isMember = true;
 		}
 		
-		array.get(index).printInvoice(isMember);
-		
-		//TODO: over here the order should be added to a log from where we can print the sales revenue report
-
+		Order out = array.get(index);
+		out.printInvoice(isMember);
 		array.remove(index);
+		return out;
 	}
 }

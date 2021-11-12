@@ -4,11 +4,14 @@
 * @since 6th November 2021
 */
 package Main;
-import java.util.ArrayList; 
+import java.awt.MenuItem;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Order {
     private int tableNumber;
+    private double total;
     private GregorianCalendar time;//maybe time uses some other data type, i think we are supposed to use some library
 
     private Staff server;
@@ -35,6 +38,8 @@ public class Order {
         
         this.promoList = new ArrayList<Promotion>();
         this.quantp = new ArrayList<Integer>();
+        
+        this.total = 0;
 
     }
 
@@ -127,6 +132,8 @@ public class Order {
         	total = 0.9*total;
         	System.out.println("Total: \t\t\t\t\t" + total);
         }
+        
+        this.total = total;
 
     }
 
@@ -160,6 +167,36 @@ public class Order {
 
     public int getTableNumber(){
         return this.tableNumber;
+    }
+    
+    public String convertToString() {
+    	String out = Integer.toString(this.time.get(Calendar.YEAR)) + "\t" + Integer.toString(this.time.get(Calendar.MONTH)) + "\t" + Integer.toString(this.time.get(Calendar.DATE)) + "\t" + Integer.toString(this.time.get(Calendar.HOUR));
+    	out = out + "\t" + Integer.toString(this.tableNumber) + "\t" + Integer.toString(this.server.getID()) + "\t" + Integer.toString(list.size());
+    	for(int i; i < list.size(); i++) {
+    		out = out + "\t" + list.get(i).getName() + "\t" + Integer.toString(quant.get(i));
+    	}
+    	
+    	for(int j; j < promoList.size(); j++) {
+    		out = out + "\t" + promoList.get(i).getName() + "\t" + Integer.toString(quantp.get(i));
+    	}
+    	
+    	out = out + "\t" + Doubele.toString(this.total)
+    }
+    
+    public int getMonth() {
+    	return this.time.get(Calendar.MONTH)
+    }
+    
+    public double getTotal() {
+    	return this.total;
+    }
+    
+    public void setTotal(int total) {
+    	this.total = total;
+    }
+    
+    public Staff getServer() {
+    	return this.server;
     }
 
 

@@ -325,6 +325,7 @@ public class mainApp{
 						System.out.println("   ID:" + staff.getID() + ", Job Title: " + staff.getJobTitle());
 						idx++;
 					}
+					break;
 				default:	//Exit
 					System.out.println("Restaurant reservation app terminated.");
 					break;

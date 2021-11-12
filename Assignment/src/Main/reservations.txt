@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-Zavier	4	2021	10	13	2
-=======
-Zavier	4	2021	10	13	6
-Z	2	2021	10	12	7
-hi	2	2021	10	12	10
->>>>>>> Stashed changes
+Zavier	4	2021	10	13	8
+Zavier	4	2021	10	13	0
+me	2	2021	10	12	6

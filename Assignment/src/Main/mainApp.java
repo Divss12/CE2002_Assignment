@@ -50,6 +50,7 @@ public class mainApp{
 		
 		ArrayList<Table> tableList = new ArrayList<Table>();	
 		tableFile.readTablesFromFile(tableList);
+		TableList tList = new TableList(tableList);
 		
 		ArrayList<Reservation> reservationList = new ArrayList<Reservation>();		
 		reservationFile.readReservationsFromFile(reservationList);
@@ -73,27 +74,7 @@ public class mainApp{
 		do{
 			
 			///////////////////// Check if Reservation has expired /////////////////////
-	    	GregorianCalendar now = new GregorianCalendar();	// Get current time
-	    	GregorianCalendar old = new GregorianCalendar();
-	    	for (int i=0;i<reservationList.size();i++) {
-	    		old = reservationList.get(i).getTime();
-	    		old.add(Calendar.HOUR_OF_DAY, 2);
-	    		if (now.after(old)) {	// Remove reservation if more than 2h old
-	    			Reservation cur = reservationList.get(i);
-	    			System.out.println("WARNING!!! " + cur.getName() + "'s reservation expired.");
-	    			GregorianCalendar time = new GregorianCalendar(cur.getYear(), cur.getMonth(), cur.getDay(), cur.getHours(), 0);
-	       		 	int dayOfWeek = time.get(Calendar.DAY_OF_WEEK);
-	       		 	int hourOfDay = time.get(Calendar.HOUR_OF_DAY);
-	    			int tableIdx = reservationList.get(i).getTableNumber();
-	    			for (Table t:tableList) {
-	    				if (t.getTableNumber() == tableIdx) {
-	    					t.freeTimeSlot(((dayOfWeek-1)*12) + (hourOfDay-10));
-	    					System.out.print(dayOfWeek + ", " + hourOfDay + ": Time slot freed\n");
-	    				}
-	    			}
-	    			reservationList.remove(i);
-	    		}
-	    	}
+	    	rList.checkExpiration(tList.getArray());
 	    	
 			System.out.println("Enter your choice: " +
 									"\n 1. View/Create/Update/Remove menu item" +
@@ -153,35 +134,7 @@ public class mainApp{
 					switch(c2){
 
 						case 1: // Create New Item
-							System.out.println("Enter name of the Promotional Set Package:");
-							name = scan.nextLine();
-							System.out.println("Enter the description of the Promotional Set Package");
-							desc = scan.nextLine();
-							System.out.println("Enter the price of the Promotional Set Package");
-							price = scan.nextDouble();
-
-							int lastIdx = pMenu.createPromotionPackage(menu.getArray(), name, desc, price);
-							System.out.println("Enter the number of items you want to add to the Promotional Set Package:");
-							int numItems = scan.nextInt();
-							scan.nextLine(); // Clear input buffer
-							String name1;
-							int flag = 0;
-							for (int i=0;i<numItems;i++) {
-								while(flag==0) {
-									System.out.println("Enter name of item to be added:");
-									name1 = scan.nextLine();
-									for (MenuItem m:menu.getArray()) {
-										if (m.getName().equals(name1)) {
-											pMenu.addToPromoPackage(m, lastIdx);
-											flag++;
-											break;
-										}
-									}
-									if (flag==0) {
-										System.out.println("Item not found. Please enter again.");
-									}
-								}
-							}
+							pMenu.createPromotionPackage(menu.getArray());
 							break;
 						case 2: 
 							boolean check;
@@ -231,37 +184,17 @@ public class mainApp{
 					}
 					break;
 				case 6: //Create reservation
-					rList.createReservation(tableList);
+					rList.createReservation(tList.getArray());
 					break;
 				case 7: //Check/Remove reservation
 					rList.editReservation();
 					break;
-				case 8: //Change table availability
-					int boolCheck;				
-					boolean newBool;
-					System.out.println("Enter table no.: ");
-					int tableNumber8 = scan.nextInt();
-					System.out.println("Change availability to?" +
-										"\n 1. Available" +
-										"\n 2. Not Available");
-					if ((boolCheck= scan.nextInt() - 1) > 0) {
-						newBool = true;
-					}else {
-						newBool = false;
-					}
-					
-					tableList.get(tableNumber8).changeAvailability(newBool);
-					
+				case 8: //Change table availability to occupied
+					//For walk in
+					tList.changeAvailability();
 					break;
-				case 9: // Check table availibility
-					System.out.println("Enter table no.: ");
-					int tableNumber9 = scan.nextInt();	// (Reason 1)
-					if(tableList.get(tableNumber9).checkAvailability()){
-						System.out.println("Currently Available");
-					}
-					else{
-						System.out.println("Currently Unavailable");
-					}
+				case 9: // Check table availability
+					tList.checkAvailability();
 					break;
 				case 10: //print order invoice
 					System.out.println("Enter the Table no.:");
@@ -289,10 +222,10 @@ public class mainApp{
 					break;
 			}
 			//code to save entire array
-			menuFile.WriteMenuToFile(menu.getArray(), ".\\Main\\menu.txt");
-			tableFile.WriteTablesToFile(tableList, tablePath);
-			reservationFile.WriteReservationsToFile(reservationList, reservationPath);
-			promoFile.writePromoMenu(promotionMenu, promoPath);
+			menuFile.WriteMenuToFile(menu.getArray(), menuPath);
+			tableFile.WriteTablesToFile(tList.getArray(), tablePath);
+			reservationFile.WriteReservationsToFile(rList.getArray(), reservationPath);
+			promoFile.writePromoMenu(pMenu.getArray(), promoPath);
 			logFile.writeLogs(log.getArray(), logPath);
 
 			

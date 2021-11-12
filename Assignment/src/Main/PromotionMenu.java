@@ -28,13 +28,43 @@ public class PromotionMenu {
 	 * @param price
 	 * @return
 	 */
-	public int createPromotionPackage(ArrayList<MenuItem> menu, String name, String desc, double price) {
-			int flag = 0;
-	
-			String itemname = sc.nextLine();
-			Promotion item = new Promotion(name, desc, price);
-			promoMenu.add(item);	//Add promo item to promoMenu arraylist
-			return promoMenu.size() - 1;
+	public void createPromotionPackage(ArrayList<MenuItem> menu) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter name of the Promotional Set Package:");
+		String name = scan.nextLine();
+		System.out.println("Enter the description of the Promotional Set Package");
+		String desc = scan.nextLine();
+		System.out.println("Enter the price of the Promotional Set Package");
+		double price = scan.nextDouble();
+		scan.nextLine(); //clear input buffer
+		
+		Promotion item = new Promotion(name, desc, price);
+		
+		System.out.println("Enter the number of items you want to add to the Promotional Set Package:");
+		int numItems = scan.nextInt();
+		scan.nextLine(); // Clear input buffer
+		String name1;
+		int flag = 0;
+		for (int i=0;i<numItems;i++) {
+			while(flag==0) {
+				System.out.println("Enter name of item to be added:");
+				name1 = scan.nextLine();
+				for (MenuItem m:menu) {
+					if (m.getName().equals(name1)) {
+						item.addItemToPromotion(m);
+						flag++;
+						break;
+					}
+				}
+				if (flag==0) {
+					System.out.println("Item not found. Please enter again.");
+				}
+			}
+		}
+		
+		
+		promoMenu.add(item);	//Add promo item to promoMenu arraylist
+		//return promoMenu.size() - 1;
 	}
 
 	/**
@@ -175,6 +205,10 @@ public class PromotionMenu {
 			i++;
 		}
 		System.out.println("-----------------------------------------------------");
+	}
+	
+	public ArrayList<Promotion> getArray(){
+		return promoMenu;
 	}
 }
  

@@ -1,5 +1,7 @@
 package Main;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class ReservationList {
@@ -62,6 +64,34 @@ public class ReservationList {
 		if(flag == 0){
 			System.out.println("Name not found");
 		}
+	}
+	
+	public ArrayList<Reservation> getArray(){
+		return array;
+	}
+	
+	public void checkExpiration(ArrayList<Table> tableList) {
+		GregorianCalendar now = new GregorianCalendar();	// Get current time
+    	GregorianCalendar old = new GregorianCalendar();
+    	for (int i=0;i<array.size();i++) {
+    		old = array.get(i).getTime();
+    		old.add(Calendar.HOUR_OF_DAY, 2);
+    		if (now.after(old)) {	// Remove reservation if more than 2h old
+    			Reservation cur = array.get(i);
+    			System.out.println("WARNING!!! " + cur.getName() + "'s reservation expired.");
+    			GregorianCalendar time = new GregorianCalendar(cur.getYear(), cur.getMonth(), cur.getDay(), cur.getHours(), 0);
+       		 	int dayOfWeek = time.get(Calendar.DAY_OF_WEEK);
+       		 	int hourOfDay = time.get(Calendar.HOUR_OF_DAY);
+    			int tableIdx = array.get(i).getTableNumber();
+    			for (Table t:tableList) {
+    				if (t.getTableNumber() == tableIdx) {
+    					t.freeTimeSlot(((dayOfWeek-1)*12) + (hourOfDay-10));
+    					System.out.print(dayOfWeek + ", " + hourOfDay + ": Time slot freed\n");
+    				}
+    			}
+    			array.remove(i);
+    		}
+    	}
 	}
 	
 }

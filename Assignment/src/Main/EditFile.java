@@ -5,13 +5,13 @@
 * This class is used to create, write to and read from files
 */
 package Main;
-import java.awt.MenuItem;
 import java.io.File;
 import java.io.FileNotFoundException;	// Handle error when reading from files
 import java.io.IOException;	// Handle error when writing to files
 import java.io.FileWriter;	// Import FileWriter class to write menuItem attributes to RestMenu
 import java.util.ArrayList;
 import java.util.Scanner;	// Import to read file
+import java.util.GregorianCalendar;
 
 public class EditFile {
 	private String filepath;
@@ -251,11 +251,13 @@ public class EditFile {
 			int ID = Integer.parseInt(parts[5]);
 			
 			Order o;
+			Staff server = null;
 			for(Staff s: staffList) {
 				if(s.getID() == ID) {
-					o = new Order(tableNumber, time, s);
+					server = s;
 				}
 			}
+			o = new Order(tableNumber, time, server);
 			
 			int limit = Integer.parseInt(parts[6]);
 			int i = 7;
@@ -284,7 +286,7 @@ public class EditFile {
 				i++;
 			}
 			
-			int total = parts[parts.length - 1];
+			int total = Integer.parseInt(parts[parts.length - 1]);
 			o.setTotal(total);
 			
 			array.add(o);

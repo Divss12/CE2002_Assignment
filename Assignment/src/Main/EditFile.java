@@ -286,7 +286,7 @@ public class EditFile {
 				i++;
 			}
 			
-			int total = Integer.parseInt(parts[parts.length - 1]);
+			double total = Double.parseDouble(parts[parts.length - 1]);
 			o.setTotal(total);
 			
 			array.add(o);

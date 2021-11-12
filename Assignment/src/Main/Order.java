@@ -192,8 +192,8 @@ public class Order {
     	return this.total;
     }
     
-    public void setTotal(int total) {
-    	this.total = total;
+    public void setTotal(double total2) {
+    	this.total = total2;
     }
     
     public Staff getServer() {

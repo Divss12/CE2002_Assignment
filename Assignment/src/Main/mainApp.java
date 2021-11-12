@@ -79,7 +79,18 @@ public class mainApp{
 	    		old = reservationList.get(i).getTime();
 	    		old.add(Calendar.HOUR_OF_DAY, 2);
 	    		if (now.after(old)) {	// Remove reservation if more than 2h old
-	    			System.out.println("WARNING!!! " + reservationList.get(i).getName() + "'s reservation expired.");
+	    			Reservation cur = reservationList.get(i);
+	    			System.out.println("WARNING!!! " + cur.getName() + "'s reservation expired.");
+	    			GregorianCalendar time = new GregorianCalendar(cur.getYear(), cur.getMonth(), cur.getDay(), cur.getHours(), 0);
+	       		 	int dayOfWeek = time.get(Calendar.DAY_OF_WEEK);
+	       		 	int hourOfDay = time.get(Calendar.HOUR_OF_DAY);
+	    			int tableIdx = reservationList.get(i).getTableNumber();
+	    			for (Table t:tableList) {
+	    				if (t.getTableNumber() == tableIdx) {
+	    					t.freeTimeSlot(((dayOfWeek-1)*12) + (hourOfDay-10));
+	    					System.out.print(dayOfWeek + ", " + hourOfDay + ": Time slot freed\n");
+	    				}
+	    			}
 	    			reservationList.remove(i);
 	    		}
 	    	}
@@ -270,6 +281,7 @@ public class mainApp{
 						System.out.println("   ID:" + staff.getID() + ", Job Title: " + staff.getJobTitle());
 						idx++;
 					}
+					break;
 				default:	//Exit
 					System.out.println("Restaurant reservation app terminated.");
 					break;

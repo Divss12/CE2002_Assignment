@@ -14,6 +14,11 @@ public class Reservation {
     private GregorianCalendar time;
     private String name;
     private String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};    //customer, table
+    private int year;
+    private int month;
+    private int day;
+    private int hours;
+    private int tableNumber;
 
     /**
      * Constructor for Reservation
@@ -28,8 +33,33 @@ public class Reservation {
         this.pax = pax;
         this.name = name;
     	this.time = new GregorianCalendar(year, month, day, hours, 0);
+    	this.year = year;
+    	this.month = month;
+    	this.day = day;
+    	this.hours = hours;
     }
 
+    ///////////////// MUTATORS ///////////////// 
+    public int getYear() {
+		return year;
+	}
+
+	public int getMonth() {
+		return month;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public int getHours() {
+		return hours;
+	}
+	
+	public int getTableNumber() {
+		return this.tableNumber;
+	}
+	
     /**
      * @return String formatted for reservations.txt
      */
@@ -38,7 +68,7 @@ public class Reservation {
     	// Format: name	pax	YEAR MONTH DATE HOUR MINUTE
     }
 
-    /**
+	/**
      * @return time
      */
     public GregorianCalendar getTime() {
@@ -70,6 +100,7 @@ public class Reservation {
     public boolean isValidReservation(ArrayList<Table> tableList) {
     	for (Table t:tableList) {
     		if (t.reserveTimeSlot(this.time, this.pax)){
+    			this.tableNumber = t.getTableNumber();
     			return true;
     		}
     	}
@@ -95,5 +126,6 @@ public class Reservation {
     	}
     	return false;
     }
+    
 }
 	

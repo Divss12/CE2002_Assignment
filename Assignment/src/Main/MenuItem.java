@@ -9,7 +9,7 @@ import java.io.FileWriter;	// Import FileWriter class to write menuItem attribut
 import java.io.FileNotFoundException;
 import java.io.IOException;	// Handle errors when editing files
 
-public class MenuItem{
+public class MenuItem implements Item{
 	private String name;
 	private String description;
 	private double price;
@@ -32,6 +32,7 @@ public class MenuItem{
 	/**
 	 * @return name
 	 */
+	@Override
 	public String getName() {
 		return this.name;
 	}
@@ -39,6 +40,7 @@ public class MenuItem{
 	/**
 	 * @return description
 	 */
+	@Override
 	public String getDescription() {
 		return this.description;
 	}
@@ -47,6 +49,7 @@ public class MenuItem{
 	 * 
 	 * @return price
 	 */
+	@Override
 	public double getPrice() {
 		return this.price;
 	}
@@ -55,22 +58,23 @@ public class MenuItem{
 	 * 
 	 * @param name to set name
 	 */
+	@Override
 	public void setName(String name) {
 		this.name = name;
-	}
-	
+	}	
 	/**
 	 * 
 	 * @param description to set description
 	 */
+	@Override
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 	/**
 	 * 
 	 * @param price to set price
 	 */
+	@Override
 	public void setPrice(double price) {
 		this.price = price;
 	}

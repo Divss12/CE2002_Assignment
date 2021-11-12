@@ -29,7 +29,8 @@ public class ReservationList {
 	 * @param tableList
 	 */
 	public void createReservation(ArrayList<Table> tableList) {
-		System.out.println("Enter name for the reservation");
+		System.out.println("*You can only make reservations for this week.");
+		System.out.println("Enter name for the reservation:");
 		//scan.nextLine(); // Clear input buffer
 		Scanner scan = new Scanner(System.in);
 		String name = scan.nextLine();

@@ -1,1 +1,2 @@
 2021	10	12	4	1	0	1	cheese burger	1	16.0
+2021	10	12	11	1	1	0	fish and chips	2	32.4

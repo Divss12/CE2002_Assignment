@@ -7,7 +7,7 @@ package Main;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Promotion{
+public class Promotion implements Item{
     protected ArrayList<MenuItem> array;
 	private String name;
 	private String description;
@@ -26,11 +26,12 @@ public class Promotion{
         this.price = p;
         this.array = new ArrayList<MenuItem>();
     }
-    
+//////////////////////////////////////// MUTATORS ////////////////////////////////////////
     /**
      * 
      * @return name
      */
+    @Override
     public String getName() {
     	return this.name;
     }
@@ -39,14 +40,24 @@ public class Promotion{
      * 
      * @return price
      */
+    @Override
     public double getPrice() {
     	return this.price;
+    }
+    /**
+     * 
+     *  @return description
+     */
+    @Override
+    public String getDescription() {
+    	return this.description;
     }
     
     /**
      * 
      * @param set name as name
      */
+    @Override
     public void setName(String name) {
     	this.name = name;
     }
@@ -55,6 +66,7 @@ public class Promotion{
      * 
      * @param set description as desc
      */
+    @Override
     public void setDescription(String desc) {
     	this.description = desc;
     }
@@ -63,10 +75,11 @@ public class Promotion{
      * 
      * @param set price as price
      */
+    @Override
     public void setPrice(double price) {
     	this.price = price;
     }
-
+//////////////////////////////////////// END MUTATORS ////////////////////////////////////////
     /**
      * Adds MenuItem to Promotion array
      * @param item

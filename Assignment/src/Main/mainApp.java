@@ -183,6 +183,7 @@ public class mainApp{
 					rList.createReservation(tList.getArray());
 					break;
 				case 7: //Check/Remove reservation
+					rList.checkExpiration(tList.getArray()); // Check if reservation has expired
 					rList.editReservation();
 					break;
 				case 8: //Change table availability to occupied

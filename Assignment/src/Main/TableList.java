@@ -5,7 +5,9 @@
  */
 package Main;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
+import java.util.GregorianCalendar;
 
 public class TableList {
 	ArrayList<Table> array;
@@ -48,6 +50,19 @@ public class TableList {
 		}
 		else{
 			System.out.println("Currently Unavailable");
+		}
+	}
+	
+	/**
+	 * frees table timeSlot[] for the appropriate time
+	 * @param tableNumber
+	 */
+	public void freeTable(int tableNumber) {
+		GregorianCalendar now = new GregorianCalendar();
+		int dayOfWeek = now.get(Calendar.DAY_OF_WEEK);
+		int hourOfDay = now.get(Calendar.HOUR_OF_DAY);
+		if (hourOfDay >= 10 && hourOfDay < 22) {
+			array.get(tableNumber).freeTimeSlot((dayOfWeek-1)*12 + (hourOfDay-10));
 		}
 	}
 	

@@ -113,6 +113,7 @@ public class mainApp{
 						default:
 							break;
 					}
+					break;
 					
 				case 2: //Create/Update/Remove promotion
 					String name;
@@ -196,6 +197,7 @@ public class mainApp{
 					System.out.println("Enter the Table no.:");
 					int index = ordersList.findOrder(scan.nextInt());
 					Order out = ordersList.printInvoice(index);
+					tList.freeTable(out.getTableNumber());
 					log.addToLog(out);
 					break;
 				case 11: //print sales revenue report

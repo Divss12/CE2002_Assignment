@@ -79,11 +79,23 @@ public class OrdersList {
 	 * @param index
 	 */
 	public void removeFromOrder(int index) {
-		System.out.println("Enter index of item to remove (-1 for latest)");
 		Scanner scan = new Scanner(System.in);
+		System.out.println("What type of item do you want to remvove?" +
+								"\n 1. Menu Item" +
+								"\n 2. Promotion Item");
+		int choice = scan.nextInt();
+		scan.nextLine(); //clear input buffer
+		
+		System.out.println("Enter index of item to remove (-1 for latest)");
 		int ind = scan.nextInt();
 		scan.nextLine(); //Clear input buffer
-		array.get(index).removeFromOrder(ind);
+		
+		if(choice == 1) {
+			array.get(index).removeFromOrder(ind);
+		}
+		else {
+			array.get(index).removePromoFromOrder(ind);
+		}
 	}
 	
 	/**

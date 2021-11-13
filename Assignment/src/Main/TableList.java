@@ -46,10 +46,10 @@ public class TableList {
 		int tableNumber = scan.nextInt();
 		scan.nextLine(); // clear input buffer
 		if(array.get(tableNumber).checkAvailability()){
-			System.out.println("Currently Available");
+			System.out.println("Currently Unvailable");
 		}
 		else{
-			System.out.println("Currently Unavailable");
+			System.out.println("Currently Available");
 		}
 	}
 	

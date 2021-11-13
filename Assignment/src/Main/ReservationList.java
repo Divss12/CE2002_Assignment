@@ -56,7 +56,7 @@ public class ReservationList {
 	/**
 	 * Function to remove Reservation object from the Reservation ArrayList
 	 */
-	public void editReservation() {
+	public void editReservation(ArrayList<Table> tableList) {
 		System.out.println("Enter name:");
 		Scanner scan = new Scanner(System.in);
 		//scan.nextLine(); // Clear input buffer
@@ -80,7 +80,14 @@ public class ReservationList {
 		if (flag1>0)
 		{
 			System.out.println(name1 + "'s reservation has been removed.");
-			array.remove(counterr);
+			Reservation r = array.remove(counterr);
+			
+			//free the time slot from the table also
+			int tableNumber = r.getTableNumber();
+			GregorianCalendar time = r.getTime();
+			int dayOfWeek = time.get(Calendar.DAY_OF_WEEK);
+			int hourOfDay = time.get(Calendar.HOUR_OF_DAY);
+			tableList.get(tableNumber).freeTimeSlot((dayOfWeek-1)*12 + (hourOfDay-10));
 		}
 		if(flag == 0){
 			System.out.println("Name not found");

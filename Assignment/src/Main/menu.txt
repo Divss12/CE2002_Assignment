@@ -19,4 +19,3 @@ sprite	sprite	2.0
 milo	milo	3.0
 ice lemon tea	Homemade lemon tea with ice	2.5
 green tea	Japanese green tea	2.5
-yay	no	2.0

@@ -164,7 +164,7 @@ public class mainApp{
 					System.out.println("Enter your choice:" +
 												"\n 1. Add to Order" +
 												"\n 2. Add Promotional Package to Order" +
-												"\n 3. Remove from Order" +
+												"\n 3. Remove item from Order" +
 												"\n 4. Cancel");
 					int c3 = scan.nextInt();
 					switch(c3) {
@@ -185,7 +185,7 @@ public class mainApp{
 					break;
 				case 7: //Check/Remove reservation
 					rList.checkExpiration(tList.getArray()); // Check if reservation has expired
-					rList.editReservation();
+					rList.editReservation(tList.getArray());
 					break;
 				case 8: //Change table availability to occupied
 					//For walk in

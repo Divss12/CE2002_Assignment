@@ -54,7 +54,7 @@ public class Order {
     }
     
     /**
-     * Removes an order from MenuItem list
+     * Removes an item from MenuItem list
      * @param index
      */
     public void removeFromOrder(int index){
@@ -64,6 +64,19 @@ public class Order {
         else{
             list.remove(index);
         }
+    }
+    
+    /**
+     * Removes an item from Promotion list
+     * @param index
+     */
+    public void removePromoFromOrder(int index) {
+    	if(index == -1) {
+    		promoList.remove(list.size() - 1);
+    	}
+    	else {
+    		promoList.remove(index);
+    	}
     }
     
     /**

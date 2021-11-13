@@ -121,7 +121,7 @@ public class ReservationManager {
     	GregorianCalendar old = new GregorianCalendar();
     	for (int i=0;i<array.size();i++) {
     		old = array.get(i).getTime();
-    		old.add(Calendar.HOUR_OF_DAY, 2);
+    		old.add(Calendar.HOUR_OF_DAY, 1);
     		if (now.after(old)) {	// Remove reservation if more than 2h old
     			Reservation cur = array.get(i);
     			System.out.println("WARNING!!! " + cur.getName() + "'s reservation expired.");

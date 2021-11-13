@@ -23,6 +23,9 @@ public class ReservationManager {
 		file = new FileManager(path);
 	}
 	
+	/**
+	 * Reads from file
+	 */
 	public void readFromFile() {
 		file.readReservationsFromFile(array);
 	}
@@ -138,6 +141,10 @@ public class ReservationManager {
     	}
 	}
 	
+	/**
+	 * Writes to file
+	 * @param path
+	 */
 	public void writeToFile(String path) {
 		file.WriteReservationsToFile(array, path);
 	}

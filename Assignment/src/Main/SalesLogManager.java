@@ -20,6 +20,12 @@ public class SalesLogManager {
 		file = new FileManager(path);
 	}
 	
+	/**
+	 * Reads from file
+	 * @param staff
+	 * @param menu
+	 * @param promos
+	 */
 	public void readFromFile(ArrayList<Staff> staff, ArrayList<MenuItem> menu, ArrayList<Promotion> promos) {
 		file.readLogsFromFile(array, staff, menu, promos);
 	}
@@ -77,6 +83,9 @@ public class SalesLogManager {
 		System.out.println("-----------------------------------------");
 	}
 	
+	/**
+	 * Writes to file
+	 */
 	public void writeToFile(String path) {
 		file.writeLogs(array, path);
 	}

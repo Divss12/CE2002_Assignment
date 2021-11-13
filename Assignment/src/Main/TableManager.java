@@ -68,10 +68,17 @@ public class TableManager {
 		}
 	}
 	
+	/**
+	 * Writes to file
+	 * @param path
+	 */
 	public void writeToFile( String path) {
 		file.WriteTablesToFile(array, path);
 	}
 	
+	/**
+	 * Reads from file
+	 */
 	public void readFromFile() {
 		file.readTablesFromFile(array);
 	}

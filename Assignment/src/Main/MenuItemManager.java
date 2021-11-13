@@ -67,10 +67,17 @@ public class MenuItemManager {
 		System.out.println("Menu item not found.");
 	}
 	
+	/**
+	 * Writes to file
+	 * @param path
+	 */
 	public void writeToFile(String path) {
 		file.WriteMenuToFile(menu, path);
 	}
 	
+	/**
+	 * Reads from file
+	 */
 	public void readFromFile() {
 		file.readMenuFromFile(menu);
 	}

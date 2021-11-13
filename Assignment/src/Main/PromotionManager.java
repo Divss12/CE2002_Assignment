@@ -22,6 +22,10 @@ public class PromotionManager {
 		file = new FileManager(path);
 	}
 	
+	/**
+	 * Reads from file
+	 * @param menu
+	 */
 	public void readFromFile(ArrayList<MenuItem> menu) {
 		file.readPromotionsFromFile(promoMenu, menu);
 	}
@@ -221,6 +225,10 @@ public class PromotionManager {
 		System.out.println("-----------------------------------------------------");
 	}
 	
+	/**
+	 * Writes to file
+	 * @param path
+	 */
 	public void writeToFile(String path) {
 		file.writePromoMenu(promoMenu, path);
 	}

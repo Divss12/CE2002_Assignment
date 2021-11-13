@@ -107,6 +107,7 @@ public class Order {
     	int width = 50;
     	
     	System.out.println("-".repeat(width));
+    	System.out.println("|" + " ".repeat(width - 2) + "|");
     	System.out.println("|" + " ".repeat(width/2 - 8) + "ZAVIER'S PLACE" + " ".repeat(width/2 - 8) + "|");
     	System.out.println("|" + " ".repeat(width/2 - 8) + "**************" + " ".repeat(width/2 - 8) + "|");
     	System.out.println("|" + " ".repeat(width/2 - 11) + "21 Fake Address St." + " ".repeat(width/2 - 10) + "|");

@@ -45,12 +45,13 @@ public class OrdersList {
 		for(Order o : array){
 			if(o.getTableNumber() == tableNumber){
 				o.viewOrder();
+				o.viewPromoOrder();
 				flag = 1;
 				break;
 			}
 		}
-		if (flag==1) {
-			array.get(tableNumber-1).viewPromoOrder();
+		if (flag==0) {
+			System.out.println("This table does not have an order attached to it");
 		}
 	}
 	

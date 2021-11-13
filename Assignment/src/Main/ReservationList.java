@@ -47,6 +47,7 @@ public class ReservationList {
 
 		Reservation res = new Reservation(pax, name, year, month, date, hour);
 		if (res.isValidReservation(tableList)) {
+			System.out.println("Reservation made at " + date + ", time: " + hour);
 			array.add(res);
 		}else {
 			System.out.println("Reservation not made.");
@@ -116,12 +117,31 @@ public class ReservationList {
     			for (Table t:tableList) {
     				if (t.getTableNumber() == tableIdx) {
     					t.freeTimeSlot(((dayOfWeek-1)*12) + (hourOfDay-10));
-    					System.out.print(dayOfWeek + ", " + hourOfDay + ": Time slot freed\n");
+    					String day = convertToDay(dayOfWeek);
+    					System.out.print("Day: " + day + ", " + "time: " + hourOfDay + ":00" + "\nTime slot freed.\n");
     				}
     			}
     			array.remove(i);
     		}
     	}
+	}
+	/**
+	 * Converts int value of dayOfWeek from GregorianCalendar to the actual name of the day
+	 * @param day
+	 * @return name of day
+	 */
+	private static String convertToDay(int day) {	
+		// 1 = Sunday, 2 = Monday... 7 = Saturday
+		switch(day) {
+		case 1:	return "Sunday";
+		case 2: return "Monday";
+		case 3: return "Tuesday";
+		case 4: return "Wednesday";
+		case 5: return "Thursday";
+		case 6: return "Friday"; 
+		case 7: return "Saturday"; 
+		default: return "Invalid date";
+		}
 	}
 	
 }

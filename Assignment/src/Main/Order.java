@@ -58,6 +58,10 @@ public class Order {
      * @param index
      */
     public void removeFromOrder(int index){
+    	if (list.size()<=index) {
+    		System.out.println("Item of index " + Integer.toString(index) + " does not exist in the order.");
+    		return;
+    	}
         if(index == -1){
             list.remove(list.size() - 1);
         }
@@ -71,6 +75,10 @@ public class Order {
      * @param index
      */
     public void removePromoFromOrder(int index) {
+    	if (promoList.size()<=index) {
+    		System.out.println("Item of index " + Integer.toString(index) + " does not exist in the order.");
+    		return;
+    	}
     	if(index == -1) {
     		promoList.remove(list.size() - 1);
     	}

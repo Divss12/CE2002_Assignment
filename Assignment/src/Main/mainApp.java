@@ -220,13 +220,13 @@ public class mainApp{
 					System.out.println("Restaurant reservation app terminated.");
 					break;
 			}
+			rList.checkExpiration(tList.getArray());	// Check for reservation expiration
 			//code to save entire array
 			menuFile.WriteMenuToFile(menu.getArray(), menuPath);
 			tableFile.WriteTablesToFile(tList.getArray(), tablePath);
 			reservationFile.WriteReservationsToFile(rList.getArray(), reservationPath);
 			promoFile.writePromoMenu(pMenu.getArray(), promoPath);
 			logFile.writeLogs(log.getArray(), logPath);
-
 			
 		}while(choice>0 && choice <13);
 		scan.close();

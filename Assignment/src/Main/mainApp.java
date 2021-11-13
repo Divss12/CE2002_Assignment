@@ -208,13 +208,22 @@ public class mainApp{
 					break;
 				case 12:
 					int idx = 1;
-					System.out.println("Staff List\n-----------------------------------");
+					System.out.println("Staff List\n-----------------------------------------------");
+					System.out.println("  | Name          | Gender | ID | Job Title");
+					System.out.println("--|---------------|--------|----|--------------");
+					String n, sname, gender, id, title;
 					for (Staff staff:staffList) {
-						System.out.println("[" + idx + "] Staff name:" + staff.getName() + ", " + staff.getGender());
-						System.out.println("   ID:" + staff.getID() + ", Job Title: " + staff.getTitle());
+						n = Integer.toString(idx);
+						sname = staff.getName();
+						gender = staff.getGender();
+						id = Integer.toString(staff.getID());
+						title = staff.getTitle();
+						
+						
+						System.out.println(n + " ".repeat(2 - n.length()) + "| " + sname + " ".repeat(14 - sname.length()) + "| " + gender + "      | " + id + " ".repeat(3 - id.length()) + "| " + title);
 						idx++;
 					}
-					System.out.println("-----------------------------------\n");
+					System.out.println("-----------------------------------------------\n");
 					break;
 				default:	//Exit
 					System.out.println("Restaurant reservation app terminated.");

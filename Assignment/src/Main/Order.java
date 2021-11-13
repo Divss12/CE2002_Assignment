@@ -4,6 +4,7 @@
 * @since 6th November 2021
 */
 package Main;
+import java.time.format.DateTimeFormatter;
 //import java.awt.MenuItem;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -94,12 +95,44 @@ public class Order {
      * @param isMember 
      */
     public void printInvoice(Boolean isMember){
-
-        System.out.println("Waiter: " + this.server.getName());
-
+    	
+    	int width = 50;
+    	
+    	System.out.println("-".repeat(width));
+    	System.out.println("|" + " ".repeat(width/2 - 8) + "ZAVIER'S PLACE" + " ".repeat(width/2 - 8) + "|");
+    	System.out.println("|" + " ".repeat(width/2 - 8) + "**************" + " ".repeat(width/2 - 8) + "|");
+    	System.out.println("|" + " ".repeat(width/2 - 11) + "21 Fake Address St." + " ".repeat(width/2 - 10) + "|");
+    	System.out.println("|" + " ".repeat(width/2 - 10) + "238721, Singapore" + " ".repeat(width/2 - 9) + "|");
+    	System.out.println("|" + " ".repeat(width/2 - 8) + "Tel: 3847 2821" + " ".repeat(width/2 - 8) + "|");
+    	System.out.println("|" + " ".repeat(width - 2) + "|");
+    	System.out.println("|" + " ".repeat(width - 2) + "|");
+    	
+    	String server = "Server: " + this.server.getName();
+    	String date = "Date: " + (this.time).toZonedDateTime().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    	String table = "Table: " + Integer.toString(this.tableNumber);
+    	String time = "Time: " + (this.time).toZonedDateTime().format(DateTimeFormatter.ofPattern("HH:mm"));
+       
+    	int left;
+        if(server.length() > table.length()) {
+        	table = " ".repeat(server.length() - table.length()) + table;
+        	left = server.length();
+        }
+        else {
+        	server = " ".repeat(table.length() - server.length()) + server;
+        	left = table.length();
+        }
+        
+        time = time + " ".repeat(5);
+        int right = 16;
+        
+        System.out.println("|  " + server + " ".repeat(width - left - right - 6) + date + "  |");
+        System.out.println("|  " + table + " ".repeat(width - left - right - 6) + time + "  |");
+        
+        System.out.println("|" + " ".repeat(width - 2) + "|");
+        System.out.println("|" + "-".repeat(width - 2) + "|");
+        System.out.println("|" + " ".repeat(width - 2) + "|");
         MenuItem item;
-        String name;
-        String qua;
+        String name, qua, pri;
         double price;
         int q;
         double total = 0;
@@ -109,13 +142,14 @@ public class Order {
             price = item.getPrice();
             q = quant.get(i); 
             
-            if(q == 1){
-                qua = " ";
-            }
-            else{
-                qua = " x" + q;
-            }
-            System.out.println(name + qua + "\t\t\t\t" + q*price);
+            qua = Integer.toString(q);
+            qua = " ".repeat(2-qua.length()) + qua; 
+            
+            pri = Double.toString(price);
+            pri = pri + "0".repeat(3 - pri.length() + pri.indexOf("."));
+             
+            System.out.println("|   " + qua + "   " + name + " ".repeat(width - 12 - name.length() - pri.length()) + pri + "  |");
+            
 
             total += q*price;
         }
@@ -128,25 +162,88 @@ public class Order {
         	price = itemP.getPrice();
         	q = quantp.get(j);
         	
-            if(q == 1){
-                qua = " ";
-            }
-            else{
-                qua = " x" + q;
-            }
-            System.out.println(name + qua + "\t\t\t\t" + q*price);
+            qua = Integer.toString(q);
+            qua = " ".repeat(2-qua.length()) + qua; 
+            
+            pri = Double.toString(price);
+            
+            pri = pri + "0".repeat(3 - pri.length() + pri.indexOf("."));
+            
+            System.out.println("|   " + qua + "   " + name + " ".repeat(width - 12 - name.length() - pri.length()) + pri + "  |");
             
             total += q*price;	
         }
         
-        System.out.println("Total: \t\t\t\t\t" + total);
+        System.out.println("|" + "-".repeat(width - 2) + "|");
+        
+        String subtotal = Double.toString(total);
+        subtotal = subtotal + "0";
+        System.out.println("|" + " ".repeat(width - 14 - subtotal.length()) + "Subtotal: " + subtotal + "  |");
+        
+        int dec;
         if(isMember) {
-        	System.out.println("Membership discount = 10%");
+        	String memberDisc =  Double.toString(0.1*total);
+        	dec = memberDisc.length() - memberDisc.indexOf(".") - 1;
+        	if(dec > 2) {
+        		memberDisc = memberDisc.substring(0, memberDisc.length() - dec + 2);
+        	}
+        	else if (dec < 2) {
+        		memberDisc = memberDisc + "0".repeat(2 - dec);
+        	}
+        	
+        	System.out.println("|" + " ".repeat(width - 31 - memberDisc.length()) + "-10% Membership discount: -" + memberDisc + "  |");
         	total = 0.9*total;
-        	System.out.println("Total: \t\t\t\t\t" + total);
         }
         
+        String serviceCharge = Double.toString(0.1*total);
+        dec = serviceCharge.length() - serviceCharge.indexOf(".") - 1;
+    	if(dec > 2) {
+    		serviceCharge = serviceCharge.substring(0, serviceCharge.length() - dec + 2);
+    	}
+    	else if (dec < 2) {
+    		serviceCharge = serviceCharge + "0".repeat(2 - dec);
+    	}
+        
+        System.out.println("|" + " ".repeat(width - 24 - serviceCharge.length()) + "10% Service Charge: " + serviceCharge + "  |");
+        total = 1.1*total;
+        
+        String gst = Double.toString(0.07*total);
+        dec = gst.length() - gst.indexOf(".") - 1;
+    	if(dec > 2) {
+    		gst = gst.substring(0, gst.length() - dec + 2);
+    	}
+    	else if (dec < 2) {
+    		gst = gst + "0".repeat(2 - dec);
+    	}
+        
+        System.out.println("|" + " ".repeat(width - 12 - serviceCharge.length()) + "7% GST: " + gst + "  |");
+        total = 1.07*total;
+        
+        String finaltotal = Double.toString(total);
+        dec = finaltotal.length() - finaltotal.indexOf(".") - 1;
+    	if(dec > 2) {
+    		finaltotal = finaltotal.substring(0, finaltotal.length() - dec + 2);
+    	}
+    	else if (dec < 2) {
+    		finaltotal = finaltotal + "0".repeat(2 - dec);
+    	}
+    	
+    	System.out.println("|" + "=".repeat(width - 2) + "|");
+        System.out.println("|" + " ".repeat(width - 13 - serviceCharge.length()) + "TOTAL: $" + finaltotal + "  |");
+        System.out.println("|" + "=".repeat(width - 2) + "|");
+        
+        System.out.println("|" + " ".repeat(width - 2) + "|");
+        System.out.println("|" + " ".repeat(width - 2) + "|");
+        
+        System.out.println("|" + " ".repeat(width/2 - 18) + "* Thank you for dining with us! *" + " ".repeat(width/2 - 17) + "|");
+        
+        System.out.println("|" + " ".repeat(width - 2) + "|");
+        System.out.println("|" + " ".repeat(width - 2) + "|");
+        
+        System.out.println("-".repeat(width));
+        
         this.total = total;
+  
 
     }
 
@@ -207,6 +304,10 @@ public class Order {
     
     public int getMonth() {
     	return this.time.get(Calendar.MONTH);
+    }
+    
+    public int getDay() {
+    	return this.time.get(Calendar.DAY_OF_MONTH);
     }
     
     public double getTotal() {

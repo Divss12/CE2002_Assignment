@@ -64,6 +64,7 @@ public class PromotionManager {
 		String name1;
 		int flag = 0;
 		for (int i=0;i<numItems;i++) {
+			flag = 0;
 			while(flag==0) {
 				System.out.println("Enter name of item to be added:");
 				name1 = scan.nextLine();

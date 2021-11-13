@@ -7,6 +7,7 @@ package Main;
 
 import java.util.GregorianCalendar;
 import java.util.Calendar;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Reservation {
@@ -108,8 +109,8 @@ public class Reservation {
      */
     public void printDetails(){
         System.out.println("Name: " + this.name + ", pax: " + this.pax);
-        System.out.println("Date: " + this.time.get(Calendar.DATE) + this.months[this.time.get(Calendar.MONTH)] + ", " + this.time.get(Calendar.YEAR));
-        System.out.println("Time: " + this.time.get(Calendar.HOUR) + ":" + this.time.get(Calendar.MINUTE));
+        System.out.println("Date: " + this.time.toZonedDateTime().format(DateTimeFormatter.ofPattern("dd/MM")));
+        System.out.println("Time: " + this.time.toZonedDateTime().format(DateTimeFormatter.ofPattern("HH:mm")));
     }
 
     /**

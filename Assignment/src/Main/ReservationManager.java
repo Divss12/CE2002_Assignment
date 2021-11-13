@@ -62,7 +62,7 @@ public class ReservationManager {
 
 		Reservation res = new Reservation(pax, name, year, month, date, hour);
 		if (res.isValidReservation(tableList)) {
-			System.out.println("Reservation made at " + date + ", time: " + hour);
+			System.out.println("Reservation made at " + date + "/" + month+1 + ", time: " + hour + ":00");
 			array.add(res);
 		}else {
 			System.out.println("Reservation not made.");

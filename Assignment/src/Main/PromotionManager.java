@@ -198,8 +198,9 @@ public class PromotionManager {
 	 */
 	public void displayPromotionPackage() {
 		int idx = 0;
+		System.out.println("Name" + " ".repeat(50) + "Price");
 		for (Promotion item:this.promoMenu) {
-			System.out.println("[" + (idx+1) + "] " + item.getName());
+			System.out.println(item.getName() + " ".repeat(54 - item.getName().length()) + item.getPrice());
 			idx++;
 		}
 		System.out.println("-----------------------------------------------------");

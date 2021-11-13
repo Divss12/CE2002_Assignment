@@ -1,4 +1,4 @@
-cheese burger meal/cheese burger with side of fries and coke/18.0/coke
+cheese burger meal/cheese burger with side of fries and coke/18.0/cheese burger/fries/coke
 double cheese burger meal/double cheese burger with side of cheese fries and coke/26.0/double cheese burger/cheese fries/coke
 fish and chips/cod with a side of fries and sprite/18.0/beer battered cod/fries/sprite
 soup and salad combo/super appetizer set/7.0/salad/mushroom soup/ice lemon tea

@@ -86,9 +86,9 @@ public class MenuItemManager {
 	 * Prints a list of the name and price parameters of every MenuItem object in the menu ArrayList
 	 */
 	public void viewMenu() {
-		System.out.println("Name\t\t\t\t\tPrice");
+		System.out.println("Name" + " ".repeat(50) + "Price");
 		for(MenuItem m: menu) {
-			System.out.println(m.getName() + "\t\t\t\t\t" + m.getPrice());
+			System.out.println(m.getName() + " ".repeat(54 - m.getName().length()) + m.getPrice());
 		}
 	}
 	/**

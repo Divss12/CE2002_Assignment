@@ -1,3 +1,8 @@
+/**
+* @author Divyansh
+* @version 1.0
+* @since 7th November 2021
+*/
 package Main;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -6,7 +11,7 @@ import java.util.Scanner;
 
 public class ReservationList {
 	ArrayList<Reservation> array;
-	
+	String[] dayArray = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	/**
 	 * Constructor for ReservationList
 	 * @param rList
@@ -47,6 +52,7 @@ public class ReservationList {
 
 		Reservation res = new Reservation(pax, name, year, month, date, hour);
 		if (res.isValidReservation(tableList)) {
+			System.out.println("Reservation made at " + date + ", time: " + hour);
 			array.add(res);
 		}else {
 			System.out.println("Reservation not made.");
@@ -116,7 +122,8 @@ public class ReservationList {
     			for (Table t:tableList) {
     				if (t.getTableNumber() == tableIdx) {
     					t.freeTimeSlot(((dayOfWeek-1)*12) + (hourOfDay-10));
-    					System.out.print(dayOfWeek + ", " + hourOfDay + ": Time slot freed\n");
+    					String day = dayArray[dayOfWeek - 1];
+    					System.out.print("Day: " + day + ", " + "time: " + hourOfDay + ":00" + "\nTime slot freed.\n");
     				}
     			}
     			array.remove(i);

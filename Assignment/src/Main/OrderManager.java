@@ -122,7 +122,7 @@ public class OrderManager {
 	 * Initializes a new order
 	 * @param staffList
 	 */
-	public void createOrder(ArrayList<Staff> staffList) {
+	public void createOrder(ArrayList<Staff> staffList, ArrayList<Table> tableList) {
 		
 		System.out.println("Enter Table no.");
 		Scanner scan = new Scanner(System.in);
@@ -133,15 +133,19 @@ public class OrderManager {
 		int staffID = scan.nextInt();
 		scan.nextLine(); // Clear input buffer
 		Staff staff = null;	// Initializing staff
-		for(Staff s : staffList){
-			if(s.getID() == staffID){
-				staff = s;
-				System.out.println("Staff found");
-				break;
+		if (tableList.get(tableNumber3).occupy()) {
+			for(Staff s : staffList){
+				if(s.getID() == staffID){
+					staff = s;
+					System.out.println("Staff found");
+					break;
+				}
 			}
+			Order order = new Order(tableNumber3, time, staff);
+			array.add(order);
+		}else {
+			System.out.println("Table " + tableNumber3 + " occupied.");
 		}
-		Order order = new Order(tableNumber3, time, staff);
-		array.add(order);
 	}
 	
 	/**

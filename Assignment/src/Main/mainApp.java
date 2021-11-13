@@ -133,7 +133,7 @@ public class mainApp{
 					break;
 
 				case 3: //Create order
-					ordersList.createOrder(staffList);
+					ordersList.createOrder(staffList, tList.getArray());
 					break;
 				case 4: //View order
 					ordersList.viewOrder();

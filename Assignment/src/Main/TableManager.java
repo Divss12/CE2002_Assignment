@@ -31,7 +31,7 @@ public class TableManager {
 		int tableNumber = scan.nextInt();
 		scan.nextLine(); // clear input buffer
 		if(array.get(tableNumber).occupy()) {
-			System.out.println("Table " + Integer.toString(tableNumber) + "Occupied");
+			System.out.println("Table " + Integer.toString(tableNumber) + " is occupied");
 		}
 		else {
 			System.out.println("Table could not be occupied");

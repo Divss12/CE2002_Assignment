@@ -110,8 +110,8 @@ public class Order {
     	System.out.println("|" + " ".repeat(width - 2) + "|");
     	System.out.println("|" + " ".repeat(width/2 - 8) + "ZAVIER'S PLACE" + " ".repeat(width/2 - 8) + "|");
     	System.out.println("|" + " ".repeat(width/2 - 8) + "**************" + " ".repeat(width/2 - 8) + "|");
-    	System.out.println("|" + " ".repeat(width/2 - 11) + "21 Fake Address St." + " ".repeat(width/2 - 10) + "|");
-    	System.out.println("|" + " ".repeat(width/2 - 10) + "238721, Singapore" + " ".repeat(width/2 - 9) + "|");
+    	System.out.println("|" + " ".repeat(width/2 - 10) + "21 Fake Address St." + " ".repeat(width/2 - 11) + "|");
+    	System.out.println("|" + " ".repeat(width/2 - 9) + "238721, Singapore" + " ".repeat(width/2 - 10) + "|");
     	System.out.println("|" + " ".repeat(width/2 - 8) + "Tel: 3847 2821" + " ".repeat(width/2 - 8) + "|");
     	System.out.println("|" + " ".repeat(width - 2) + "|");
     	System.out.println("|" + " ".repeat(width - 2) + "|");
@@ -244,7 +244,7 @@ public class Order {
         System.out.println("|" + " ".repeat(width - 2) + "|");
         System.out.println("|" + " ".repeat(width - 2) + "|");
         
-        System.out.println("|" + " ".repeat(width/2 - 18) + "* Thank you for dining with us! *" + " ".repeat(width/2 - 17) + "|");
+        System.out.println("|" + " ".repeat(width/2 - 17) + "* Thank you for dining with us! *" + " ".repeat(width/2 - 18) + "|");
         
         System.out.println("|" + " ".repeat(width - 2) + "|");
         System.out.println("|" + " ".repeat(width - 2) + "|");

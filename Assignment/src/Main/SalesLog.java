@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class SalesLog {
 	ArrayList<Order> array;
+	String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 	
 	/**
 	 * Constructor for SalesLog
@@ -30,13 +31,35 @@ public class SalesLog {
 	 * @param month
 	 */
 	public void printReport(int month) {
-		System.out.println("SALES REVENUE REPORT\n-----------------\n");
+		String out = "| Month: " + months[month];
+		System.out.println("-------------------------------------");
+		System.out.println("|       SALES REVENUE REPORT        |");
+		System.out.println("|-----------------------------------|");
+		System.out.println(out + " ".repeat(36 - out.length()) + "|");
+		System.out.println("|-----------------------------------|");
+		System.out.println("|   | Date | Staff Name    | Total  |");
+		System.out.println("|---|------|---------------|--------|");
+		
+		int i = 0;
+		String idx, day, name, total;
 		for(Order o: array) {
 			if(o.getMonth() == month) {
-				Staff s = o.getServer();
-				System.out.println(s.getTitle() + " " + s.getName() + " took order at table number " + o.getTableNumber() + ". The final bill was $" + o.getTotal());
+				idx = Integer.toString(i);
+				day = Integer.toString(o.getDay());
+				name = o.getServer().getName();
+				total = Double.toString(o.getTotal());
+				
+				if(day.length() == 1) {
+					day = "0" + day;
+				}
+				
+				System.out.println("| " + idx + " ".repeat(2 - idx.length()) + "| " + day + " ".repeat(3) + "| " + name + " ".repeat(14 - name.length()) + "| $" + total + " ".repeat(6 - total.length()) + "|");
+				
+						
+				i++;
 			}
 		}
+		System.out.println("-------------------------------------");
 	}
 	
 	/**

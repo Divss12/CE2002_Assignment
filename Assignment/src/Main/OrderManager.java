@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
-public class OrdersList {
+public class OrderManager {
 	private ArrayList<Order> array;
 	
 	/**
 	 * Constructor for OrdersList
 	 */
-	public OrdersList() {
+	public OrderManager() {
 		this.array = new ArrayList<Order>();
 	}
 	

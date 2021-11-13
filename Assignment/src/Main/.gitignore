@@ -30,3 +30,11 @@
 /ReservationList.class
 /TableList.class
 /Item.class
+/OrdersManager.class
+/OrderManager.class
+/MenuItemManager.class
+/PromotionManager.class
+/ReservationManager.class
+/SalesLogManager.class
+/TableManager.class
+/FileManager.class

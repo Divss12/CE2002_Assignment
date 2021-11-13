@@ -9,15 +9,17 @@ import java.util.Calendar;
 import java.util.Scanner;
 import java.util.GregorianCalendar;
 
-public class TableList {
-	ArrayList<Table> array;
+public class TableManager {
+	private ArrayList<Table> array;
+	private FileManager file;
 	
 	/**
 	 * Constructor for TableList
 	 * @param tList
 	 */
-	public TableList(ArrayList<Table> tList) {
-		array = tList;
+	public TableManager(String path) {
+		array = new ArrayList<Table>();
+		file = new FileManager(path);
 	}
 	
 	/**
@@ -64,6 +66,14 @@ public class TableList {
 		if (hourOfDay >= 10 && hourOfDay < 22) {
 			array.get(tableNumber).freeTimeSlot((dayOfWeek-1)*12 + (hourOfDay-10));
 		}
+	}
+	
+	public void writeToFile( String path) {
+		file.WriteTablesToFile(array, path);
+	}
+	
+	public void readFromFile() {
+		file.readTablesFromFile(array);
 	}
 	
 	/**

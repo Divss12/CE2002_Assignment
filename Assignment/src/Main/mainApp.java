@@ -22,50 +22,34 @@ public class mainApp{
 		
 		
 		//Assigning file paths for menu, tables, reservations, promos
-		//Create the files at the assigned directory 
 		String menuPath = ".\\Main\\menu.txt";
 		String tablePath = ".\\Main\\tables.txt";
 		String reservationPath = ".\\Main\\reservations.txt";
 		String promoPath = ".\\Main\\promos.txt";
 		String logPath = ".\\Main\\log.txt";
 		String staffPath = ".\\Main\\staff.txt";
-		EditFile menuFile = new EditFile(menuPath);
-		EditFile tableFile = new EditFile(tablePath);
-		EditFile reservationFile = new EditFile(reservationPath); 
-		EditFile promoFile = new EditFile(promoPath); 
-		EditFile logFile = new EditFile(logPath);
 
-		EditFile staffFile = new EditFile(staffPath);
-		
-		//Create arrays for orders, reservations and promotions.
-		//Then, read their respective files and store the data in the array.
-		Menu menu = new Menu();	// Creating new menu
-		menuFile.readMenuFromFile(menu.getArray());	// Reading menu.txt and storing contents into menu arraylist
-		
-		OrdersList ordersList = new OrdersList();	
-		
-		ArrayList<Table> tableList = new ArrayList<Table>();	
-		tableFile.readTablesFromFile(tableList);
-		TableList tList = new TableList(tableList);
-		
-		ArrayList<Reservation> reservationList = new ArrayList<Reservation>();		
-		reservationFile.readReservationsFromFile(reservationList);
-		ReservationList rList = new ReservationList(reservationList);
-		
-		ArrayList<Promotion> promotionMenu = new ArrayList<Promotion>();
-		promoFile.readPromotionsFromFile(promotionMenu, menu.getArray());
+		FileManager staffFile = new FileManager(staffPath);
 
-		//the pMenu object is used to perform actions on the promotionMenu array,
-		//including update, add, remove and display.
-		PromotionMenu pMenu = new PromotionMenu(promotionMenu);
+		MenuItemManager menu = new MenuItemManager(menuPath);	// Creating new menu
+		menu.readFromFile();
+		
+		OrderManager ordersList = new OrderManager();	
+		
+		TableManager tList = new TableManager(tablePath);
+		tList.readFromFile();
+		
+		ReservationManager rList = new ReservationManager(reservationPath);
+		rList.readFromFile();
+	
+		PromotionManager pMenu = new PromotionManager(promoPath);
+		pMenu.readFromFile(menu.getArray());
+		
 		ArrayList<Staff> staffList = new ArrayList<Staff>(); 
 		staffFile.readStaffFromFile(staffList);
-		
-		//Create a SalesLog object to log each transaction
-		//Use logPath parameter to know which file to read/write
-		ArrayList<Order> logArray = new ArrayList<Order>();
-		logFile.readLogsFromFile(logArray, staffList, menu.getArray(), promotionMenu);
-		SalesLog log = new SalesLog(logArray);
+
+		SalesLogManager log = new SalesLogManager(logPath);
+		log.readFromFile(staffList, menu.getArray(), pMenu.getArray());
 		
 		do{
 			
@@ -172,7 +156,7 @@ public class mainApp{
 							ordersList.addToOrder(menu.getArray(), ind);
 							break;
 						case 2: //Add promo pkg to order
-							ordersList.addPromoToOrder(promotionMenu, ind);
+							ordersList.addPromoToOrder(pMenu.getArray(), ind);
 							break;
 						case 3: //remove from order
 							ordersList.removeFromOrder(ind);
@@ -231,11 +215,16 @@ public class mainApp{
 			}
 			rList.checkExpiration(tList.getArray());	// Check for reservation expiration
 			//code to save entire array
-			menuFile.WriteMenuToFile(menu.getArray(), menuPath);
-			tableFile.WriteTablesToFile(tList.getArray(), tablePath);
-			reservationFile.WriteReservationsToFile(rList.getArray(), reservationPath);
-			promoFile.writePromoMenu(pMenu.getArray(), promoPath);
-			logFile.writeLogs(log.getArray(), logPath);
+			//menuFile.WriteMenuToFile(menu.getArray(), menuPath);
+			menu.writeToFile(menuPath);
+			//tableFile.WriteTablesToFile(tList.getArray(), tablePath);
+			tList.writeToFile(tablePath);
+			//reservationFile.WriteReservationsToFile(rList.getArray(), reservationPath);
+			rList.writeToFile(reservationPath);
+			//promoFile.writePromoMenu(pMenu.getArray(), promoPath);
+			pMenu.writeToFile(promoPath);
+			//logFile.writeLogs(log.getArray(), logPath);
+			log.writeToFile(logPath);
 			
 		}while(choice>0 && choice <13);
 		scan.close();

@@ -13,12 +13,12 @@ import java.util.ArrayList;
 import java.util.Scanner;	// Import to read file
 import java.util.GregorianCalendar;
 
-public class EditFile {
+public class FileManager {
 	private String filepath;
 	private File myFile;
 	private Scanner myReader;
 
-	public EditFile(String filePath) {
+	public FileManager(String filePath) {
 			this.filepath = filePath;	// Change filepath accordingly
 			File myFile = new File(filePath);	
 			this.myFile = myFile;
@@ -53,7 +53,7 @@ public class EditFile {
 	 * @param array
 	 * @param filepath
 	 */
-	public static void WriteMenuToFile(ArrayList<MenuItem> array, String filepath){ 
+	public void WriteMenuToFile(ArrayList<MenuItem> array, String filepath){ 
 		try {
 			FileWriter myWriter = new FileWriter(filepath);
 			for(int i = 0; i < array.size(); i++){
@@ -73,7 +73,7 @@ public class EditFile {
 	 * @param array
 	 * @param filepath
 	 */
-	public static void WriteTablesToFile(ArrayList<Table> array, String filepath){ 
+	public void WriteTablesToFile(ArrayList<Table> array, String filepath){ 
 		try {
 			FileWriter myWriter = new FileWriter(filepath);
 			for(int i = 0; i < array.size(); i++){
@@ -93,7 +93,7 @@ public class EditFile {
 	 * @param array
 	 * @param filepath
 	 */
-	public static void WriteReservationsToFile(ArrayList<Reservation> array, String filepath){ 
+	public void WriteReservationsToFile(ArrayList<Reservation> array, String filepath){ 
 		try {
 			FileWriter myWriter = new FileWriter(filepath);
 			for(int i = 0; i < array.size(); i++){

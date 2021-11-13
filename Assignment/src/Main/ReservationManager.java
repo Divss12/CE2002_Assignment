@@ -9,15 +9,22 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
-public class ReservationList {
-	ArrayList<Reservation> array;
-	String[] dayArray = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+public class ReservationManager {
+	private ArrayList<Reservation> array;
+	private FileManager file;
+	
+	private String[] dayArray = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	/**
 	 * Constructor for ReservationList
 	 * @param rList
 	 */
-	public ReservationList(ArrayList<Reservation> rList) {
-		array = rList;
+	public ReservationManager(String path) {
+		array = new ArrayList<Reservation>();
+		file = new FileManager(path);
+	}
+	
+	public void readFromFile() {
+		file.readReservationsFromFile(array);
 	}
 	
 	/**
@@ -129,6 +136,10 @@ public class ReservationList {
     			array.remove(i);
     		}
     	}
+	}
+	
+	public void writeToFile(String path) {
+		file.WriteReservationsToFile(array, path);
 	}
 	
 }

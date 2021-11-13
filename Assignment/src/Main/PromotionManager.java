@@ -8,16 +8,22 @@ package Main;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-public class PromotionMenu {
-	Scanner sc = new Scanner(System.in);
-	ArrayList<Promotion> promoMenu;
+public class PromotionManager {
+	private Scanner sc = new Scanner(System.in);
+	private ArrayList<Promotion> promoMenu;
+	private FileManager file;
 	
 	/**
 	 * Constructor for PromotionMenu
 	 * @param promoMenu
 	 */
-	public PromotionMenu(ArrayList<Promotion> promoMenu) {
-		this.promoMenu = promoMenu;
+	public PromotionManager(String path) {
+		promoMenu = new ArrayList<Promotion>();
+		file = new FileManager(path);
+	}
+	
+	public void readFromFile(ArrayList<MenuItem> menu) {
+		file.readPromotionsFromFile(promoMenu, menu);
 	}
 
 	/**
@@ -213,6 +219,10 @@ public class PromotionMenu {
 			i++;
 		}
 		System.out.println("-----------------------------------------------------");
+	}
+	
+	public void writeToFile(String path) {
+		file.writePromoMenu(promoMenu, path);
 	}
 }
  

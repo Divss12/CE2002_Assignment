@@ -8,15 +8,17 @@ package Main;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Menu {
+public class MenuItemManager {
 	private ArrayList<MenuItem> menu;
+	private FileManager file;
 	Scanner sc = new Scanner(System.in);
 	
 	/**
 	 * Constructor for Menu
 	 */
-	public Menu() {
+	public MenuItemManager(String path) {
 		this.menu = new ArrayList<MenuItem>();
+		file = new FileManager(path);
 	}
 	
 	/////////// Functions to work with menu ArrayList //////////////
@@ -63,6 +65,14 @@ public class Menu {
 			}
 		}
 		System.out.println("Menu item not found.");
+	}
+	
+	public void writeToFile(String path) {
+		file.WriteMenuToFile(menu, path);
+	}
+	
+	public void readFromFile() {
+		file.readMenuFromFile(menu);
 	}
 	
 	/**

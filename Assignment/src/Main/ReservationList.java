@@ -1,3 +1,8 @@
+/**
+* @author Divyansh
+* @version 1.0
+* @since 7th November 2021
+*/
 package Main;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -6,7 +11,7 @@ import java.util.Scanner;
 
 public class ReservationList {
 	ArrayList<Reservation> array;
-	
+	String[] dayArray = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 	/**
 	 * Constructor for ReservationList
 	 * @param rList
@@ -117,31 +122,13 @@ public class ReservationList {
     			for (Table t:tableList) {
     				if (t.getTableNumber() == tableIdx) {
     					t.freeTimeSlot(((dayOfWeek-1)*12) + (hourOfDay-10));
-    					String day = convertToDay(dayOfWeek);
+    					String day = dayArray[dayOfWeek - 1];
     					System.out.print("Day: " + day + ", " + "time: " + hourOfDay + ":00" + "\nTime slot freed.\n");
     				}
     			}
     			array.remove(i);
     		}
     	}
-	}
-	/**
-	 * Converts int value of dayOfWeek from GregorianCalendar to the actual name of the day
-	 * @param day
-	 * @return name of day
-	 */
-	private static String convertToDay(int day) {	
-		// 1 = Sunday, 2 = Monday... 7 = Saturday
-		switch(day) {
-		case 1:	return "Sunday";
-		case 2: return "Monday";
-		case 3: return "Tuesday";
-		case 4: return "Wednesday";
-		case 5: return "Thursday";
-		case 6: return "Friday"; 
-		case 7: return "Saturday"; 
-		default: return "Invalid date";
-		}
 	}
 	
 }

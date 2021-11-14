@@ -36,7 +36,7 @@ public class Reservation {
     	this.time = new GregorianCalendar(year, month, day, hours, 0);
     	this.year = year;
     	this.month = month;
-    	this.day = day;
+    	this.day = day;	
     	this.hours = hours;
     }
 

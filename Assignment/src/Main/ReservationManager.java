@@ -126,18 +126,20 @@ public class ReservationManager {
     		if (now.after(old)) {	// Remove reservation if more than 2h old
     			Reservation cur = array.remove(i);
     			System.out.println("WARNING!!! " + cur.getName() + "'s reservation expired.");
-    			//GregorianCalendar time = new GregorianCalendar(cur.getYear(), cur.getMonth(), cur.getDay(), cur.getHours(), 0);
-       		 	int dayOfWeek = cur.getDay();
+       		 	int dayOfWeek = cur.getDay() % 7; // Convert day of month to day of week
        		 	int hourOfDay = cur.getHours();
-    			int tableIdx = array.get(i).getTableNumber();
+       		 	System.out.println("dayOfWeek = " + Integer.toString(dayOfWeek));
+       		 	System.out.println("hourOfDay = " + Integer.toString(hourOfDay));
+    			int tableIdx = cur.getTableNumber();
     			for (Table t:tableList) {
     				if (t.getTableNumber() == tableIdx) {
-    					t.freeTimeSlot(((dayOfWeek-1)*12) + (hourOfDay-10));
-    					String day = dayArray[dayOfWeek - 1];
+    					int eqn = (dayOfWeek*12) + (hourOfDay-10);
+    					System.out.println("eqn = " + Integer.toString(eqn));
+    					t.freeTimeSlot(eqn);
+    					String day = dayArray[dayOfWeek];
     					System.out.print("Day: " + day + ", " + "time: " + hourOfDay + ":00" + "\nTime slot freed.\n");
     				}
     			}
-    			array.remove(i);
     		}
     	}
 	}

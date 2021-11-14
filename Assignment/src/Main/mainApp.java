@@ -176,6 +176,9 @@ public class mainApp{
 				case 10: //print order invoice
 					System.out.println("Enter the Table no.:");
 					int index = ordersList.findOrder(scan.nextInt());
+					if(index == -1) {
+						System.out.println("This table does not have an order attached to it");
+					}
 					Order out = ordersList.printInvoice(index);
 					tList.freeTable(out.getTableNumber());
 					log.addToLog(out);

@@ -225,7 +225,7 @@ public class Order {
     		gst = gst + "0".repeat(2 - dec);
     	}
         
-        System.out.println("|" + " ".repeat(width - 12 - serviceCharge.length()) + "7% GST: " + gst + "  |");
+        System.out.println("|" + " ".repeat(width - 12 - gst.length()) + "7% GST: " + gst + "  |");
         total = 1.07*total;
         
         String finaltotal = Double.toString(total);
@@ -238,7 +238,7 @@ public class Order {
     	}
     	
     	System.out.println("|" + "=".repeat(width - 2) + "|");
-        System.out.println("|" + " ".repeat(width - 13 - serviceCharge.length()) + "TOTAL: $" + finaltotal + "  |");
+        System.out.println("|" + " ".repeat(width - 14 - finaltotal.length()) + "TOTAL: $" + finaltotal + "  |");
         System.out.println("|" + "=".repeat(width - 2) + "|");
         
         System.out.println("|" + " ".repeat(width - 2) + "|");

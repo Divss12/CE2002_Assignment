@@ -128,6 +128,10 @@ public class OrderManager {
 		Scanner scan = new Scanner(System.in);
 		int tableNumber3 = scan.nextInt();
 		scan.nextLine(); //Clear input buffer
+		if(tableNumber3>=array.size()) {
+			System.out.println("Table does not exist.");
+			return;
+		}
 		GregorianCalendar time = new GregorianCalendar(); //add code to get time from Calendar class
 		System.out.println("Enter Staff ID: ");
 		int staffID = scan.nextInt();

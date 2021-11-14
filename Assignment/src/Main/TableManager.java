@@ -30,6 +30,10 @@ public class TableManager {
 		Scanner scan = new Scanner(System.in);
 		int tableNumber = scan.nextInt();
 		scan.nextLine(); // clear input buffer
+		if (tableNumber>=array.size()) {
+			System.out.println("Table does not exist.");
+			return;
+		}
 		if(array.get(tableNumber).occupy()) {
 			System.out.println("Table " + Integer.toString(tableNumber) + " is occupied");
 		}
@@ -47,8 +51,12 @@ public class TableManager {
 		Scanner scan = new Scanner(System.in);
 		int tableNumber = scan.nextInt();
 		scan.nextLine(); // clear input buffer
+		if (tableNumber>=array.size()) {
+			System.out.println("Table does not exist.");
+			return;
+		}
 		if(array.get(tableNumber).checkAvailability()){
-			System.out.println("Currently Unvailable");
+			System.out.println("Currently Unavailable");
 		}
 		else{
 			System.out.println("Currently Available");

@@ -40,7 +40,7 @@ public class FileManager {
 			if (filename.createNewFile()) {
 				System.out.println("File created: " + filename.getName());
 			}else {
-				System.out.println("File already exists."); //expected
+				System.out.println("Loading files..."); //expected
 			}
 		}catch (IOException e) {
 			System.out.println("Error creating file.");

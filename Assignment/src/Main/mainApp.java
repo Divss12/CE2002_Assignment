@@ -52,10 +52,7 @@ public class mainApp{
 		log.readFromFile(staffList, menu.getArray(), pMenu.getArray());
 		
 		do{
-			
-			///////////////////// Check if Reservation has expired /////////////////////
-	    	rList.checkExpiration(tList.getArray());
-	    	
+	    	rList.checkExpiration(tList.getArray());	// Check for reservation expiration
 			System.out.println("Enter your choice: " +
 									"\n 1. View/Create/Update/Remove menu item" +
 									"\n 2. Create/Update/Remove promotion" +
@@ -70,9 +67,7 @@ public class mainApp{
 									"\n 11. Print sale revenue report by period" + 
 									"\n 12. Print list of Staff" +
 									"\n 13. Exit");
-
 			choice = scan.nextInt();
-
 			switch(choice){
 				case 1: //Create/Update/Remove menu item
 					System.out.println("Enter your choice:" +

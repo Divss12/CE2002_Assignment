@@ -128,7 +128,7 @@ public class OrderManager {
 		Scanner scan = new Scanner(System.in);
 		int tableNumber3 = scan.nextInt();
 		scan.nextLine(); //Clear input buffer
-		if(tableNumber3>=array.size()) {
+		if(tableNumber3>=tableList.size()) {
 			System.out.println("Table does not exist.");
 			return;
 		}

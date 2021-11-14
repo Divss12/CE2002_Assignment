@@ -46,20 +46,22 @@ public class TableManager {
 	/**
 	 * Asks for table number and prints the availability
 	 */
-	public void checkAvailability() {
+	public int checkAvailability() {
 		System.out.println("Enter table no.: ");
 		Scanner scan = new Scanner(System.in);
 		int tableNumber = scan.nextInt();
 		scan.nextLine(); // clear input buffer
 		if (tableNumber>=array.size()) {
 			System.out.println("Table does not exist.");
-			return;
+			return 0;
 		}
 		if(array.get(tableNumber).checkAvailability()){
 			System.out.println("Currently Unavailable");
+			return 0;
 		}
 		else{
 			System.out.println("Currently Available");
+			return 1;
 		}
 	}
 	

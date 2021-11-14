@@ -62,6 +62,7 @@ public class OrderManager {
 	 */
 	public void addToOrder(ArrayList<MenuItem> menu, int index) {
 		System.out.println("Enter dish name: ");
+		int addedflag=0;
 		Scanner scan = new Scanner(System.in);
 		String name = scan.nextLine();
 		for(MenuItem m : menu){
@@ -70,8 +71,12 @@ public class OrderManager {
 				int quantity = scan.nextInt();
 				scan.nextLine(); // Clear input buffer
 				(array.get(index)).addToOrder(m, quantity);
+				addedflag=1;
 				break;
 			}
+		}
+		if (addedflag==0) {
+			System.out.println("Item does not exist.");
 		}
 	}
 	

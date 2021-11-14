@@ -96,6 +96,7 @@ public class Promotion implements Item{
     	System.out.println("[2] Update package description");
     	System.out.println("[3] Update package price\nPress any button to exit without updating");
     	int c = sc.nextInt();
+		sc.nextLine(); // Clear buffer
     	switch(c) {
     	case 1:
     		System.out.println("Enter new package name:");
@@ -113,6 +114,7 @@ public class Promotion implements Item{
     	case 3:
     		System.out.println("Enter new package price:");
     		double p = sc.nextDouble();
+    		sc.nextLine(); // Clear buffer
     		System.out.println("Package price updated from " + this.price + " to " + p);
     		this.price = p;
     		break;

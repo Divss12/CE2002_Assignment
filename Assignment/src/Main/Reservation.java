@@ -85,7 +85,7 @@ public class Reservation {
      * @return String of all Reservation parameters formatted for reservations.txt
      */
     public String convertToString() {	//name \n $p \n description
-    	return name + "\t" + Integer.toString(pax) + "\t" + Integer.toString(this.time.get(Calendar.YEAR)) + "\t" + Integer.toString(this.time.get(Calendar.MONTH)) + "\t" + Integer.toString(this.time.get(Calendar.DATE)) + "\t" + Integer.toString(this.time.get(Calendar.HOUR));
+    	return name + "\t" + Integer.toString(pax) + "\t" + Integer.toString(this.time.get(Calendar.YEAR)) + "\t" + Integer.toString(this.time.get(Calendar.MONTH)) + "\t" + Integer.toString(this.time.get(Calendar.DATE)) + "\t" + Integer.toString(this.time.get(Calendar.HOUR_OF_DAY));
     	// Format: name	pax	YEAR MONTH DATE HOUR MINUTE
     }
 
@@ -109,8 +109,10 @@ public class Reservation {
      */
     public void printDetails(){
         System.out.println("Name: " + this.name + ", pax: " + this.pax);
+        System.out.println(this.time.get(Calendar.HOUR_OF_DAY));
         System.out.println("Date: " + this.time.toZonedDateTime().format(DateTimeFormatter.ofPattern("dd/MM")));
         System.out.println("Time: " + this.time.toZonedDateTime().format(DateTimeFormatter.ofPattern("HH:mm")));
+        System.out.println(this.time.get(Calendar.HOUR_OF_DAY));
     }
 
     /**
@@ -137,8 +139,8 @@ public class Reservation {
     	GregorianCalendar now = new GregorianCalendar();	// Get current time
     	GregorianCalendar old = new GregorianCalendar();
     	for (int i=0;i<reservationList.size();i++) {
-    		old = reservationList.get(i).getTime();
-    		old.add(reservationList.get(i).getTime().HOUR_OF_DAY, 2);
+    		old = (GregorianCalendar) reservationList.get(i).getTime().clone();
+    		old.add(Calendar.HOUR_OF_DAY, 2);
     		if (old.after(now)) {	// Remove reservation if more than 2h old
     			System.out.println(reservationList.get(i).getName() + "'s reservation expired.");
     			reservationList.remove(i);

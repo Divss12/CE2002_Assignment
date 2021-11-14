@@ -62,7 +62,7 @@ public class ReservationManager {
 
 		Reservation res = new Reservation(pax, name, year, month, date, hour);
 		if (res.isValidReservation(tableList)) {
-			System.out.println("Reservation made at " + date + "/" + month+1 + ", time: " + hour + ":00");
+			System.out.println("Reservation made at " + date + "/" + (month+1) + ", time: " + hour + ":00");
 			array.add(res);
 		}else {
 			System.out.println("Reservation not made.");
@@ -103,6 +103,7 @@ public class ReservationManager {
 			GregorianCalendar time = r.getTime();
 			int dayOfWeek = time.get(Calendar.DAY_OF_WEEK);
 			int hourOfDay = time.get(Calendar.HOUR_OF_DAY);
+			System.out.println("Freeing table " + tableNumber + " slot " + dayOfWeek + ", " + hourOfDay);
 			tableList.get(tableNumber).freeTimeSlot((dayOfWeek-1)*12 + (hourOfDay-10));
 		}
 		if(flag == 0){
@@ -120,14 +121,14 @@ public class ReservationManager {
 		GregorianCalendar now = new GregorianCalendar();	// Get current time
     	GregorianCalendar old = new GregorianCalendar();
     	for (int i=0;i<array.size();i++) {
-    		old = array.get(i).getTime();
+    		old = (GregorianCalendar) array.get(i).getTime().clone();
     		old.add(Calendar.HOUR_OF_DAY, 1);
     		if (now.after(old)) {	// Remove reservation if more than 2h old
-    			Reservation cur = array.get(i);
+    			Reservation cur = array.remove(i);
     			System.out.println("WARNING!!! " + cur.getName() + "'s reservation expired.");
-    			GregorianCalendar time = new GregorianCalendar(cur.getYear(), cur.getMonth(), cur.getDay(), cur.getHours(), 0);
-       		 	int dayOfWeek = time.get(Calendar.DAY_OF_WEEK);
-       		 	int hourOfDay = time.get(Calendar.HOUR_OF_DAY);
+    			//GregorianCalendar time = new GregorianCalendar(cur.getYear(), cur.getMonth(), cur.getDay(), cur.getHours(), 0);
+       		 	int dayOfWeek = cur.getDay();
+       		 	int hourOfDay = cur.getHours();
     			int tableIdx = array.get(i).getTableNumber();
     			for (Table t:tableList) {
     				if (t.getTableNumber() == tableIdx) {

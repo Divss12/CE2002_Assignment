@@ -126,7 +126,7 @@ public class ReservationManager {
     		if (now.after(old)) {	// Remove reservation if more than 2h old
     			Reservation cur = array.remove(i);
     			System.out.println("WARNING!!! " + cur.getName() + "'s reservation expired.");
-       		 	int dayOfWeek = cur.getDay() % 7; // Convert day of month to day of week
+       		 	int dayOfWeek = cur.getDayOfWeek()-1;
        		 	int hourOfDay = cur.getHours();
        		 	System.out.println("dayOfWeek = " + Integer.toString(dayOfWeek));
        		 	System.out.println("hourOfDay = " + Integer.toString(hourOfDay));

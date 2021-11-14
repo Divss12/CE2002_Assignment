@@ -20,6 +20,7 @@ public class Reservation {
     private int day;
     private int hours;
     private int tableNumber;
+    private int dayOfWeek;
 
     /**
      * Constructor for Reservation
@@ -38,6 +39,7 @@ public class Reservation {
     	this.month = month;
     	this.day = day;	
     	this.hours = hours;
+    	this.dayOfWeek = time.get(Calendar.DAY_OF_WEEK);
     }
 
     ///////////////// MUTATORS ///////////////// 
@@ -79,6 +81,14 @@ public class Reservation {
 	 */
 	public int getTableNumber() {
 		return this.tableNumber;
+	}
+	
+	/**
+	 * 
+	 * @return int value of day of the week
+	 */
+	public int getDayOfWeek() {
+		return this.dayOfWeek;
 	}
 	
     /**
